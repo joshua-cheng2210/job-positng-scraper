@@ -143,8 +143,8 @@ def score(p: Posting, profile: dict = PROFILE) -> Posting:
     if years:
         worst = max(years)
         if worst >= 5:
-            pts -= 4.0
-            why.append(f"{worst}+ yrs required -4.0")
+            pts -= 10.0
+            why.append(f"{worst}+ yrs required -10.0")
         elif worst >= 3:
             pts -= 2.0
             why.append(f"{worst}+ yrs required -2.0")
@@ -159,8 +159,14 @@ def score(p: Posting, profile: dict = PROFILE) -> Posting:
     elif p.sponsorship_flag == "h1b_possible":
         pts += 2.0
         why.append("positive sponsorship language +2.0")
-    # no_stem_opt is intentionally NOT penalised -- cap-exempt H-1B needs no
-    # E-Verify. See the note in filters.py.
+    elif p.sponsorship_flag == "no_stem_opt":
+        pts -= 2.0
+        why.append("no STEM OPT (cap-exempt H-1B still fine, but a minor negative "
+                    "signal) -2.0")
+    # no_stem_opt is still not an EXCLUDE -- cap-exempt H-1B needs no E-Verify/
+    # STEM OPT, so Josh still applies. It's now a small scoring penalty rather
+    # than neutral, since a plain STEM-OPT posting is a slightly safer bet than
+    # one that explicitly rules it out. See the note in filters.py.
 
     p.score = round(pts, 2)
     p.score_reasons = why

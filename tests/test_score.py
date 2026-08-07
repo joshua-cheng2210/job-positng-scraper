@@ -24,17 +24,28 @@ def test_years_penalty():
     assert junior.score > senior.score
 
 
+def test_five_plus_years_penalty_is_ten_points():
+    p = score(mk("Data Analyst", "Requires 5 years of experience. Python."), PROFILE)
+    assert any("-10.0" in r for r in p.score_reasons)
+
+
+def test_three_to_four_years_penalty_is_still_two_points():
+    p = score(mk("Data Analyst", "Requires 3 years of experience. Python."), PROFILE)
+    assert any("-2.0" in r for r in p.score_reasons)
+
+
 def test_hard_blocker_tanks_the_score():
     p = score(mk("Software Engineer", "Python. Must be a U.S. citizen."), PROFILE)
     assert p.score < 0
     assert any("hard blocker" in r for r in p.score_reasons)
 
 
-def test_no_stem_opt_not_penalised():
+def test_no_stem_opt_is_a_small_penalty_not_a_hard_exclude():
     a = score(mk("Software Engineer", "Python and SQL."), PROFILE)
     b = score(mk("Software Engineer",
                  "Python and SQL. We do not participate in E-Verify."), PROFILE)
-    assert a.score == b.score
+    assert b.score == round(a.score - 2.0, 2)
+    assert any("-2.0" in r for r in b.score_reasons)
 
 
 def test_rank_orders_descending():
