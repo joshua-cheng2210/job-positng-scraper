@@ -63,6 +63,22 @@ def test_hidden_columns_stay_hidden_but_present(tmp_path):
         assert ws.column_dimensions[letter].hidden is True, f"{col_name} should be hidden"
 
 
+def test_url_column_is_gone_and_title_carries_the_hyperlink_instead(tmp_path):
+    out = tmp_path / "wb.xlsx"
+    p = mk("A U", "1", "Software Engineer")  # mk() gives it url="https://x/1"
+    workbook.write(out, shortlist=[p], all_postings=[p],
+                   history_rows=[], changes={"new": [], "closed": []})
+    ws = load_workbook(out)["Shortlist"]
+    headers = [ws.cell(row=4, column=c).value for c in range(1, ws.max_column + 1)]
+    assert "URL" not in headers
+
+    title_col = headers.index("Title") + 1
+    cell = ws.cell(row=5, column=title_col)
+    assert cell.hyperlink is not None
+    assert cell.hyperlink.target == "https://x/1"
+    assert cell.value == "Software Engineer"
+
+
 def test_location_and_state_are_combined_into_one_column(tmp_path):
     out = tmp_path / "wb.xlsx"
     p = mk("A U", "1", "Software Engineer", location="Minneapolis")

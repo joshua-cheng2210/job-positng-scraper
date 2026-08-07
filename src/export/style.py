@@ -158,7 +158,7 @@ def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = 
         for col in cols:
             cell = ws.cell(row=r, column=idx[col], value=clean(row.get(col)))
             cell.font = Font(name=FONT, size=10)
-            cell.alignment = Alignment(vertical="top", wrap_text=(col != "url"))
+            cell.alignment = Alignment(vertical="top", wrap_text=True)
             cell.border = BORDER
             if r % 2 == 0:
                 cell.fill = PatternFill("solid", fgColor=GREY)
@@ -186,11 +186,16 @@ def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = 
                     ws.cell(row=r, column=idx[field]).fill = \
                         PatternFill("solid", fgColor=fill)
 
-        if "url" in idx:
-            uc = ws.cell(row=r, column=idx["url"])
-            if isinstance(uc.value, str) and uc.value.startswith("http"):
-                uc.hyperlink = uc.value
-                uc.font = Font(name=FONT, size=10, color="0563C1", underline="single")
+        # The Title cell links straight to the posting instead of a separate
+        # URL column -- `url` is read from the row dict directly, not from
+        # `cols`/`idx`, so this still works even though `url` is dropped from
+        # the rendered columns (see BULKY in workbook.py).
+        if "title" in idx:
+            url = row.get("url")
+            if isinstance(url, str) and url.startswith("http"):
+                tc = ws.cell(row=r, column=idx["title"])
+                tc.hyperlink = url
+                tc.font = Font(name=FONT, size=10, color="0563C1", underline="single")
 
     for col in cols:
         letter = get_column_letter(idx[col])

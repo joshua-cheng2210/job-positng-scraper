@@ -29,6 +29,12 @@ log = logging.getLogger(__name__)
 
 BULKY = {"description", "raw"}          # too wide for the overview tabs -- dropped entirely
 
+# `url` is dropped too, but for a different reason: style.write_table() now
+# hyperlinks the Title cell straight to the posting instead, so a separate
+# URL column is redundant. `url` stays in the row dict (read directly by
+# write_table to build that hyperlink) -- only the rendered column goes away.
+DROP_COLUMNS = BULKY | {"url"}
+
 # Kept in the data (Summary counts, etc. can still read them) but collapsed
 # by default so the table isn't cluttered: state is folded into the combined
 # "Location" column below, department/sponsorship_evidence/hard_blockers are
@@ -173,7 +179,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         subtitle=("Survived the filters, sorted by match score. Green = positive "
                   "sponsorship language, amber = declines STEM OPT (still applicable "
                   "via cap-exempt H-1B), red = no sponsorship. A Blocker usually means skip."),
-        drop=BULKY,
+        drop=DROP_COLUMNS,
         hidden=HIDDEN_COLUMNS,
     )
 
@@ -196,7 +202,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         all_rows,
         title=f"All postings collected — {len(all_rows)} rows — {stamp}",
         subtitle="Unfiltered. Use this to check why something never reached the Shortlist.",
-        drop=BULKY,
+        drop=DROP_COLUMNS,
         hidden=HIDDEN_COLUMNS,
     )
 
@@ -206,7 +212,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         title=f"History — {len(history_rows)} unique postings ever seen",
         subtitle=("Carried forward across every run and deduplicated by institution + job ID. "
                   "status=closed means it was not in the latest run."),
-        drop=BULKY,
+        drop=DROP_COLUMNS,
         hidden=HIDDEN_COLUMNS,
     )
 
@@ -217,7 +223,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         title=f"Changes this run — {len(changes.get('new', []))} new, "
               f"{len(changes.get('closed', []))} closed",
         subtitle="Only what moved since the previous run. Empty on a first run.",
-        drop=BULKY,
+        drop=DROP_COLUMNS,
         hidden=HIDDEN_COLUMNS,
     )
 

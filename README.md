@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 82 tests, all offline
+python -m pytest -q                                  # 83 tests, all offline
 ```
 
 ## Run
@@ -183,13 +183,21 @@ Hidden: `State` (folded into `Location`, see below), `Department`,
 `Sponsorship evidence`, `Blockers` (all three are populated rarely enough
 that they were mostly empty space in the default view).
 
+`URL` is a different case — it's **dropped entirely**, not hidden. `Title`
+is hyperlinked straight to the posting instead, so a separate URL column was
+pure redundancy. The underlying `url` value is still read from the row data
+to build that hyperlink; it just never gets its own column in these four
+tabs. (The raw export in `json_to_excel.py` below still shows `url` as a
+plain column since it doesn't hyperlink anything — it's a full, unstyled
+data dump.)
+
 | Column | Meaning |
 |---|---|
 | Change | Changes tab only — `new` or `closed` this run |
 | Status | History tab only — `open`, `closed`, or `new`; lifecycle state of the posting |
 | Score | resume-match score from `src/score.py`, higher = better fit. Negative means a hard blocker or a sponsorship penalty outweighed everything else |
 | Institution | university/system name |
-| Title | job title exactly as posted |
+| Title | job title exactly as posted, **and hyperlinked straight to the application URL** — click the title to open the posting, no separate URL column needed |
 | Department *(hidden)* | hiring department or unit, if the portal exposes one |
 | Location | campus/city **and state combined**, e.g. `Minneapolis, MN` — computed at export time from the separate `location` + `state` fields; `state` itself is hidden, not gone |
 | State *(hidden)* | two-letter state, folded into Location above; kept in the data so Summary's "by state" counts still work |
@@ -205,7 +213,6 @@ that they were mostly empty space in the default view).
 | Blockers *(hidden)* | hard disqualifiers detected — US citizenship, security clearance, export control. Red fill; usually means skip. Empty for the vast majority of university tech postings — it only lights up for defense-adjacent research roles (e.g. an applied research lab), so an empty column most runs is expected, not a bug |
 | Portal | ATS platform the posting came from — `workday` / `peopleadmin` / `pageup` / `custom` |
 | System | multi-campus system, e.g. "Minnesota State", "Big Ten" |
-| URL | direct link to the posting (clickable in Excel) |
 | Why this score | full point-by-point breakdown behind the Score column, e.g. `Python (languages) +1.5; title match +3.0; posted <24h ago +3.0` |
 | Description Verified? | `1` if `description` came from a real detail fetch (Workday `jobPostingInfo`, or a parsed PeopleAdmin HTML page) — trust years/skill conclusions on these rows. `0` means missing or only a partial feed excerpt — don't trust it. See "Enrichment" above. Green fill = `1` |
 | Description | full job description text — dropped from these four tabs (too wide); only appears in the raw export below |
@@ -486,7 +493,7 @@ src/
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      82 tests, fixtures captured from live APIs
+tests/                      83 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.

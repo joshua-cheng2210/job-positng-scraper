@@ -92,8 +92,11 @@ def test_end_to_end_workbook(tmp_path):
     assert ws.freeze_panes == "A5"
     assert ws.auto_filter.ref is not None
 
-    url_col = order_columns(load_rows(src)).index("url") + 1
-    assert ws.cell(row=5, column=url_col).hyperlink is not None
+    # Title links straight to the posting now instead of a separate URL
+    # column -- style.write_table() hyperlinks Title from row["url"]
+    # regardless of whether "url" itself is a rendered column.
+    title_col = order_columns(load_rows(src)).index("title") + 1
+    assert ws.cell(row=5, column=title_col).hyperlink is not None
 
 
 def test_empty_file_raises_cleanly(tmp_path):
