@@ -162,7 +162,17 @@ class WorkdayAdapter(Adapter):
 
             offset += len(batch)
             pages += 1
-            if total is not None and offset >= total:
+            done = total is not None and offset >= total
+            # Large tenants (Penn State: 1384 postings / 70 pages) paginate
+            # for a minute-plus with the default 1s delay, and used to log
+            # nothing between "N postings reported" and the final summary --
+            # looked hung even though it was working. Print every 5 pages
+            # (and the last one) so it's visibly alive.
+            if pages % 5 == 0 or done:
+                pct = f"{offset / total:.0%}" if total else "?"
+                log.info("   %s: %d/%s collected (%s, page %d)",
+                          self.name, offset, total, pct, pages)
+            if done:
                 break
             self._sleep()
 
