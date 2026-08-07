@@ -45,6 +45,22 @@ def test_all_six_tabs_present(tmp_path):
     assert wb["Shortlist"].auto_filter.ref is not None
 
 
+def test_description_scraped_column_survives_the_bulky_drop(tmp_path):
+    out = tmp_path / "wb.xlsx"
+    scraped = mk("A U", "1", "Software Engineer")
+    scraped.description_scraped = 1
+    unscraped = mk("A U", "2", "Data Analyst")
+    unscraped.description_scraped = 0
+    workbook.write(out, shortlist=[scraped, unscraped], all_postings=[scraped, unscraped],
+                   history_rows=[], changes={"new": [], "closed": []})
+    ws = load_workbook(out)["Shortlist"]
+    headers = [ws.cell(row=4, column=c).value for c in range(1, ws.max_column + 1)]
+    assert "Description Verified?" in headers
+    col = headers.index("Description Verified?") + 1
+    values = {ws.cell(row=r, column=col).value for r in (5, 6)}
+    assert values == {1, 0}
+
+
 def test_description_column_dropped_from_overview_tabs(tmp_path):
     out = tmp_path / "wb.xlsx"
     p = mk("A U", "1", "Software Engineer")

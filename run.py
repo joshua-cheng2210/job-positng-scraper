@@ -8,6 +8,7 @@
     python run.py --limit 5           # first N targets, for a smoke test
     python run.py --keep 10           # keep the 10 most recent workbooks (default 5)
     python run.py --keep 0            # keep every workbook, never prune
+    python run.py --no-enrich         # skip the post-filter detail fetch (faster, less complete)
 
 Outputs
     data/postings.json                    this run's raw collection (Cowork handoff)
@@ -17,6 +18,16 @@ Outputs
 Every run writes a new workbook, then prunes output/ down to the --keep most
 recent (default 5) so old runs don't pile up. data/postings.json and
 data/history.json are never touched by pruning.
+
+Enrichment: the bulk pass (Workday list endpoint, PeopleAdmin Atom feed)
+does NOT reliably carry a complete description -- Workday gives none at all
+unless fetch_detail is set per-target, and PeopleAdmin's feed omits the
+Minimum/Preferred Qualifications fields entirely (confirmed against live
+pages). So after filtering, before scoring, run.py fetches one extra detail
+request per SURVIVING posting only -- bounded to Shortlist size, not the
+full raw collection. Posting.description_scraped is 1 only for rows that
+got this real fetch; treat description_scraped=0 rows as unverified,
+especially for years-of-experience / skill-keyword conclusions.
 """
 from __future__ import annotations
 
@@ -24,10 +35,15 @@ import argparse
 import json
 import logging
 import sys
+import time
 from datetime import date
 from pathlib import Path
 
+import requests
+
 from src import history
+from src.adapters import peopleadmin, workday
+from src.adapters.base import USER_AGENT
 from src.config import build_adapter, load_targets
 from src.export import workbook
 from src.filters import apply_filters
@@ -97,6 +113,38 @@ def load_cache() -> list[Posting]:
     return out
 
 
+_ENRICHERS = {
+    "workday": workday.enrich,
+    "peopleadmin": peopleadmin.enrich,
+}
+
+
+def enrich_survivors(postings: list[Posting], delay: float) -> None:
+    """One extra detail request per posting that survived filtering -- never
+    for the full raw collection. See the module docstring's Enrichment note
+    for why the bulk pass alone isn't trustworthy for scoring.
+
+    Mutates postings in place. Idempotent: skips anything already marked
+    description_scraped=1, so re-running (e.g. --from-cache after a prior
+    enriched run) doesn't re-fetch what it already has.
+    """
+    session = requests.Session()
+    session.headers.update({"User-Agent": USER_AGENT})
+
+    todo = [p for p in postings if not p.description_scraped]
+    log.info("enriching %d/%d survivors (already had a verified description: %d)",
+              len(todo), len(postings), len(postings) - len(todo))
+
+    done = 0
+    for p in todo:
+        fn = _ENRICHERS.get(p.platform)
+        if fn and fn(session, p):
+            done += 1
+        time.sleep(delay)
+
+    log.info("enrichment: %d/%d survivors got a verified description", done, len(todo))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--only", help="platform: workday | peopleadmin | pageup | umn")
@@ -109,6 +157,9 @@ def main() -> int:
                     help="write only the top N scored rows (0 = all)")
     ap.add_argument("--keep", type=int, default=5,
                     help="how many workbook_*.xlsx to keep in output/ (0 = keep all)")
+    ap.add_argument("--no-enrich", action="store_true",
+                    help="skip the post-filter detail fetch (faster, descriptions "
+                         "stay incomplete for survivors that weren't already enriched)")
     args = ap.parse_args()
 
     if args.from_cache:
@@ -129,6 +180,10 @@ def main() -> int:
     log.info("filter: %d raw -> %d kept", len(raw), len(kept))
     for k, v in sorted(stats.items(), key=lambda kv: -kv[1]):
         log.info("   %-40s %d", k, v)
+
+    if not args.no_enrich and kept:
+        enrich_survivors(kept, args.delay)
+        save_cache(raw)     # re-save so postings.json carries the enriched descriptions
 
     ranked = rank(kept, PROFILE)
     scored_all = rank(list(raw), PROFILE)      # history keeps scores for everything

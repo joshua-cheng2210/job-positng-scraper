@@ -35,6 +35,13 @@ class Posting:
     posted_date: date | None = None
     close_date: date | None = None
     description: str | None = None     # full text, used for sponsorship scanning
+    description_scraped: int = 0       # 1 = verified-complete detail fetch (Workday
+                                        # jobPostingInfo, or PeopleAdmin HTML page
+                                        # parse). 0 = absent, or only the Atom feed's
+                                        # partial <content> excerpt -- confirmed to
+                                        # omit Minimum/Preferred Qualifications on
+                                        # UNL/Utah/NC State postings. Don't trust
+                                        # years/skills scoring on a 0 row.
     system: str | None = None          # e.g. "Minnesota State", "Big Ten"
     state: str | None = None
     raw: dict[str, Any] = field(default_factory=dict, repr=False)

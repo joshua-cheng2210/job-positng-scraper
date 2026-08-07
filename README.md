@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 52 tests, all offline
+python -m pytest -q                                  # 60 tests, all offline
 ```
 
 ## Run
@@ -38,10 +38,11 @@ python run.py                          # everything enabled in targets.yaml
 python run.py --only workday           # one platform
 python run.py --name Wisconsin         # substring match on target name
 python run.py --limit 2 --delay 2      # gentle smoke test
-python run.py --from-cache             # re-filter/re-score, no network
+python run.py --from-cache             # re-filter/re-score, still enriches survivors (see below)
 python run.py --top 50                 # write only the 50 best rows
 python run.py --keep 10                # keep 10 workbooks in output/ instead of 5
 python run.py --keep 0                 # never prune old workbooks
+python run.py --no-enrich              # skip the post-filter detail fetch entirely
 ```
 
 Every run writes the workbook automatically as its last step — there's no
@@ -61,6 +62,47 @@ python prune_workbooks.py --dry-run    # show what would be deleted, don't delet
 
 Same `workbook.prune()` function `run.py` calls internally — one place owns
 "which files survive."
+
+### Enrichment — why some descriptions are trustworthy and some aren't
+
+The bulk collection pass does **not** reliably give you a complete job
+description, and this was silently wrong for a while before it got caught by
+comparing scraped output against live posting pages:
+
+- **Workday** returns none at all by default. The list endpoint (`POST
+  .../jobs`) never includes a description; a second per-posting request is
+  needed, and it's gated behind `fetch_detail: true` in `targets.yaml`, which
+  no target sets. Confirmed empirically: 0 of 3,450 collected Workday
+  postings had any description.
+- **PeopleAdmin**'s Atom feed looked fine — 88% of postings had *some* text —
+  but the `<content>` tag only carries the first field (Description of
+  Work / Job Summary / Essential Job Duties). It does **not** carry Minimum
+  Required Qualifications or Preferred Qualifications, which is exactly
+  where "N years required" and skill requirements live. Confirmed by
+  comparing scraped `postings.json` rows against the actual live pages for
+  UNL, University of Utah, and NC State postings — all three were missing
+  the qualifications sections entirely.
+
+So after filtering (title match, seniority, years-of-experience) but before
+scoring, `run.py` calls `enrich_survivors()`, which fetches one extra detail
+request **per posting that survived filtering** — never the full raw
+collection, so it stays bounded to roughly Shortlist size (typically a few
+hundred, not a few thousand):
+
+- `src/adapters/workday.py::enrich()` — hits the same `jobPostingInfo` detail
+  endpoint the dormant `fetch_detail` path already knew how to call, just
+  invoked afterward instead of during the bulk pass.
+- `src/adapters/peopleadmin.py::enrich()` — fetches the posting's own HTML
+  page and parses every `<th>/<td>` field row PeopleAdmin renders, not just
+  the feed's excerpt.
+
+`Posting.description_scraped` is `1` only when one of these actually
+succeeded and found real content; `0` means the description is either
+missing entirely or is the partial/unverified excerpt — **don't trust
+years-of-experience or skill-keyword conclusions on a `0` row.** It's a
+column in the workbook (see below) so you can see which rows to trust at a
+glance. Skip enrichment entirely with `--no-enrich` if you want a faster,
+network-light run and don't mind less reliable filtering/scoring.
 
 Outputs:
 
@@ -121,6 +163,7 @@ labels and widths live in `src/export/style.py::HEADERS`.
 | System | multi-campus system, e.g. "Minnesota State", "Big Ten" |
 | URL | direct link to the posting (clickable in Excel) |
 | Why this score | full point-by-point breakdown behind the Score column, e.g. `Python (languages) +1.5; title match +3.0` |
+| Description Verified? | `1` if `description` came from a real detail fetch (Workday `jobPostingInfo`, or a parsed PeopleAdmin HTML page) — trust years/skill conclusions on these rows. `0` means missing or only a partial feed excerpt — don't trust it. See "Enrichment" above. Green fill = `1` |
 | Description | full job description text — dropped from these four tabs (too wide); only appears in the raw export below |
 
 ### Raw export (`json_to_excel.py`)
@@ -369,7 +412,7 @@ src/
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      52 tests, fixtures captured from live APIs
+tests/                      60 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.

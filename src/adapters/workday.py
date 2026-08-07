@@ -188,28 +188,68 @@ class WorkdayAdapter(Adapter):
         if inst_hint and self.target.get("multi_institution"):
             p.institution = inst_hint
 
+        # Stored unconditionally (cheap: it's just a string) so the standalone
+        # enrich() below can fetch detail later for survivors, even when this
+        # target doesn't set fetch_detail: true for the bulk pass.
+        if path:
+            p.raw["detail_url"] = self._detail_url(path)
+
         if self.want_detail and path:
             self._enrich(p, path)
         return p
 
     def _enrich(self, p: Posting, external_path: str) -> None:
-        """Second request: full description + real dates. Only worth doing for
-        postings that already survived the title filter."""
+        """Second request: full description + real dates, during the bulk
+        pass itself. Only worth doing here for a target small enough that
+        fetch_detail: true is affordable for every posting -- otherwise leave
+        it to run.py calling enrich() on survivors after filtering."""
         try:
             info = self._get(self._detail_url(external_path)).json()
-            info = info.get("jobPostingInfo") or {}
         except Exception:                             # noqa: BLE001
             log.warning("%s: detail fetch failed for %s", self.name, external_path)
             return
-
-        p.description = info.get("jobDescription") or p.description
-        p.posted_date = _parse_date(info.get("startDate")) or p.posted_date
-        p.close_date = _parse_date(info.get("endDate")) or p.close_date
-        p.location = info.get("location") or p.location
-        p.url = info.get("externalUrl") or p.url
-        if info.get("jobReqId"):
-            p.job_id = info["jobReqId"]
-        p.raw["detail"] = {
-            k: info.get(k) for k in ("timeType", "jobReqId", "startDate", "endDate")
-        }
+        _apply_detail(p, info.get("jobPostingInfo") or {})
         self._sleep()
+
+
+def _apply_detail(p: Posting, info: dict) -> bool:
+    """Write a jobPostingInfo payload onto a Posting. Returns True if it
+    actually had a description to give (an empty/malformed payload should
+    not be recorded as description_scraped=1)."""
+    if not info.get("jobDescription"):
+        return False
+    p.description = info["jobDescription"]
+    p.posted_date = _parse_date(info.get("startDate")) or p.posted_date
+    p.close_date = _parse_date(info.get("endDate")) or p.close_date
+    p.location = info.get("location") or p.location
+    p.url = info.get("externalUrl") or p.url
+    if info.get("jobReqId"):
+        p.job_id = info["jobReqId"]
+    p.raw["detail"] = {
+        k: info.get(k) for k in ("timeType", "jobReqId", "startDate", "endDate")
+    }
+    p.description_scraped = 1
+    return True
+
+
+def enrich(session, p: Posting, timeout: float = 12.0) -> bool:
+    """Standalone detail fetch for a single posting, using its stored
+    detail_url. Meant to be called by run.py on postings that survived
+    filtering, so the second request only ever happens for postings worth
+    the cost -- see the module docstring's Two-Gotchas note plus
+    src/filters.py for the "why enrich after, not before" reasoning.
+
+    `session` is anything with a requests.Session-shaped .get(url, timeout=)
+    -- normally a real requests.Session, a fake in tests.
+    """
+    detail_url = p.raw.get("detail_url") if p.raw else None
+    if not detail_url:
+        return False
+    try:
+        resp = session.get(detail_url, timeout=timeout)
+        resp.raise_for_status()
+        info = (resp.json() or {}).get("jobPostingInfo") or {}
+    except Exception:                                 # noqa: BLE001
+        log.warning("enrich failed for %s (%s)", p.title, p.url)
+        return False
+    return _apply_detail(p, info)

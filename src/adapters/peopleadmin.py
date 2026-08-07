@@ -18,14 +18,23 @@ GET {base}/postings/search.atom  ->  Atom 1.0 XML
       <author><name>Educational Psychology-1047</name></author>
     </entry>
 
-Why this adapter is cheap: <content> carries the ENTIRE job description, so
-sponsorship scanning works straight off the feed with no per-posting detail
-request. One HTTP call gets you everything.
+The docstring used to claim <content> carries the ENTIRE job description --
+that was wrong. Confirmed by comparing scraped output against the live
+posting pages for UNL, Utah, and NC State: <content> only carries the first
+field (Description of Work / Job Summary / Essential Job Duties). Everything
+after that -- Minimum Required Qualifications, Preferred Qualifications,
+salary -- is a separate PeopleAdmin field that never makes it into the Atom
+feed. That's exactly where "N years required" and skill requirements live,
+so the bulk-pass description alone is not reliable for filtering/scoring.
+enrich() below fetches the actual HTML page (`<div id="form_view">`) and
+pulls every <th>/<td> field row PeopleAdmin renders, not just the feed's
+excerpt. Called by run.py on survivors only, same reasoning as Workday's
+detail fetch.
 
 Known limitation: the Atom entry has no location field. Location stays None
-unless you fetch the HTML posting page. Left unfetched on purpose -- for a
-single-campus portal the location is the campus, which targets.yaml already
-records as `default_location`.
+unless enrich() runs (the HTML page doesn't reliably carry it either for
+every school) -- for a single-campus portal the location is the campus,
+which targets.yaml already records as `default_location`.
 """
 from __future__ import annotations
 
@@ -34,7 +43,7 @@ import re
 from datetime import datetime
 from xml.etree import ElementTree as ET
 
-from ..models import Posting
+from ..models import Posting, _clean
 from .base import Adapter
 
 log = logging.getLogger(__name__)
@@ -114,3 +123,63 @@ class PeopleAdminAdapter(Adapter):
             raw={"atom_id": raw_id},
             **self._base_fields(),
         )
+
+
+# The qualifications tables always sit between the id="form_view" wrapper and
+# whatever section comes after it -- named differently per school
+# ("Supplemental Questions", "Posting Specific Questions", "Applicant
+# Documents", "Required Documents") but always one of these four. If none of
+# them match, fall back to scanning the whole page rather than finding
+# nothing -- worst case a few harmless extra rows from the questions section.
+_FORM_VIEW = re.compile(
+    r'<div id="form_view">(.*?)<h2 class="tab">\s*'
+    r'(?:Supplemental|Posting Specific|Applicant Documents|Required Documents)',
+    re.S | re.I,
+)
+# Every field PeopleAdmin renders is a <tr><th>Label</th><td>Value</td></tr>.
+# This is the one thing the live pages have in common across every school
+# checked (UNL, Utah, NC State) despite very different field names.
+_TABLE_ROW = re.compile(
+    r"<tr>\s*<th[^>]*>(.*?)</th>\s*<td[^>]*>(.*?)</td>\s*</tr>",
+    re.S | re.I,
+)
+
+
+def enrich(session, p: Posting, timeout: float = 12.0) -> bool:
+    """Fetch the posting's own HTML page and pull every field-by-field row
+    PeopleAdmin renders -- Minimum Required Qualifications, Preferred
+    Qualifications, salary, etc. -- none of which are in the Atom feed's
+    <content>. Meant to be called by run.py on postings that survived
+    filtering, not the full bulk pass. Returns True and sets
+    p.description_scraped=1 only if it actually found field rows to use.
+
+    `session` is anything with a requests.Session-shaped .get(url, timeout=).
+    """
+    if not p.url:
+        return False
+    try:
+        resp = session.get(p.url, timeout=timeout)
+        resp.raise_for_status()
+        html = resp.text
+    except Exception:                                 # noqa: BLE001
+        log.warning("enrich fetch failed for %s (%s)", p.title, p.url)
+        return False
+
+    m = _FORM_VIEW.search(html)
+    body = m.group(1) if m else html
+    rows = _TABLE_ROW.findall(body)
+    if not rows:
+        return False
+
+    parts = []
+    for label, value in rows:
+        label = (_clean(label) or "").rstrip(":")
+        value = _clean(value) or ""
+        if value:
+            parts.append(f"{label}: {value}")
+    if not parts:
+        return False
+
+    p.description = "\n".join(parts)
+    p.description_scraped = 1
+    return True

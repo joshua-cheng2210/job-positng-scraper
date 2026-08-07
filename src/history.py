@@ -24,6 +24,7 @@ CARRY_FIELDS = (
     "institution", "job_id", "title", "url", "platform", "department",
     "location", "posted_date", "close_date", "system", "state",
     "sponsorship_flag", "sponsorship_evidence", "hard_blockers", "score",
+    "description_scraped",
 )
 
 

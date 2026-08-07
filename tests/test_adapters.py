@@ -4,8 +4,11 @@ import json
 import pytest
 
 from tests.conftest import FIXTURES
+from src.adapters import peopleadmin as peopleadmin_mod
+from src.adapters import workday as workday_mod
 from src.adapters.peopleadmin import PeopleAdminAdapter
 from src.adapters.workday import WorkdayAdapter, _job_id, _scan_bullets
+from src.models import Posting
 
 MINNSTATE = {
     "name": "Minnesota State", "platform": "workday", "state": "MN",
@@ -108,3 +111,102 @@ def test_peopleadmin_atom(monkeypatch):
     assert p.posted_date.isoformat() == "2026-07-28"
     assert "Holland Computing Center" in p.description
     assert "<div>" not in p.description                    # HTML stripped
+    assert p.description_scraped == 0                      # atom feed only, not enriched
+
+
+class _FakeSession:
+    """Stand-in for requests.Session -- just needs .get(url, timeout=)."""
+
+    def __init__(self, resp=None, raise_exc=None):
+        self._resp, self._raise = resp, raise_exc
+        self.calls = []
+
+    def get(self, url, timeout=None, **kw):
+        self.calls.append(url)
+        if self._raise:
+            raise self._raise
+        return self._resp
+
+
+def _posting(**kw):
+    base = dict(institution="U", job_id="1", title="Software Engineer",
+                url="https://x", platform="test")
+    base.update(kw)
+    return Posting(**base)
+
+
+def test_workday_enrich_sets_description_scraped():
+    p = _posting(platform="workday", raw={"detail_url": "https://x/detail"})
+    payload = {"jobPostingInfo": {
+        "jobDescription": "Python and AWS required. 2 years experience.",
+        "jobReqId": "JR123",
+    }}
+    session = _FakeSession(resp=_Resp(payload=payload))
+    ok = workday_mod.enrich(session, p)
+    assert ok is True
+    assert p.description_scraped == 1
+    assert "Python and AWS" in p.description
+    assert p.job_id == "JR123"
+    assert session.calls == ["https://x/detail"]
+
+
+def test_workday_enrich_no_detail_url_is_a_noop():
+    p = _posting(platform="workday", raw={})
+    session = _FakeSession()
+    assert workday_mod.enrich(session, p) is False
+    assert p.description_scraped == 0
+    assert session.calls == []
+
+
+def test_workday_enrich_empty_description_not_marked_scraped():
+    p = _posting(platform="workday", raw={"detail_url": "https://x/detail"})
+    session = _FakeSession(resp=_Resp(payload={"jobPostingInfo": {}}))
+    assert workday_mod.enrich(session, p) is False
+    assert p.description_scraped == 0
+
+
+def test_workday_enrich_request_failure_leaves_scraped_at_zero():
+    p = _posting(platform="workday", raw={"detail_url": "https://x/detail"})
+    session = _FakeSession(raise_exc=ConnectionError("boom"))
+    assert workday_mod.enrich(session, p) is False
+    assert p.description_scraped == 0
+
+
+_PEOPLEADMIN_HTML = """
+<div id="form_view">
+  <table>
+    <tr><th>Description of Work</th><td>Build things.</td></tr>
+    <tr><th>Minimum Required Qualifications</th>
+        <td><ul><li>4 years culinary experience</li></ul></td></tr>
+    <tr><th>Preferred Qualifications</th><td>Python, AWS, Docker</td></tr>
+  </table>
+  <h2 class="tab">Supplemental Questions</h2>
+  <p>ignored: 99 years or more</p>
+</div>
+"""
+
+
+def test_peopleadmin_enrich_pulls_qualifications_fields():
+    p = _posting(platform="peopleadmin", url="https://employment.unl.edu/postings/1")
+    session = _FakeSession(resp=_Resp(text=_PEOPLEADMIN_HTML))
+    ok = peopleadmin_mod.enrich(session, p)
+    assert ok is True
+    assert p.description_scraped == 1
+    assert "4 years culinary experience" in p.description
+    assert "Python, AWS, Docker" in p.description
+    # boundary worked: the Supplemental Questions junk did not leak in
+    assert "99 years or more" not in p.description
+
+
+def test_peopleadmin_enrich_no_rows_found_is_a_noop():
+    p = _posting(platform="peopleadmin", url="https://employment.unl.edu/postings/1")
+    session = _FakeSession(resp=_Resp(text="<html><body>nothing here</body></html>"))
+    assert peopleadmin_mod.enrich(session, p) is False
+    assert p.description_scraped == 0
+
+
+def test_peopleadmin_enrich_no_url_is_a_noop():
+    p = _posting(platform="peopleadmin", url="")
+    session = _FakeSession()
+    assert peopleadmin_mod.enrich(session, p) is False
+    assert session.calls == []

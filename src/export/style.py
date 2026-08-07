@@ -36,6 +36,7 @@ HEADERS = {
     "sponsorship_flag": "Sponsorship", "sponsorship_evidence": "Sponsorship evidence",
     "hard_blockers": "Blockers", "platform": "Portal", "system": "System",
     "url": "URL", "score_reasons": "Why this score", "description": "Description",
+    "description_scraped": "Description Verified?",
     "first_seen": "First seen", "last_seen": "Last seen", "status": "Status",
     "runs_seen": "Runs seen", "change": "Change",
 }
@@ -45,7 +46,8 @@ WIDTHS = {
     "state": 7, "job_id": 16, "posted_date": 12, "close_date": 12,
     "sponsorship_flag": 18, "sponsorship_evidence": 34, "hard_blockers": 26,
     "platform": 13, "system": 22, "url": 58, "score_reasons": 52,
-    "description": 80, "first_seen": 12, "last_seen": 12, "status": 11,
+    "description": 80, "description_scraped": 12,
+    "first_seen": 12, "last_seen": 12, "status": 11,
     "runs_seen": 10, "change": 12,
 }
 
@@ -53,7 +55,7 @@ PREFERRED = [
     "change", "status", "score", "institution", "title", "department", "location",
     "state", "job_id", "posted_date", "close_date", "first_seen", "last_seen",
     "runs_seen", "sponsorship_flag", "sponsorship_evidence", "hard_blockers",
-    "platform", "system", "url", "score_reasons", "description",
+    "platform", "system", "url", "score_reasons", "description_scraped", "description",
 ]
 
 _THIN = Side(style="thin", color="BFBFBF")
@@ -153,6 +155,10 @@ def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = 
         if "hard_blockers" in idx and row.get("hard_blockers"):
             ws.cell(row=r, column=idx["hard_blockers"]).fill = \
                 PatternFill("solid", fgColor=RED)
+
+        if "description_scraped" in idx and row.get("description_scraped") == 1:
+            ws.cell(row=r, column=idx["description_scraped"]).fill = \
+                PatternFill("solid", fgColor=GREEN)
 
         for field in ("status", "change"):
             if field in idx:
