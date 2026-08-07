@@ -1,0 +1,34 @@
+{
+ "total": 4,
+ "jobPostings": [
+  {
+   "title": "Information Technology Spec 5 - Network Engineer",
+   "externalPath": "/job/St-Paul/Information-Technology-Spec-5---Network-Engineer_JR0000005315",
+   "locationsText": "St. Paul",
+   "postedOn": "Posted Today",
+   "bulletFields": ["JR0000005315", "2026-07-28", "Minnesota State System Office"]
+  },
+  {
+   "title": "Coordinator for Allied Health Placements - MSUAASF Range C",
+   "externalPath": "/job/St-Cloud/Coordinator-for-Allied-Health-Placements_JR0000005305",
+   "locationsText": "St. Cloud",
+   "postedOn": "Posted Today",
+   "bulletFields": ["JR0000005305", "2026-08-11", "St. Cloud State University"]
+  },
+  {
+   "title": "Senior Data Engineer",
+   "externalPath": "/job/Mankato/Senior-Data-Engineer_JR0000005401",
+   "locationsText": "Mankato",
+   "postedOn": "Posted 3 Days Ago",
+   "bulletFields": ["JR0000005401", "2026-09-01", "Minnesota State University, Mankato"]
+  },
+  {
+   "title": "Truck Driving - College Laboratory Assistant 2",
+   "externalPath": "/job/RIVR---Albert-Lea-Campus/Truck-Driving_JR0000005440",
+   "locationsText": "RIVR - Albert Lea Campus",
+   "postedOn": "Posted Today",
+   "bulletFields": ["JR0000005440", "2026-08-11", "Riverland Community College"]
+  }
+ ],
+ "facets": [{"facetParameter": "Institution", "descriptor": "Institution", "values": []}]
+}

@@ -1,0 +1,183 @@
+# Collection targets, sourced from University_Job_Search_Map.xlsx.
+#
+# platform: workday | peopleadmin | pageup | umn
+#
+# workday keys:      host, tenant, site, multi_institution?, fetch_detail?
+# peopleadmin keys:  base_url, default_location?
+# pageup keys:       host
+#
+# `enabled: false` skips a target without deleting the config.
+# Adding a school is a config change, not a code change.
+
+targets:
+
+  # ==================== WORKDAY -- verified live 2026-07-28 ==================
+
+  - name: Minnesota State (33 colleges & universities)
+    platform: workday
+    system: Minnesota State
+    state: MN
+    host: https://minnstate.wd115.myworkdayjobs.com
+    tenant: minnstate
+    site: Minnesota_State_Careers
+    multi_institution: true      # real employer arrives in bulletFields
+    notes: 184 postings at last check. Includes the System Office central IT shop.
+
+  - name: Universities of Wisconsin (12 campuses)
+    platform: workday
+    system: Universities of Wisconsin
+    state: WI
+    host: https://wisconsin.wd1.myworkdayjobs.com
+    tenant: wisconsin
+    site: UW_Comprehensives
+    multi_institution: true
+    notes: 354 postings at last check. Milwaukee, Eau Claire, La Crosse, Stout, etc.
+
+  # ---- unverified: confirm tenant/site before trusting output --------------
+  # Recipe: open the careers URL, read the address bar.
+  #   https://{tenant}.wd1.myworkdayjobs.com/{site}
+  # then curl the CXS endpoint to confirm a non-zero "total".
+
+  - name: Penn State (24 campuses)
+    platform: workday
+    system: Big Ten
+    state: PA
+    host: https://psu.wd1.myworkdayjobs.com
+    tenant: psu
+    site: PSU_Staff
+    multi_institution: false
+    verified: false
+
+  - name: The Ohio State University
+    platform: workday
+    system: Big Ten
+    state: OH
+    host: https://osu.wd1.myworkdayjobs.com
+    tenant: osu
+    site: OSUCareers
+    verified: false
+
+  - name: University of Maryland, College Park
+    platform: workday
+    system: Big Ten
+    state: MD
+    host: https://umd.wd1.myworkdayjobs.com
+    tenant: umd
+    site: UMCP
+    verified: false
+
+  - name: Washington State University
+    platform: workday
+    state: WA
+    host: https://wsu.wd5.myworkdayjobs.com
+    tenant: wsu
+    site: WSU_Jobs
+    verified: false
+
+  - name: Louisiana State University
+    platform: workday
+    state: LA
+    host: https://lsu.wd1.myworkdayjobs.com
+    tenant: lsu
+    site: LSU
+    verified: false
+
+  - name: University System of New Hampshire
+    platform: workday
+    state: NH
+    host: https://usnh.wd1.myworkdayjobs.com
+    tenant: usnh
+    site: USNH_Careers
+    verified: false
+
+  # ==================== PEOPLEADMIN -- verified live 2026-07-28 ==============
+
+  - name: University of Nebraska-Lincoln
+    platform: peopleadmin
+    system: Big Ten
+    state: NE
+    base_url: https://employment.unl.edu
+    default_location: Lincoln, NE
+    notes: Atom feed carries full job descriptions. Verified.
+
+  # ---- unverified: hit {base_url}/postings/search.atom to confirm ----------
+
+  - name: UNC-Chapel Hill
+    platform: peopleadmin
+    state: NC
+    base_url: https://unc.peopleadmin.com
+    default_location: Chapel Hill, NC
+    verified: false
+
+  - name: University of Utah
+    platform: peopleadmin
+    state: UT
+    base_url: https://utah.peopleadmin.com
+    default_location: Salt Lake City, UT
+    verified: false
+
+  - name: NC State University
+    platform: peopleadmin
+    state: NC
+    base_url: https://jobs.ncsu.edu
+    default_location: Raleigh, NC
+    verified: false
+
+  - name: North Dakota State University
+    platform: peopleadmin
+    state: ND
+    base_url: https://jobs.ndsu.edu
+    default_location: Fargo, ND
+    verified: false
+
+  - name: Indiana University (academic postings)
+    platform: peopleadmin
+    system: Big Ten
+    state: IN
+    base_url: https://indiana.peopleadmin.com
+    default_location: Bloomington, IN
+    verified: false
+
+  - name: University of Nebraska system (UNO, UNK, UNMC)
+    platform: peopleadmin
+    state: NE
+    base_url: https://careers.nebraska.edu
+    default_location: Nebraska
+    verified: false
+
+  # ==================== PAGEUP -- adapter is a stub =========================
+
+  - name: University of Oregon
+    platform: pageup
+    system: Big Ten
+    state: OR
+    host: https://careers.uoregon.edu
+    enabled: false
+
+  - name: Michigan State University
+    platform: pageup
+    system: Big Ten
+    state: MI
+    host: https://careers.msu.edu
+    enabled: false
+
+  - name: Rutgers University
+    platform: pageup
+    system: Big Ten
+    state: NJ
+    host: https://jobs.rutgers.edu
+    enabled: false
+
+  - name: Virginia Tech
+    platform: pageup
+    state: VA
+    host: https://jobs.vt.edu
+    enabled: false
+
+  # ==================== CUSTOM -- adapter is a stub =========================
+
+  - name: University of Minnesota (5 campuses)
+    platform: umn
+    system: U of M
+    state: MN
+    enabled: false

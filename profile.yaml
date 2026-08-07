@@ -1,0 +1,82 @@
+# Josh's skill profile, used by src/score.py.
+# Edit freely -- scoring re-runs instantly, no re-collection needed.
+# Category weights live in src/score.py::KEYWORD_CATEGORIES.
+
+languages:           # +1.5 each -- strongest signal, weighted above tooling
+  - Python
+  - Java
+  - JavaScript
+  - C++
+  - SQL
+  - HTML
+  - CSS
+  - OCaml
+  - R
+  # "REALBASIC" / "XOJO" deliberately omitted -- no university posting is
+  # going to ask for it, and it just adds noise to the regex pass.
+
+frameworks:          # +1.0 each
+  - Node.js
+  - React
+  - Angular
+  - Flask
+  - Vite
+  - Tailwind CSS
+  - Bootstrap
+  - LangChain
+  - Hugging Face
+  - Django
+
+databases_tools:     # +1.0 each
+  - PostgreSQL
+  - MySQL
+  - Git
+  - Docker
+  - Jira
+  - Tableau
+  - Excel
+
+cloud_deployment:    # +1.0 each
+  - AWS
+  - S3
+  - CloudFront
+  - Lambda
+  - GitHub Pages
+  - Render
+
+skills:              # +1.0 each -- legacy bucket for anything not categorized above
+  - REST API
+  - Linux
+
+data_analytics:      # +0.75 each
+  - NumPy
+  - pandas
+  - Matplotlib
+  - Seaborn
+  - OpenCV
+  - Regex
+  - ChromaDB
+  - Data Cleaning
+
+design_productivity: # +0.5 each
+  - Figma
+  - JMP
+  - TeamDynamix
+  - TargetProcess
+
+nice_to_have:        # +0.5 each -- adjacent, or things he can learn in a weekend
+  - TypeScript
+  - Power BI
+  - MATLAB
+  - Kubernetes
+  - Azure
+  - GCP
+  - Spark
+  - Airflow
+  - scikit-learn
+  - PyTorch
+  - TensorFlow
+  - Jenkins
+  - Agile
+
+graduation: 2026-05

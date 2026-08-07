@@ -1,0 +1,21 @@
+{
+ "total": 2,
+ "jobPostings": [
+  {
+   "title": "Application Developer",
+   "externalPath": "/job/Milwaukee-WI/Application-Developer_JR10012777",
+   "locationsText": "University of Wisconsin Milwaukee",
+   "postedOn": "Posted Today",
+   "remoteType": "Hybrid",
+   "bulletFields": ["Application Deadline: 08/22/2026"]
+  },
+  {
+   "title": "Head Women's Bowling Coach - Intercollegiate Athletics",
+   "externalPath": "/job/Whitewater-WI/Head-Women-s-Bowling-Coach_JR10012503",
+   "locationsText": "University of Wisconsin Whitewater",
+   "postedOn": "Posted Today",
+   "remoteType": "Onsite",
+   "bulletFields": ["Application Deadline: 08/02/2026"]
+  }
+ ]
+}

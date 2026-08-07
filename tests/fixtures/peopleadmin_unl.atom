@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:pa="employment.unl.edu">
+<id>tag:employment.unl.edu,2005:/postings/search</id>
+<title>The University Of Nebraska At Lincoln: All Jobs</title>
+<updated>2026-07-28T16:34:59-05:00</updated>
+<entry>
+<id>https://employment.unl.edu/postings/101500</id>
+<published>2026-07-28T16:34:58-05:00</published>
+<link rel="alternate" type="text/html" href="https://employment.unl.edu/postings/101500"/>
+<title>Research Software Engineer</title>
+<content>&lt;div&gt;Build and maintain Python and SQL data pipelines for the Holland Computing Center. Bachelor's degree required. 1-2 years experience preferred. Experience with Linux, Git, and REST API design.&lt;br&gt;&lt;br&gt;This position is not eligible for employment-based permanent residency sponsorship. UNL may be able to sponsor temporary work authorization (e.g., H-1B) for the successful candidate.&lt;/div&gt;</content>
+<author><name>Holland Computing Center-1150</name></author>
+</entry>
+<entry>
+<id>https://employment.unl.edu/postings/101453</id>
+<published>2026-07-27T15:37:11-05:00</published>
+<link rel="alternate" type="text/html" href="https://employment.unl.edu/postings/101453"/>
+<title>Chick-fil-A Operations Manager</title>
+<content>&lt;div&gt;The Operations Manager assists the General Manager in the overall supervision of the restaurant.&lt;/div&gt;</content>
+<author><name>Housing: Chick-fil-A-12426</name></author>
+</entry>
+<entry>
+<id>https://employment.unl.edu/postings/101499</id>
+<published>2026-07-28T09:00:00-05:00</published>
+<link rel="alternate" type="text/html" href="https://employment.unl.edu/postings/101499"/>
+<title>Systems Analyst</title>
+<content>&lt;div&gt;Support enterprise systems. Requires 5+ years of experience. Must be a U.S. citizen due to contract requirements.&lt;/div&gt;</content>
+<author><name>Information Technology Services-1001</name></author>
+</entry>
+</feed>

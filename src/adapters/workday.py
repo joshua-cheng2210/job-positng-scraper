@@ -1,0 +1,215 @@
+"""Workday CXS adapter.
+
+Covers the single biggest slice of US higher-ed hiring: Minnesota State (33
+schools), Universities of Wisconsin (12), Penn State (24 campuses), Ohio State,
+UMD, WSU, LSU, USNH -- roughly 75 institutions from this one file.
+
+Endpoints (verified live 2026-07-28)
+------------------------------------
+LIST    POST {host}/wday/cxs/{tenant}/{site}/jobs
+        body: {"appliedFacets": {}, "limit": 20, "offset": N, "searchText": ""}
+        -> {"total": int,
+            "jobPostings": [{"title", "externalPath", "locationsText",
+                             "postedOn", "bulletFields": [...],
+                             "remoteType"?}],
+            "facets": [...]}
+
+DETAIL  GET {host}/wday/cxs/{tenant}/{site}{externalPath}
+        -> {"jobPostingInfo": {"id", "title", "jobDescription", "location",
+                               "startDate", "endDate", "jobReqId",
+                               "externalUrl", "timeType", ...}}
+
+Two gotchas that will bite you if you deviate
+---------------------------------------------
+1. `limit` is capped at 20. Sending limit=100 returns ZERO postings, not an
+   error and not a truncated page -- an empty list. Silent failure. Do not
+   "optimise" the page size.
+2. `bulletFields` is configured per tenant and is NOT a stable schema.
+      MinnState  -> ["JR0000005305", "2026-08-11", "St. Cloud State University"]
+      Wisconsin  -> ["Application Deadline: 08/02/2026"]
+   Never index into it positionally. The job ID is parsed out of
+   `externalPath` instead, which is consistent across every tenant observed.
+"""
+from __future__ import annotations
+
+import logging
+import re
+from datetime import date, datetime
+
+from ..models import Posting
+from .base import Adapter
+
+log = logging.getLogger(__name__)
+
+PAGE_SIZE = 20          # hard API cap -- see module docstring
+MAX_PAGES = 200         # safety valve: 4,000 postings per target
+
+# Trailing job id on externalPath. Must survive all three observed shapes:
+#   ".../Network-Engineer_JR0000005315"      -> JR0000005315
+#   ".../App-Dev_JR10012777"                 -> JR10012777
+#   ".../Event-Intern_REQ_0000062018-1"      -> REQ_0000062018-1   (id contains _)
+# The optional "[A-Za-z]+_" prefix group is what keeps the Penn State style
+# intact; without it the match starts at the LAST underscore and silently
+# returns "0000062018-1".
+_ID_FROM_PATH = re.compile(r"_((?:[A-Za-z]+_)?[A-Za-z]*\d[\w-]*)$")
+_ISO = re.compile(r"\d{4}-\d{2}-\d{2}")
+_US_DATE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
+
+
+def _parse_date(value: str | None) -> date | None:
+    if not value:
+        return None
+    m = _ISO.search(value)
+    if m:
+        try:
+            return datetime.strptime(m.group(0), "%Y-%m-%d").date()
+        except ValueError:
+            pass
+    m = _US_DATE.search(value)
+    if m:
+        try:
+            mo, dy, yr = (int(g) for g in m.groups())
+            return date(yr, mo, dy)
+        except ValueError:
+            pass
+    return None
+
+
+def _job_id(external_path: str, fallback: str) -> str:
+    # Only look at the final path segment; earlier segments are location slugs
+    # and can contain underscores of their own.
+    segment = (external_path or "").rstrip("/").split("/")[-1]
+    m = _ID_FROM_PATH.search(segment)
+    return m.group(1) if m else fallback
+
+
+def _scan_bullets(bullets: list[str] | None) -> tuple[date | None, str | None]:
+    """bulletFields has no fixed schema, so sniff it instead of indexing.
+
+    Returns (close_date, institution_hint). Either may be None.
+    """
+    close, inst = None, None
+    for b in bullets or []:
+        if not isinstance(b, str):
+            continue
+        d = _parse_date(b)
+        if d and close is None:
+            close = d
+            continue
+        # an institution name: has a space, is wordy, isn't a req id
+        if inst is None and " " in b and not re.fullmatch(r"[A-Z]*\d[\w-]*", b):
+            if not _parse_date(b):
+                inst = b
+    return close, inst
+
+
+class WorkdayAdapter(Adapter):
+    platform = "workday"
+
+    def __init__(self, target, **kw):
+        super().__init__(target, **kw)
+        self.host = target["host"].rstrip("/")
+        self.tenant = target["tenant"]
+        self.site = target["site"]
+        # Fetching the full description costs one extra request per posting.
+        # Default off for the bulk pass; run.py turns it on for survivors only.
+        self.want_detail = bool(target.get("fetch_detail", False))
+
+    # -- urls ---------------------------------------------------------------
+
+    @property
+    def _list_url(self) -> str:
+        return f"{self.host}/wday/cxs/{self.tenant}/{self.site}/jobs"
+
+    def _detail_url(self, external_path: str) -> str:
+        return f"{self.host}/wday/cxs/{self.tenant}/{self.site}{external_path}"
+
+    def _public_url(self, external_path: str) -> str:
+        return f"{self.host}/{self.site}{external_path}"
+
+    # -- fetch --------------------------------------------------------------
+
+    def fetch(self) -> list[Posting]:
+        postings: list[Posting] = []
+        offset, total, pages = 0, None, 0
+
+        while pages < MAX_PAGES:
+            body = {
+                "appliedFacets": {},
+                "limit": PAGE_SIZE,
+                "offset": offset,
+                "searchText": "",
+            }
+            data = self._post(self._list_url, json=body).json()
+            if total is None:
+                total = data.get("total", 0)
+                log.info("%s: %s postings reported", self.name, total)
+
+            batch = data.get("jobPostings") or []
+            if not batch:
+                break
+
+            for jp in batch:
+                try:
+                    postings.append(self._to_posting(jp))
+                except Exception:                     # noqa: BLE001
+                    log.exception("%s: could not parse %r", self.name, jp)
+
+            offset += len(batch)
+            pages += 1
+            if total is not None and offset >= total:
+                break
+            self._sleep()
+
+        if total is not None and len(postings) < total:
+            log.warning(
+                "%s: collected %d of %d reported postings",
+                self.name, len(postings), total,
+            )
+        return postings
+
+    def _to_posting(self, jp: dict) -> Posting:
+        path = jp.get("externalPath") or ""
+        close, inst_hint = _scan_bullets(jp.get("bulletFields"))
+        fallback_id = re.sub(r"[^\w-]", "-", jp.get("title", ""))[:40]
+
+        p = Posting(
+            job_id=_job_id(path, fallback_id),
+            title=jp.get("title", ""),
+            url=self._public_url(path),
+            location=jp.get("locationsText"),
+            close_date=close,
+            # A multi-institution tenant (MinnState, UW) puts the real employer
+            # in bulletFields. Prefer it over the tenant-level name.
+            department=inst_hint,
+            raw=jp,
+            **self._base_fields(),
+        )
+        if inst_hint and self.target.get("multi_institution"):
+            p.institution = inst_hint
+
+        if self.want_detail and path:
+            self._enrich(p, path)
+        return p
+
+    def _enrich(self, p: Posting, external_path: str) -> None:
+        """Second request: full description + real dates. Only worth doing for
+        postings that already survived the title filter."""
+        try:
+            info = self._get(self._detail_url(external_path)).json()
+            info = info.get("jobPostingInfo") or {}
+        except Exception:                             # noqa: BLE001
+            log.warning("%s: detail fetch failed for %s", self.name, external_path)
+            return
+
+        p.description = info.get("jobDescription") or p.description
+        p.posted_date = _parse_date(info.get("startDate")) or p.posted_date
+        p.close_date = _parse_date(info.get("endDate")) or p.close_date
+        p.location = info.get("location") or p.location
+        p.url = info.get("externalUrl") or p.url
+        if info.get("jobReqId"):
+            p.job_id = info["jobReqId"]
+        p.raw["detail"] = {
+            k: info.get(k) for k in ("timeType", "jobReqId", "startDate", "endDate")
+        }
+        self._sleep()
