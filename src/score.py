@@ -110,6 +110,15 @@ RECENCY_BONUS = 3.0    # posted_date == today (all we have is day granularity,
                        # so "today" is the closest available proxy for "<24h ago")
 RECENCY_SOON_BONUS = 2.0   # posted 1-2 days ago ("<3 days ago")
 
+# He's job hunting for a full-time role -- a part-time or temporary posting
+# isn't disqualifying (some are still worth applying to, e.g. a temp role
+# that regularly converts to full-time), but it's a real negative signal, so
+# it's a scoring penalty here rather than a filters.py hard exclude.
+EMPLOYMENT_TYPE_PENALTIES = [
+    ("part-time", r"\bpart[- ]time\b", 2.0),
+    ("temporary", r"\btemporary\b", 2.0),
+]
+
 
 def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Posting:
     today = today or date.today()
@@ -158,6 +167,15 @@ def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Pos
         elif 1 <= days_since < 3:
             pts += RECENCY_SOON_BONUS
             why.append(f"posted {days_since}d ago +{RECENCY_SOON_BONUS}")
+
+    # Part-time / temporary penalty: checked against the whole haystack (title
+    # + department + description), not just the title, since some portals only
+    # mention employment type in body text ("This is a temporary, grant-funded
+    # position...").
+    for label, pat, w in EMPLOYMENT_TYPE_PENALTIES:
+        if re.search(pat, text):
+            pts -= w
+            why.append(f"{label} -{w}")
 
     # years-of-experience penalty: he graduates May 2026
     years = [int(m.group(1)) for m in EXPERIENCE_PENALTY.finditer(text)]

@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 78 tests, all offline
+python -m pytest -q                                  # 82 tests, all offline
 ```
 
 ## Run
@@ -415,6 +415,12 @@ hour count.
 | `no_sponsorship_any` | `-3.0` | explicit "will not sponsor any visa" language |
 | `h1b_possible` | `+2.0` | explicit positive sponsorship or cap-exempt language |
 | `no_stem_opt` | `-2.0` | still **not** a hard exclude — cap-exempt H-1B needs no E-Verify/STEM OPT, so Josh still applies. Just a small negative signal since a plain STEM-OPT-friendly posting is a marginally safer bet |
+| `part-time` | `-2.0` | matches "part-time" or "part time" anywhere in title/department/description. Not a filters.py exclude — some part-time roles are still worth applying to — just deprioritized |
+| `temporary` | `-2.0` | matches "temporary" anywhere in title/department/description. Same reasoning: a real negative signal, not disqualifying (e.g. a temp role that regularly converts to full-time) |
+
+Both employment-type penalties can stack with each other and with everything
+else — a part-time, temporary, 5+ years posting nets `-14.0` from these three
+penalties alone before any positive keyword matches offset it.
 
 ## Design notes worth knowing
 
@@ -480,7 +486,7 @@ src/
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      78 tests, fixtures captured from live APIs
+tests/                      82 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.

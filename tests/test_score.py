@@ -79,3 +79,29 @@ def test_posted_a_week_ago_gets_no_recency_bonus():
 def test_no_posted_date_is_a_noop_not_a_crash():
     p = score(mk("Software Engineer", "Python.", posted_date=None), PROFILE, today=TODAY)
     assert not any("posted" in r for r in p.score_reasons)
+
+
+def test_part_time_penalty():
+    ft = score(mk("Software Engineer", "Full-time Python role."), PROFILE)
+    pt = score(mk("Software Engineer", "This is a part-time Python role."), PROFILE)
+    assert pt.score == round(ft.score - 2.0, 2)
+    assert any("part-time -2.0" in r for r in pt.score_reasons)
+
+
+def test_part_time_matches_the_space_variant_too():
+    p = score(mk("Software Engineer", "This is a part time Python role."), PROFILE)
+    assert any("part-time -2.0" in r for r in p.score_reasons)
+
+
+def test_temporary_penalty():
+    p = score(mk("Software Engineer",
+                 "This is a temporary, grant-funded Python position."), PROFILE)
+    assert any("temporary -2.0" in r for r in p.score_reasons)
+
+
+def test_part_time_and_temporary_both_apply_if_both_present():
+    p = score(mk("Software Engineer",
+                 "Temporary, part-time Python role."), PROFILE)
+    reasons = "; ".join(p.score_reasons)
+    assert "part-time -2.0" in reasons
+    assert "temporary -2.0" in reasons
