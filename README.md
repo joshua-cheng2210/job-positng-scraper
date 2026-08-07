@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 71 tests, all offline
+python -m pytest -q                                  # 78 tests, all offline
 ```
 
 ## Run
@@ -175,6 +175,14 @@ All four data tabs share the same column vocabulary — a column just may not
 apply to every tab (e.g. `Change` only appears on the Changes tab). Column
 labels and widths live in `src/export/style.py::HEADERS`.
 
+Some columns are **hidden by default** rather than dropped — the data is
+still there (Summary counts, filtering, etc. all still see it), Excel just
+collapses the column so the sheet reads cleaner. Unhide any of them the
+normal Excel way (select the columns on either side, right-click, Unhide).
+Hidden: `State` (folded into `Location`, see below), `Department`,
+`Sponsorship evidence`, `Blockers` (all three are populated rarely enough
+that they were mostly empty space in the default view).
+
 | Column | Meaning |
 |---|---|
 | Change | Changes tab only — `new` or `closed` this run |
@@ -182,22 +190,23 @@ labels and widths live in `src/export/style.py::HEADERS`.
 | Score | resume-match score from `src/score.py`, higher = better fit. Negative means a hard blocker or a sponsorship penalty outweighed everything else |
 | Institution | university/system name |
 | Title | job title exactly as posted |
-| Department | hiring department or unit, if the portal exposes one |
-| Location | campus or city, if provided |
-| State | two-letter state, derived from the institution |
+| Department *(hidden)* | hiring department or unit, if the portal exposes one |
+| Location | campus/city **and state combined**, e.g. `Minneapolis, MN` — computed at export time from the separate `location` + `state` fields; `state` itself is hidden, not gone |
+| State *(hidden)* | two-letter state, folded into Location above; kept in the data so Summary's "by state" counts still work |
 | Job ID | the portal's own requisition/job ID |
 | Posted | date the posting first appeared, if the portal provides one |
+| Days Since Posted | `(today − Posted)` in days, recomputed fresh every time the workbook is written — not stored, so it's always accurate as of when you open it. Blank if the portal never gave a posted date |
 | Closes | application deadline, if provided |
 | First seen | History tab only — date this posting first showed up in any run |
 | Last seen | History tab only — most recent run that still saw this posting live |
 | Runs seen | History tab only — how many collection runs have included it |
 | Sponsorship | `h1b_possible` (green) / `no_stem_opt` (amber — still applicable via cap-exempt H-1B) / `no_sponsorship_any` (red) / `unknown` |
-| Sponsorship evidence | the sentence in the posting text that triggered the sponsorship flag |
-| Blockers | hard disqualifiers detected — US citizenship, security clearance, export control. Red fill; usually means skip |
+| Sponsorship evidence *(hidden)* | the sentence in the posting text that triggered the sponsorship flag |
+| Blockers *(hidden)* | hard disqualifiers detected — US citizenship, security clearance, export control. Red fill; usually means skip. Empty for the vast majority of university tech postings — it only lights up for defense-adjacent research roles (e.g. an applied research lab), so an empty column most runs is expected, not a bug |
 | Portal | ATS platform the posting came from — `workday` / `peopleadmin` / `pageup` / `custom` |
 | System | multi-campus system, e.g. "Minnesota State", "Big Ten" |
 | URL | direct link to the posting (clickable in Excel) |
-| Why this score | full point-by-point breakdown behind the Score column, e.g. `Python (languages) +1.5; title match +3.0` |
+| Why this score | full point-by-point breakdown behind the Score column, e.g. `Python (languages) +1.5; title match +3.0; posted <24h ago +3.0` |
 | Description Verified? | `1` if `description` came from a real detail fetch (Workday `jobPostingInfo`, or a parsed PeopleAdmin HTML page) — trust years/skill conclusions on these rows. `0` means missing or only a partial feed excerpt — don't trust it. See "Enrichment" above. Green fill = `1` |
 | Description | full job description text — dropped from these four tabs (too wide); only appears in the raw export below |
 
@@ -379,6 +388,23 @@ on "what he already is":
 | `bachelor's degree` | `+1.0` |
 | level marker "Analyst I" / "Developer 1" | `+0.5` |
 
+**Recency bonus** — freshly-posted roles are worth applying to before the
+applicant pool grows, so newer postings get a small push toward the top of
+the Shortlist. Mutually exclusive — only the stronger bonus applies, and it
+requires `posted_date` to be set at all (blank for postings the portal never
+gave a date for, in which case no bonus applies either way):
+
+| Signal | Bonus |
+|---|---|
+| Posted less than 24 hours ago | `+3.0` |
+| Posted less than 3 days ago | `+2.0` |
+
+Caveat worth knowing: every adapter only gives a `date`, never a timestamp,
+so "less than 24 hours ago" is approximated as "posted today" (same
+calendar date as the run) and "less than 3 days ago" as "posted 1–2 days
+ago." Close enough for ranking purposes, but don't read it as a literal
+hour count.
+
 **Penalties:**
 
 | Penalty | Amount | Note |
@@ -454,7 +480,7 @@ src/
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      71 tests, fixtures captured from live APIs
+tests/                      78 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.

@@ -11,6 +11,7 @@ converging on the safest possible list.
 from __future__ import annotations
 
 import re
+from datetime import date
 
 from .models import Posting
 
@@ -105,7 +106,13 @@ def _keyword_pattern(keyword: str) -> re.Pattern[str]:
     return re.compile(rf"(?<![A-Za-z0-9_]){escaped}(?![A-Za-z0-9_])")
 
 
-def score(p: Posting, profile: dict = PROFILE) -> Posting:
+RECENCY_BONUS = 3.0    # posted_date == today (all we have is day granularity,
+                       # so "today" is the closest available proxy for "<24h ago")
+RECENCY_SOON_BONUS = 2.0   # posted 1-2 days ago ("<3 days ago")
+
+
+def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Posting:
+    today = today or date.today()
     pts = 0.0
     why: list[str] = []
 
@@ -137,6 +144,20 @@ def score(p: Posting, profile: dict = PROFILE) -> Posting:
         if re.search(pat, text):
             pts += w
             why.append(f"entry-level signal +{w}")
+
+    # Recency bonus: freshly-posted roles are worth applying to first, before
+    # the applicant pool grows. posted_date only has day granularity (no
+    # timestamp from any adapter), so "posted today" stands in for "<24h ago"
+    # and "posted 1-2 days ago" stands in for "<3 days ago". Mutually
+    # exclusive -- only the stronger bonus applies.
+    if p.posted_date:
+        days_since = (today - p.posted_date).days
+        if 0 <= days_since < 1:
+            pts += RECENCY_BONUS
+            why.append(f"posted <24h ago +{RECENCY_BONUS}")
+        elif 1 <= days_since < 3:
+            pts += RECENCY_SOON_BONUS
+            why.append(f"posted {days_since}d ago +{RECENCY_SOON_BONUS}")
 
     # years-of-experience penalty: he graduates May 2026
     years = [int(m.group(1)) for m in EXPERIENCE_PENALTY.finditer(text)]
@@ -173,9 +194,10 @@ def score(p: Posting, profile: dict = PROFILE) -> Posting:
     return p
 
 
-def rank(postings: list[Posting], profile: dict = PROFILE) -> list[Posting]:
+def rank(postings: list[Posting], profile: dict = PROFILE,
+         today: date | None = None) -> list[Posting]:
     return sorted(
-        (score(p, profile) for p in postings),
+        (score(p, profile, today) for p in postings),
         key=lambda x: x.score,
         reverse=True,
     )

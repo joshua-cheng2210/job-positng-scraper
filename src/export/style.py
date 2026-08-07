@@ -32,7 +32,8 @@ STATUS_FILL = {
 HEADERS = {
     "score": "Score", "institution": "Institution", "title": "Title",
     "department": "Department", "location": "Location", "state": "State",
-    "job_id": "Job ID", "posted_date": "Posted", "close_date": "Closes",
+    "job_id": "Job ID", "posted_date": "Posted",
+    "days_since_posted": "Days Since Posted", "close_date": "Closes",
     "sponsorship_flag": "Sponsorship", "sponsorship_evidence": "Sponsorship evidence",
     "hard_blockers": "Blockers", "platform": "Portal", "system": "System",
     "url": "URL", "score_reasons": "Why this score", "description": "Description",
@@ -46,8 +47,9 @@ HEADERS = {
 }
 
 WIDTHS = {
-    "score": 8, "institution": 34, "title": 46, "department": 28, "location": 22,
-    "state": 7, "job_id": 16, "posted_date": 12, "close_date": 12,
+    "score": 8, "institution": 34, "title": 46, "department": 28, "location": 26,
+    "state": 7, "job_id": 16, "posted_date": 12, "days_since_posted": 14,
+    "close_date": 12,
     "sponsorship_flag": 18, "sponsorship_evidence": 34, "hard_blockers": 26,
     "platform": 13, "system": 22, "url": 58, "score_reasons": 52,
     "description": 80, "description_scraped": 12,
@@ -63,7 +65,8 @@ PREFERRED = [
     "composite", "postings", "top3_avg_score", "avg_score", "max_score",
     "verified_pct", "positive_sponsorship", "no_sponsorship",
     "title", "department", "location",
-    "state", "job_id", "posted_date", "close_date", "first_seen", "last_seen",
+    "state", "job_id", "posted_date", "days_since_posted", "close_date",
+    "first_seen", "last_seen",
     "runs_seen", "sponsorship_flag", "sponsorship_evidence", "hard_blockers",
     "platform", "system", "url", "score_reasons", "description_scraped", "description",
 ]
@@ -120,8 +123,14 @@ def sort_rows(rows: list[dict], field: str, desc: bool = True) -> list[dict]:
 
 
 def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = "",
-                drop: set[str] | None = None) -> None:
-    """Render rows as a formatted, filterable table starting at row 4."""
+                drop: set[str] | None = None, hidden: set[str] | None = None) -> None:
+    """Render rows as a formatted, filterable table starting at row 4.
+
+    `drop` removes columns from the table entirely (used for bulky columns
+    like the full description). `hidden` keeps the column and its data --
+    Summary-tab counts etc. can still read it -- but collapses it in Excel
+    by default; the user can unhide it with a couple of clicks if they want
+    it back."""
     ws["A1"] = title
     ws["A1"].font = Font(name=FONT, bold=True, size=14, color=NAVY)
     if subtitle:
@@ -184,7 +193,10 @@ def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = 
                 uc.font = Font(name=FONT, size=10, color="0563C1", underline="single")
 
     for col in cols:
-        ws.column_dimensions[get_column_letter(idx[col])].width = WIDTHS.get(col, 20)
+        letter = get_column_letter(idx[col])
+        ws.column_dimensions[letter].width = WIDTHS.get(col, 20)
+        if hidden and col in hidden:
+            ws.column_dimensions[letter].hidden = True
     ws.freeze_panes = ws.cell(row=hdr + 1, column=1).coordinate
     ws.auto_filter.ref = f"A{hdr}:{get_column_letter(len(cols))}{len(rows) + hdr}"
 

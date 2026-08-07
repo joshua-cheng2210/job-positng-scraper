@@ -1,3 +1,5 @@
+from datetime import date, timedelta
+
 from src.filters import annotate
 from src.models import Posting
 from src.score import rank, score
@@ -5,10 +7,13 @@ from src.score import rank, score
 PROFILE = {"skills": ["Python", "SQL", "React", "AWS", "Linux", "Git"],
            "nice_to_have": ["Docker", "Flask"]}
 
+TODAY = date(2026, 8, 10)
 
-def mk(title, desc=None):
+
+def mk(title, desc=None, posted_date=None):
     return annotate(Posting(institution="U", job_id="1", title=title,
-                            url="https://x", platform="t", description=desc))
+                            url="https://x", platform="t", description=desc,
+                            posted_date=posted_date))
 
 
 def test_skill_matches_add_points():
@@ -52,3 +57,25 @@ def test_rank_orders_descending():
     ps = [mk("IT Specialist"), mk("Software Engineer", "Python SQL AWS React")]
     out = rank(ps, PROFILE)
     assert out[0].score >= out[1].score
+
+
+def test_posted_today_gets_the_three_point_recency_bonus():
+    p = score(mk("Software Engineer", "Python.", posted_date=TODAY), PROFILE, today=TODAY)
+    assert any("+3.0" in r for r in p.score_reasons)
+
+
+def test_posted_two_days_ago_gets_the_two_point_recency_bonus():
+    p = score(mk("Software Engineer", "Python.",
+                 posted_date=TODAY - timedelta(days=2)), PROFILE, today=TODAY)
+    assert any("+2.0" in r for r in p.score_reasons)
+
+
+def test_posted_a_week_ago_gets_no_recency_bonus():
+    p = score(mk("Software Engineer", "Python.",
+                 posted_date=TODAY - timedelta(days=7)), PROFILE, today=TODAY)
+    assert not any("posted" in r for r in p.score_reasons)
+
+
+def test_no_posted_date_is_a_noop_not_a_crash():
+    p = score(mk("Software Engineer", "Python.", posted_date=None), PROFILE, today=TODAY)
+    assert not any("posted" in r for r in p.score_reasons)

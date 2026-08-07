@@ -17,7 +17,7 @@ from __future__ import annotations
 
 import logging
 import math
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 
 from openpyxl import Workbook
@@ -27,7 +27,46 @@ from . import style
 
 log = logging.getLogger(__name__)
 
-BULKY = {"description", "raw"}          # too wide for the overview tabs
+BULKY = {"description", "raw"}          # too wide for the overview tabs -- dropped entirely
+
+# Kept in the data (Summary counts, etc. can still read them) but collapsed
+# by default so the table isn't cluttered: state is folded into the combined
+# "Location" column below, department/sponsorship_evidence/hard_blockers are
+# rarely-populated detail fields most useful when hunting down a specific row.
+HIDDEN_COLUMNS = {"state", "department", "sponsorship_evidence", "hard_blockers"}
+
+
+def _prepare_rows(rows: list[dict]) -> list[dict]:
+    """Row-level display transforms shared by every table tab:
+
+    - location + state collapse into one "City, ST"-style Location column.
+      Non-destructive -- `state` stays in the dict (hidden, not dropped) so
+      Summary's per-state counts keep working.
+    - days_since_posted is computed fresh at export time from posted_date,
+      since "how long ago" only makes sense relative to when the workbook
+      was written, not when the posting was scraped.
+    """
+    today = date.today()
+    out = []
+    for r in rows:
+        r = dict(r)
+        loc, st = r.get("location"), r.get("state")
+        if loc and st:
+            r["location"] = f"{loc}, {st}"
+        elif st and not loc:
+            r["location"] = st
+
+        pd = r.get("posted_date")
+        days = None
+        if pd:
+            try:
+                d = date.fromisoformat(pd) if isinstance(pd, str) else pd
+                days = (today - d).days
+            except (TypeError, ValueError):
+                days = None
+        r["days_since_posted"] = days
+        out.append(r)
+    return out
 
 
 def _counts(rows: list[dict], field: str) -> dict[str, int]:
@@ -120,8 +159,8 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    short_rows = [p.to_row() for p in shortlist]
-    all_rows = [p.to_row() for p in all_postings]
+    short_rows = _prepare_rows([p.to_row() for p in shortlist])
+    all_rows = _prepare_rows([p.to_row() for p in all_postings])
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     wb = Workbook()
@@ -135,8 +174,12 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
                   "sponsorship language, amber = declines STEM OPT (still applicable "
                   "via cap-exempt H-1B), red = no sponsorship. A Blocker usually means skip."),
         drop=BULKY,
+        hidden=HIDDEN_COLUMNS,
     )
 
+    # Institution rankings use score/sponsorship/verified fields only, so the
+    # location/state merge above doesn't matter here -- computed from the
+    # already-prepared short_rows is fine either way.
     rankings = institution_rankings(short_rows)
     style.write_table(
         wb.create_sheet("Institutions"),
@@ -154,18 +197,20 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         title=f"All postings collected — {len(all_rows)} rows — {stamp}",
         subtitle="Unfiltered. Use this to check why something never reached the Shortlist.",
         drop=BULKY,
+        hidden=HIDDEN_COLUMNS,
     )
 
     style.write_table(
         wb.create_sheet("History"),
-        history_rows,
+        _prepare_rows(history_rows),
         title=f"History — {len(history_rows)} unique postings ever seen",
         subtitle=("Carried forward across every run and deduplicated by institution + job ID. "
                   "status=closed means it was not in the latest run."),
         drop=BULKY,
+        hidden=HIDDEN_COLUMNS,
     )
 
-    change_rows = changes.get("new", []) + changes.get("closed", [])
+    change_rows = _prepare_rows(changes.get("new", []) + changes.get("closed", []))
     style.write_table(
         wb.create_sheet("Changes"),
         change_rows,
@@ -173,6 +218,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
               f"{len(changes.get('closed', []))} closed",
         subtitle="Only what moved since the previous run. Empty on a first run.",
         drop=BULKY,
+        hidden=HIDDEN_COLUMNS,
     )
 
     style.write_counts(

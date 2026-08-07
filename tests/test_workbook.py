@@ -1,5 +1,5 @@
 """The seven-tab workbook."""
-from datetime import datetime
+from datetime import date, datetime
 
 from openpyxl import load_workbook
 
@@ -7,9 +7,9 @@ from src.export import workbook
 from src.models import Posting
 
 
-def mk(inst, jid, title, score=0.0, flag="unknown"):
+def mk(inst, jid, title, score=0.0, flag="unknown", **kw):
     p = Posting(institution=inst, job_id=jid, title=title,
-                url=f"https://x/{jid}", platform="workday", state="MN")
+                url=f"https://x/{jid}", platform="workday", state="MN", **kw)
     p.score = score
     p.sponsorship_flag = flag
     return p
@@ -43,6 +43,54 @@ def test_all_seven_tabs_present(tmp_path):
                              "Changes", "Summary", "Run Stats"]
     assert wb["Shortlist"].freeze_panes == "A5"
     assert wb["Shortlist"].auto_filter.ref is not None
+
+
+def test_hidden_columns_stay_hidden_but_present(tmp_path):
+    out = tmp_path / "wb.xlsx"
+    p = mk("A U", "1", "Software Engineer", department="CS Dept")
+    p.sponsorship_evidence = "may sponsor H-1B"
+    p.hard_blockers = ["Security clearance required"]
+    workbook.write(out, shortlist=[p], all_postings=[p],
+                   history_rows=[], changes={"new": [], "closed": []})
+    ws = load_workbook(out)["Shortlist"]
+
+    headers = [ws.cell(row=4, column=c).value for c in range(1, ws.max_column + 1)]
+    for col_name, header in (("state", "State"), ("department", "Department"),
+                              ("sponsorship_evidence", "Sponsorship evidence"),
+                              ("hard_blockers", "Blockers")):
+        assert header in headers, f"{col_name} should still be present, just hidden"
+        letter = ws.cell(row=4, column=headers.index(header) + 1).column_letter
+        assert ws.column_dimensions[letter].hidden is True, f"{col_name} should be hidden"
+
+
+def test_location_and_state_are_combined_into_one_column(tmp_path):
+    out = tmp_path / "wb.xlsx"
+    p = mk("A U", "1", "Software Engineer", location="Minneapolis")
+    workbook.write(out, shortlist=[p], all_postings=[p],
+                   history_rows=[], changes={"new": [], "closed": []})
+    ws = load_workbook(out)["Shortlist"]
+    headers = [ws.cell(row=4, column=c).value for c in range(1, ws.max_column + 1)]
+    loc_col = headers.index("Location") + 1
+    assert ws.cell(row=5, column=loc_col).value == "Minneapolis, MN"
+
+
+def test_days_since_posted_column_is_computed_at_export_time(tmp_path, monkeypatch):
+    out = tmp_path / "wb.xlsx"
+    p = mk("A U", "1", "Software Engineer", posted_date=date(2026, 8, 5))
+    monkeypatch.setattr(workbook, "date", _FixedDate)
+    workbook.write(out, shortlist=[p], all_postings=[p],
+                   history_rows=[], changes={"new": [], "closed": []})
+    ws = load_workbook(out)["Shortlist"]
+    headers = [ws.cell(row=4, column=c).value for c in range(1, ws.max_column + 1)]
+    assert "Days Since Posted" in headers
+    col = headers.index("Days Since Posted") + 1
+    assert ws.cell(row=5, column=col).value == 3
+
+
+class _FixedDate(date):
+    @classmethod
+    def today(cls):
+        return date(2026, 8, 8)
 
 
 def test_description_scraped_column_survives_the_bulky_drop(tmp_path):
