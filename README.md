@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 46 tests, all offline
+python -m pytest -q                                  # 52 tests, all offline
 ```
 
 ## Run
@@ -49,6 +49,18 @@ separate conversion command to remember. After writing, `run.py` prunes
 `output/` down to the 5 most recent `workbook_*.xlsx` files (change with
 `--keep`); `data/postings.json` and `data/history.json` are never touched by
 pruning.
+
+To prune `output/` by hand, without doing a full collection run (e.g. you
+lowered `--keep` after the fact and want the backlog trimmed now):
+
+```bash
+python prune_workbooks.py              # keep the 5 most recent, delete the rest
+python prune_workbooks.py --keep 10    # keep 10 instead
+python prune_workbooks.py --dry-run    # show what would be deleted, don't delete
+```
+
+Same `workbook.prune()` function `run.py` calls internally — one place owns
+"which files survive."
 
 Outputs:
 
@@ -162,6 +174,142 @@ Every adapter returns `List[Posting]`; nothing downstream knows which platform
 a posting came from. **Adding a school is a config change, not a code change** —
 append an entry to `targets.yaml`.
 
+## Filtering (`src/filters.py`) — what gets removed entirely
+
+`apply_filters()` runs once, before scoring, and drops postings for free —
+no LLM, no network. For each posting it checks, in order, and stops at the
+first hit:
+
+| # | Check | Removes it if... |
+|---|---|---|
+| 1 | Duplicate | same `institution + job_id` already seen this run (dedup key) |
+| 2 | `EXCLUDE_TITLE` | title matches a non-tech role — see categories below |
+| 3 | `EXCLUDE_SENIORITY` | title signals too senior for a new grad — see below |
+| 4 | Years of experience | title/description mentions more than `MAX_YEARS_EXPERIENCE` (4, in `filters.py`) years required — see note below |
+| 5 | `INCLUDE_TITLE` | title matches **none** of the allowlisted tech-job patterns |
+
+A posting that survives all five gets `annotate()`'d (sponsorship flag +
+hard-blocker tags) and moves on to scoring.
+
+**`EXCLUDE_TITLE`** — hard "not a tech role" categories: academic faculty
+(`faculty`, `professor`, `lecturer`, `adjunct`, `dean`, `provost`), medical/
+clinical (`nurse`, `physician`, `clinician`, `therapist`, `dental`,
+`veterinary`), skilled trades (`electrician`, `plumber`, `hvac`, `welder`,
+`mechanic`, `carpenter`), food service (`cook`, `chef`, `barista`, `dining`),
+safety/facilities (`police`, `security officer`, `firefighter`, `custodian`,
+`groundskeeper`, `parking`, `warehouse`), fundraising/admin (`development
+officer`, `fundraising`, `advancement`, `admissions counselor`, `career
+coach`, `academic advisor`), and `librarian`, `counselor`, `chaplain`,
+`social work`, plus `post-doc`/`postdoc`/`postdoctoral` (a PhD is a
+categorical mismatch for a new grad).
+
+**`EXCLUDE_SENIORITY`** — checked case-sensitively against the raw title
+(so `IT` doesn't accidentally match roman numeral `I`): `senior`, `sr.`,
+`staff engineer/scientist`, `lead`, `principal`, `manager`, `director`,
+`head of`, `chief`, `supervisor`, `executive`, `vice president`, `associate
+dean`, `architect`, and title-level roman numerals `III`/`IV`/`V`.
+
+**Years of experience** — scans the *entire* posting text (title +
+department + description) for the highest "N years" figure mentioned
+anywhere, not just a dedicated field. This means a screening question like
+"how many years of experience do you have? ... 15 years or more" counts too,
+same as an explicit "requires 8 years." Threshold is 4; edit
+`MAX_YEARS_EXPERIENCE` in `filters.py` to change it. This exists because
+`score.py`'s years penalty alone wasn't enough — a posting can rack up
+enough keyword/stretch points to still rank near the top even after a `-4.0`
+penalty, so anything over the threshold is now removed outright rather than
+just deprioritized.
+
+**`INCLUDE_TITLE`** — the allowlist of what a university actually calls
+Josh's kind of job: `software engineer/developer`, `research software`,
+`application developer/programmer/analyst`, `web/full-stack/front-end/
+back-end developer`, `data analyst/scientist/engineer`, `business
+intelligence`, `systems analyst/administrator/engineer`, `database
+administrator/analyst/developer`, `devops`, `cloud`, `platform engineer`,
+`site reliability`, `IT specialist/analyst/support`, `research professional/
+associate/assistant/technician/specialist`, `machine learning`, `artificial
+intelligence`, `ai/ml engineer`, `qa`, `test engineer`, `instructional
+design`, `institutional research`, `hpc`/`high-performance computing`, and a
+few more niche patterns. A title matching **none** of these is dropped as
+"title does not match any tech pattern" — this is the most common rejection
+reason in `Run Stats`.
+
+**What filtering deliberately does NOT remove:**
+
+- **Hard blockers** (US citizenship required, security clearance, export
+  control) are tagged by `annotate()` but the posting stays in the list —
+  it's a scoring penalty (`-10.0`), not an exclude. You'll still see it in
+  All Postings/History with a red `Blockers` cell, just buried near the
+  bottom by score.
+- **Sponsorship signals** (`no_sponsorship_any`, `no_stem_opt`,
+  `h1b_possible`, `unknown`) are also tag-only. In particular, a "we don't
+  do E-Verify / STEM OPT" line is **never** a reason to drop a posting —
+  cap-exempt H-1B needs no E-Verify, so rejecting on that line would throw
+  away most of the pipeline. It's flagged amber for prioritization instead.
+
+## Scoring (`src/score.py`) — what ranks the survivors
+
+Only postings that passed every filter above get scored. `rank()` scores
+every posting in the run (not just the kept ones — the History/All Postings
+tabs need scores too) and sorts descending. Everything below is additive
+unless marked as a penalty.
+
+**Title tier** — only the single highest-matching tier applies, not all of
+them:
+
+| Tier | Bonus | Example title patterns |
+|---|---|---|
+| 1 | `+3.0` | `software engineer/developer`, `research software`, `data analyst/scientist/engineer`, `application developer` |
+| 2 | `+2.0` | `programmer`, `web developer`, `business intelligence`, `systems analyst`, `computational`, `research professional` |
+| 3 | `+1.0` | `IT specialist/analyst`, `database`, `qa`, `research associate/assistant/technician` |
+
+**Keyword categories** — every match in `PROFILE` (`src/score.py`) adds
+points; a posting can match many keywords across many categories:
+
+| Category | Weight each | Examples |
+|---|---|---|
+| `languages` | `+1.5` | Python, Java, JavaScript, C++, SQL, HTML, CSS, OCaml, R |
+| `frameworks` | `+1.0` | Node.js, React, Angular, Flask, Vite, Tailwind CSS, Django |
+| `databases_tools` | `+1.0` | PostgreSQL, MySQL, Git, Docker, Jira, Tableau, Excel |
+| `cloud_deployment` | `+1.0` | AWS, S3, CloudFront, Lambda, GitHub Pages, Render |
+| `skills` (legacy) | `+1.0` | REST API, Linux |
+| `data_analytics` | `+0.75` | NumPy, pandas, Matplotlib, Seaborn, OpenCV, Regex, ChromaDB |
+| `nice_to_have` | `+0.5` | TypeScript, Power BI, MATLAB, Kubernetes, Azure, PyTorch |
+| `design_productivity` | `+0.5` | Figma, JMP, TeamDynamix, TargetProcess |
+
+**Stretch signals** (`STRETCH_SIGNALS`) — deliberately reward reach roles
+Josh isn't already a strong match for, so the ranking doesn't just converge
+on "what he already is":
+
+| Signal | Bonus |
+|---|---|
+| `research software engineer` | `+2.5` |
+| `machine learning` | `+2.0` |
+| `artificial intelligence` | `+2.0` |
+| `hpc` / `high-performance computing` | `+2.0` |
+| `bioinformatics` | `+1.5` |
+
+**Entry-level signals** (`ENTRY_SIGNALS`):
+
+| Signal | Bonus |
+|---|---|
+| `new grad` | `+2.5` |
+| `entry-level` | `+2.0` |
+| `0-1`, `1-2`, or `1-3 years` | `+1.5` |
+| `bachelor's degree` | `+1.0` |
+| level marker "Analyst I" / "Developer 1" | `+0.5` |
+
+**Penalties:**
+
+| Penalty | Amount | Note |
+|---|---|---|
+| Requires 5+ years | `-4.0` | Same regex idea as the filters.py hard exclude, but this is scoring-only, so it still applies even to postings that were removed from the Shortlist — it's how All Postings/History show a low score for them |
+| Requires 3–4 years | `-2.0` | Below the filters.py hard-exclude threshold, so these stay in the Shortlist just deprioritized |
+| Hard blocker present | `-10.0` | US citizenship / clearance / export control — see filters.py above |
+| `no_sponsorship_any` | `-3.0` | explicit "will not sponsor any visa" language |
+| `h1b_possible` | `+2.0` | explicit positive sponsorship or cap-exempt language |
+| `no_stem_opt` | none | intentionally not penalized — see the sponsorship note above |
+
 ## Design notes worth knowing
 
 - **Workday's `limit` is capped at 20.** Sending `limit=100` returns an empty
@@ -182,6 +330,16 @@ append an entry to `targets.yaml`.
 - **Hard blockers** (US citizenship, security clearance, export control) are
   real disqualifiers and are scored at −10. This is what keeps Penn State ARL,
   GTRI, JHU APL and Lincoln Lab roles out of the top of the list.
+- **A posting requiring more than `MAX_YEARS_EXPERIENCE` (4) years is a hard
+  exclude, not just a scoring penalty.** `score.py` docks points for "N years
+  required," but a penalty alone doesn't stop a posting with heavy
+  keyword/stretch overlap from still floating to the top — a University of
+  Utah "AI/ML Engineer" posting requiring 6–8 years scored `4.0` net despite
+  the `-4.0` penalty, because `+4.0` in stretch signals and skill matches
+  outweighed it. `filters.py::_years_required()` now removes it from the
+  Shortlist outright before scoring ever sees it. Threshold and regex live at
+  the top of the "experience" section in `filters.py` — edit
+  `MAX_YEARS_EXPERIENCE` there if 4 is too strict or too loose.
 - **Scoring bias is acknowledged, not hidden.** Keyword overlap rewards jobs
   matching who you already are, so `STRETCH_SIGNALS` in `src/score.py`
   deliberately adds points for ML/HPC/RSE roles that are a reach.
@@ -191,6 +349,7 @@ append an entry to `targets.yaml`.
 ```
 run.py                      pipeline entry point
 json_to_excel.py            raw JSON -> Excel, no filtering
+prune_workbooks.py          manual output/ cleanup, same logic run.py uses automatically
 targets.yaml                institutions -> platform config
 src/
   models.py                 Posting dataclass, dedup key, HTML stripping
@@ -210,7 +369,7 @@ src/
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      46 tests, fixtures captured from live APIs
+tests/                      52 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.

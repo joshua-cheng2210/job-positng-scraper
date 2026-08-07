@@ -43,6 +43,26 @@ EXCLUDE_SENIORITY = [
     r"\bIII\b", r"\bIV\b", r"\bV\b",
 ]
 
+# --- 2.5 experience: he is a May 2026 new grad -------------------------------
+# score.py already docks points for "N years required" (-2.0 at 3+, -4.0 at
+# 5+), but a penalty alone doesn't stop a posting with heavy keyword/stretch
+# overlap from still floating to the top of the Shortlist. A posting that
+# flatly requires more than MAX_YEARS_EXPERIENCE is a hard exclude instead.
+
+MAX_YEARS_EXPERIENCE = 4
+
+# Same shape as score.py's EXPERIENCE_PENALTY -- kept as a separate constant
+# (not imported) because filters.py has no dependency on score.py and the two
+# modules should stay swappable independently.
+_YEARS_REQUIRED = re.compile(r"\b(\d{1,2})\+?\s*(?:-|to|–)?\s*\d{0,2}\s*years?\b", re.I)
+
+
+def _years_required(text: str) -> int | None:
+    """Highest "N years" figure mentioned anywhere in the text, or None."""
+    years = [int(m.group(1)) for m in _YEARS_REQUIRED.finditer(text)]
+    return max(years) if years else None
+
+
 # --- 3. includes: what a university actually calls his job -------------------
 
 INCLUDE_TITLE = [
@@ -90,6 +110,7 @@ HARD_BLOCKERS = {
 SPONSORSHIP_PATTERNS: list[tuple[str, list[str]]] = [
     ("no_sponsorship_any", [
         r"not (be )?(able|eligible) to sponsor",
+        r"not eligible for (any )?(work |employment )?(visa )?sponsorship",
         r"(will|does) not sponsor (any )?(work )?(visa|immigration)",
         r"no visa sponsorship",
         r"unable to sponsor.*(now|future)",
@@ -128,6 +149,9 @@ def is_excluded(p: Posting) -> str | None:
     hit = _any(EXCLUDE_SENIORITY, p.title)   # case-sensitive for III/IV/V
     if hit:
         return f"too senior ({hit.strip()})"
+    years = _years_required(p.haystack)
+    if years is not None and years > MAX_YEARS_EXPERIENCE:
+        return f"requires {years}+ years experience"
     if not _any(INCLUDE_TITLE, title):
         return "title does not match any tech pattern"
     return None

@@ -41,19 +41,24 @@ def filename(out_dir: str | Path, when: datetime | None = None) -> Path:
     return Path(out_dir) / f"workbook_{when:%Y-%m-%d_%H%M%S}.xlsx"
 
 
-def prune(out_dir: str | Path, keep: int = 5) -> list[Path]:
+def prune(out_dir: str | Path, keep: int = 5, dry_run: bool = False) -> list[Path]:
     """Delete all but the `keep` most recent workbook_*.xlsx files in out_dir.
 
     The timestamp is in the filename (workbook_<date>_<time>.xlsx), so a plain
     reverse-alphabetical sort is also a reverse-chronological sort -- no stat()
-    call needed. Returns the paths that were deleted, so the caller can log
-    them; deletion failures (e.g. a file open in Excel) are logged and skipped
-    rather than raised, so pruning never fails a run.
+    call needed. Returns the paths that were (or, with dry_run=True, would be)
+    deleted, so the caller can log them; deletion failures (e.g. a file open
+    in Excel) are logged and skipped rather than raised, so pruning never
+    fails a run.
     """
     out_dir = Path(out_dir)
     books = sorted(out_dir.glob("workbook_*.xlsx"), reverse=True)
+    doomed = books[keep:]
+    if dry_run:
+        return doomed
+
     deleted: list[Path] = []
-    for book in books[keep:]:
+    for book in doomed:
         try:
             book.unlink()
             deleted.append(book)

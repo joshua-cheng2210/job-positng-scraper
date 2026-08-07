@@ -46,6 +46,43 @@ def test_sponsorship_positive():
     assert p.sponsorship_flag == "h1b_possible"
 
 
+def test_sponsorship_not_eligible_for_visa_phrasing():
+    """'not eligible for ... sponsorship' is a different grammatical shape than
+    'not eligible TO sponsor' -- both need to be caught."""
+    p = annotate(mk("AI Engineer",
+                    "This position is not eligible for work visa sponsorship."))
+    assert p.sponsorship_flag == "no_sponsorship_any"
+
+
+def test_drops_high_experience_requirement():
+    """A penalty in score.py alone doesn't stop a heavily-keyword-matched
+    posting from still floating to the top -- this needs a hard exclude."""
+    p = mk("AI/ML Engineer",
+           "Requires a bachelor's + 6 years or a master's + 4 years of "
+           "directly related work experience. Advanced role requires "
+           "bachelor's + 8 years or master's + 6 years.")
+    reason = is_excluded(p)
+    assert reason is not None
+    assert "8+ years" in reason
+
+
+def test_keeps_entry_level_years():
+    p = mk("Software Engineer", "0-1 years of experience required. New grads welcome.")
+    assert is_excluded(p) is None
+
+
+def test_keeps_years_at_threshold():
+    p = mk("Software Engineer", "4 years of experience preferred.")
+    assert is_excluded(p) is None
+
+
+def test_drops_years_just_over_threshold():
+    p = mk("Software Engineer", "5 years of experience required.")
+    reason = is_excluded(p)
+    assert reason is not None
+    assert "5+ years" in reason
+
+
 def test_no_stem_opt_is_flagged_not_rejected():
     """Cap-exempt H-1B needs no E-Verify, so this must never be a hard stop."""
     p = annotate(mk("Data Analyst",

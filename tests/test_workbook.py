@@ -94,3 +94,12 @@ def test_prune_keep_zero_or_under_limit_deletes_nothing(tmp_path):
     deleted = workbook.prune(tmp_path, keep=5)
     assert deleted == []
     assert len(list(tmp_path.glob("workbook_*.xlsx"))) == 2
+
+
+def test_prune_dry_run_reports_but_does_not_delete(tmp_path):
+    _touch_workbooks(tmp_path, [
+        "2026-08-01_120000", "2026-08-02_120000", "2026-08-03_120000",
+    ])
+    would_delete = workbook.prune(tmp_path, keep=1, dry_run=True)
+    assert len(would_delete) == 2
+    assert len(list(tmp_path.glob("workbook_*.xlsx"))) == 3   # nothing actually removed
