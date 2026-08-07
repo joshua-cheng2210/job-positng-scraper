@@ -9,11 +9,13 @@
     python run.py --keep 10           # keep the 10 most recent workbooks (default 5)
     python run.py --keep 0            # keep every workbook, never prune
     python run.py --no-enrich         # skip the post-filter detail fetch (faster, less complete)
+    python run.py --enrich-workers 20 # more concurrent enrichment requests (default 10)
+    python run.py --enrich-limit 100  # only enrich the first 100 unverified survivors
 
 Outputs
     data/postings.json                    this run's raw collection (Cowork handoff)
     data/history.json                     every posting ever seen, deduped
-    output/workbook_<date>_<time>.xlsx    one workbook, six tabs, written every run
+    output/workbook_<date>_<time>.xlsx    one workbook, seven tabs, written every run
 
 Every run writes a new workbook, then prunes output/ down to the --keep most
 recent (default 5) so old runs don't pile up. data/postings.json and
@@ -28,6 +30,13 @@ request per SURVIVING posting only -- bounded to Shortlist size, not the
 full raw collection. Posting.description_scraped is 1 only for rows that
 got this real fetch; treat description_scraped=0 rows as unverified,
 especially for years-of-experience / skill-keyword conclusions.
+
+Enrichment runs `--enrich-workers` (default 10) requests concurrently and
+logs progress every 25 completions -- with hundreds of survivors and a slow
+host or two, a sequential run could silently sit for 10+ minutes between log
+lines. If a run still feels stuck, watch for the "enrich progress: n/total"
+lines; if those keep advancing, it's working, just slow on this network. Use
+--enrich-limit to cap how many get fetched if you want a faster, partial run.
 """
 from __future__ import annotations
 
@@ -36,6 +45,7 @@ import json
 import logging
 import sys
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date
 from pathlib import Path
 
@@ -119,28 +129,59 @@ _ENRICHERS = {
 }
 
 
-def enrich_survivors(postings: list[Posting], delay: float) -> None:
+def _enrich_one(p: Posting) -> bool:
+    """Runs in a worker thread -- its own Session, no sharing across threads."""
+    fn = _ENRICHERS.get(p.platform)
+    if not fn:
+        return False
+    session = requests.Session()
+    session.headers.update({"User-Agent": USER_AGENT})
+    try:
+        return fn(session, p)
+    finally:
+        session.close()
+
+
+def enrich_survivors(postings: list[Posting], delay: float,
+                      workers: int = 10, limit: int = 0) -> None:
     """One extra detail request per posting that survived filtering -- never
     for the full raw collection. See the module docstring's Enrichment note
     for why the bulk pass alone isn't trustworthy for scoring.
 
+    Runs `workers` requests concurrently (each adapter's enrich() already
+    times out on its own -- see workday.enrich / peopleadmin.enrich -- so a
+    slow host stalls one worker, not the whole run) and logs progress every
+    25 completions so a long run doesn't look hung. `delay` is unused here
+    (kept for CLI compatibility) now that requests overlap instead of
+    queueing one after another.
+
     Mutates postings in place. Idempotent: skips anything already marked
     description_scraped=1, so re-running (e.g. --from-cache after a prior
-    enriched run) doesn't re-fetch what it already has.
+    enriched run) doesn't re-fetch what it already has. If `limit` is set,
+    only the first `limit` unenriched postings are attempted -- use this to
+    bound worst-case wall-clock time on a huge Shortlist.
     """
-    session = requests.Session()
-    session.headers.update({"User-Agent": USER_AGENT})
-
     todo = [p for p in postings if not p.description_scraped]
-    log.info("enriching %d/%d survivors (already had a verified description: %d)",
-              len(todo), len(postings), len(postings) - len(todo))
+    if limit:
+        todo = todo[:limit]
+    log.info("enriching %d/%d survivors with %d parallel workers "
+              "(already had a verified description: %d)",
+              len(todo), len(postings), workers, len(postings) - len(todo))
 
     done = 0
-    for p in todo:
-        fn = _ENRICHERS.get(p.platform)
-        if fn and fn(session, p):
-            done += 1
-        time.sleep(delay)
+    start = time.monotonic()
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(_enrich_one, p): p for p in todo}
+        for i, fut in enumerate(as_completed(futures), 1):
+            try:
+                if fut.result():
+                    done += 1
+            except Exception:                              # noqa: BLE001
+                log.exception("enrich worker crashed for %s", futures[fut].title)
+            if i % 25 == 0 or i == len(todo):
+                elapsed = time.monotonic() - start
+                log.info("   enrich progress: %d/%d (%d verified, %.0fs elapsed)",
+                          i, len(todo), done, elapsed)
 
     log.info("enrichment: %d/%d survivors got a verified description", done, len(todo))
 
@@ -160,6 +201,11 @@ def main() -> int:
     ap.add_argument("--no-enrich", action="store_true",
                     help="skip the post-filter detail fetch (faster, descriptions "
                          "stay incomplete for survivors that weren't already enriched)")
+    ap.add_argument("--enrich-workers", type=int, default=10,
+                    help="concurrent enrichment requests (default 10)")
+    ap.add_argument("--enrich-limit", type=int, default=0,
+                    help="cap enrichment to the first N unverified survivors "
+                         "(0 = enrich all of them)")
     args = ap.parse_args()
 
     if args.from_cache:
@@ -182,7 +228,7 @@ def main() -> int:
         log.info("   %-40s %d", k, v)
 
     if not args.no_enrich and kept:
-        enrich_survivors(kept, args.delay)
+        enrich_survivors(kept, args.delay, workers=args.enrich_workers, limit=args.enrich_limit)
         save_cache(raw)     # re-save so postings.json carries the enriched descriptions
 
     ranked = rank(kept, PROFILE)
