@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 60 tests, all offline
+python -m pytest -q                                  # 71 tests, all offline
 ```
 
 ## Run
@@ -104,6 +104,14 @@ column in the workbook (see below) so you can see which rows to trust at a
 glance. Skip enrichment entirely with `--no-enrich` if you want a faster,
 network-light run and don't mind less reliable filtering/scoring.
 
+Enrichment runs concurrently (`--enrich-workers`, default 10 requests at
+once) and logs a progress line every 25 completions
+(`enrich progress: n/total`), so a run with a few hundred survivors and a
+slow host or two doesn't look hung between the "enriching N/M survivors"
+line and the final summary — watch for those progress lines advancing. Use
+`--enrich-limit N` to cap enrichment to the first N unverified survivors if
+you want a faster, partial run instead of waiting out the whole batch.
+
 Outputs:
 
 - `data/postings.json` — **this run only**, overwritten every time you collect.
@@ -118,12 +126,13 @@ Outputs:
   remembers a posting existed at all — it tracks `first_seen`, `last_seen`,
   `runs_seen`, and `status` (`new` / `open` / `closed`) per posting, which is
   what feeds the History and Changes tabs in the workbook.
-- `output/workbook_<date>_<time>.xlsx` — **one workbook per run, six tabs**
+- `output/workbook_<date>_<time>.xlsx` — **one workbook per run, seven tabs**
   (built by `src/export/workbook.py`):
 
 | Tab | Contents |
 |---|---|
 | Shortlist | this run, filtered + scored, best first |
+| Institutions | Shortlist grouped by institution and ranked — see below |
 | All Postings | this run, unfiltered |
 | History | every posting ever seen, `open` or `closed`, deduped |
 | Changes | new and closed since the previous run |
@@ -133,6 +142,32 @@ Outputs:
 Runs never overwrite each other — the filename carries the timestamp. Old
 postings are not lost when a portal takes them down; they stay in History
 marked `closed`, with `first_seen`, `last_seen` and `runs_seen` intact.
+
+#### Institutions — "which school do I apply to first"
+
+Every run, `src/export/workbook.py::institution_rankings()` groups the
+Shortlist by institution and computes:
+
+```
+composite = top3_avg_score × sqrt(min(postings, 5))
+```
+
+Top-3 average (not overall average) so one bad posting at a school with
+several good ones doesn't drag it down. The `sqrt(min(postings, 5))` volume
+bonus rewards a school with several solid postings over one lucky outlier,
+but caps out at 5 — an 11th posting from the same school shouldn't count for
+much more than a 6th.
+
+| Column | Meaning |
+|---|---|
+| Postings | how many Shortlist postings from this institution |
+| Max Score / Avg Score / Top-3 Avg | self-explanatory; Top-3 Avg drives the ranking |
+| Verified % | share of this institution's postings with `Description Verified? = 1`. **Read this before trusting the ranking** — a school at 0% verified has scores built on unconfirmed data (see the Enrichment section above); don't prioritize it over a lower-scoring but fully-verified school until enrichment actually succeeds for it |
+| Positive Sponsorship Count / No Sponsorship Count | how many of this institution's postings had explicit `h1b_possible` / `no_sponsorship_any` language |
+| Composite Rank | the sort key — highest first |
+
+This is computed fresh from the current run every time, no LLM pass needed —
+open the tab and read top to bottom.
 
 #### Column reference (Shortlist / All Postings / History / Changes)
 
@@ -259,7 +294,7 @@ anywhere, not just a dedicated field. This means a screening question like
 same as an explicit "requires 8 years." Threshold is 4; edit
 `MAX_YEARS_EXPERIENCE` in `filters.py` to change it. This exists because
 `score.py`'s years penalty alone wasn't enough — a posting can rack up
-enough keyword/stretch points to still rank near the top even after a `-4.0`
+enough keyword/stretch points to still rank near the top even after a
 penalty, so anything over the threshold is now removed outright rather than
 just deprioritized.
 
@@ -288,7 +323,9 @@ reason in `Run Stats`.
   `h1b_possible`, `unknown`) are also tag-only. In particular, a "we don't
   do E-Verify / STEM OPT" line is **never** a reason to drop a posting —
   cap-exempt H-1B needs no E-Verify, so rejecting on that line would throw
-  away most of the pipeline. It's flagged amber for prioritization instead.
+  away most of the pipeline. It's flagged amber for prioritization instead,
+  and now costs a small `-2.0` in scoring (see below) rather than being
+  score-neutral.
 
 ## Scoring (`src/score.py`) — what ranks the survivors
 
@@ -346,12 +383,12 @@ on "what he already is":
 
 | Penalty | Amount | Note |
 |---|---|---|
-| Requires 5+ years | `-4.0` | Same regex idea as the filters.py hard exclude, but this is scoring-only, so it still applies even to postings that were removed from the Shortlist — it's how All Postings/History show a low score for them |
+| Requires 5+ years | `-10.0` | Same regex idea as the filters.py hard exclude, but this is scoring-only, so it still applies even to postings that were removed from the Shortlist — it's how All Postings/History show a rock-bottom score for them |
 | Requires 3–4 years | `-2.0` | Below the filters.py hard-exclude threshold, so these stay in the Shortlist just deprioritized |
 | Hard blocker present | `-10.0` | US citizenship / clearance / export control — see filters.py above |
 | `no_sponsorship_any` | `-3.0` | explicit "will not sponsor any visa" language |
 | `h1b_possible` | `+2.0` | explicit positive sponsorship or cap-exempt language |
-| `no_stem_opt` | none | intentionally not penalized — see the sponsorship note above |
+| `no_stem_opt` | `-2.0` | still **not** a hard exclude — cap-exempt H-1B needs no E-Verify/STEM OPT, so Josh still applies. Just a small negative signal since a plain STEM-OPT-friendly posting is a marginally safer bet |
 
 ## Design notes worth knowing
 
@@ -363,13 +400,15 @@ on "what he already is":
   `["Application Deadline: 08/02/2026"]`. Job IDs are parsed from
   `externalPath` instead, which is consistent everywhere. `_scan_bullets()`
   sniffs the rest rather than indexing positionally.
-- **A "we don't do E-Verify / STEM OPT" line is flagged, never rejected.**
-  E-Verify enrollment and H-1B cap-exemption are unrelated: the 24-month STEM
-  OPT *extension* needs an E-Verify employer, but the initial 12-month OPT
-  needs nothing from the employer, and a cap-exempt H-1B needs neither. A
-  university that declines E-Verify can still hire on 12-month OPT and file
-  cap-exempt at any point that year. Rejecting on that line would throw away
-  most of the pipeline.
+- **A "we don't do E-Verify / STEM OPT" line is flagged, never rejected —**
+  but it does now cost `-2.0` in scoring. E-Verify enrollment and H-1B
+  cap-exemption are unrelated: the 24-month STEM OPT *extension* needs an
+  E-Verify employer, but the initial 12-month OPT needs nothing from the
+  employer, and a cap-exempt H-1B needs neither. A university that declines
+  E-Verify can still hire on 12-month OPT and file cap-exempt at any point
+  that year. Rejecting on that line outright would throw away most of the
+  pipeline — the small penalty just nudges it below an otherwise-equal
+  posting with no such caveat, rather than being fully neutral.
 - **Hard blockers** (US citizenship, security clearance, export control) are
   real disqualifiers and are scored at −10. This is what keeps Penn State ARL,
   GTRI, JHU APL and Lincoln Lab roles out of the top of the list.
@@ -378,10 +417,13 @@ on "what he already is":
   required," but a penalty alone doesn't stop a posting with heavy
   keyword/stretch overlap from still floating to the top — a University of
   Utah "AI/ML Engineer" posting requiring 6–8 years scored `4.0` net despite
-  the `-4.0` penalty, because `+4.0` in stretch signals and skill matches
-  outweighed it. `filters.py::_years_required()` now removes it from the
-  Shortlist outright before scoring ever sees it. Threshold and regex live at
-  the top of the "experience" section in `filters.py` — edit
+  the (then) `-4.0` penalty, because `+4.0` in stretch signals and skill
+  matches outweighed it. The 5+ years penalty was later raised to `-10.0`
+  specifically to make cases like this net-negative on their own, but the
+  hard exclude in `filters.py::_years_required()` still removes it from the
+  Shortlist outright before scoring ever sees it — belt and suspenders.
+  Threshold and regex live at the top of the "experience" section in
+  `filters.py` — edit
   `MAX_YEARS_EXPERIENCE` there if 4 is too strict or too loose.
 - **Scoring bias is acknowledged, not hidden.** Keyword overlap rewards jobs
   matching who you already are, so `STRETCH_SIGNALS` in `src/score.py`
@@ -408,11 +450,11 @@ src/
   history.py                cumulative posting archive + run diffs
   export/
     style.py                shared Excel styling, one source of truth
-    workbook.py             the six-tab workbook a run produces -- writes the .xlsx
+    workbook.py             the seven-tab workbook a run produces -- writes the .xlsx
     to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
                             an old import fails loudly instead of writing the wrong
                             file. Safe to delete.
-tests/                      60 tests, fixtures captured from live APIs
+tests/                      71 tests, fixtures captured from live APIs
 data/
   postings.json              LATEST run only, overwritten every time. This run's raw
                              collection, unfiltered. Cowork/job-fit handoff file.
@@ -420,7 +462,7 @@ data/
                              overwritten, never pruned. See "What's history.json for?"
                              below.
 output/
-  workbook_<date>_<time>.xlsx  one per run, six tabs. Pruned to the 5 most recent
+  workbook_<date>_<time>.xlsx  one per run, seven tabs. Pruned to the 5 most recent
                                by run.py (change with --keep; see Run above).
 ```
 
