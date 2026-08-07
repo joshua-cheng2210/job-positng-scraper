@@ -55,6 +55,16 @@ def test_no_stem_opt_is_flagged_not_rejected():
     assert is_excluded(p) is None
 
 
+def test_drops_postdoc_titles():
+    """Postdoc requires a completed PhD -- categorical mismatch for a new grad."""
+    for t in ["Post-Doc Research Associate", "Postdoctoral Research Associate",
+              "Postdoctoral Fellow in Biostatistics and Health Data Science",
+              "Postdoctoral Research Scholar"]:
+        reason = is_excluded(mk(t))
+        assert reason is not None, t
+        assert "post" in reason.lower(), t
+
+
 def test_dedup():
     a = mk("Software Engineer")
     b = mk("Software Engineer")           # identical institution + job_id

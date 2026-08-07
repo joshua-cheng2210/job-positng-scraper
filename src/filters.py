@@ -28,6 +28,9 @@ EXCLUDE_TITLE = [
     r"\bdevelopment officer\b", r"\bfundrais", r"\badvancement\b", r"\bgift officer\b",
     r"\badmissions counselor\b", r"\bacademic advis", r"\bcareer coach\b",
     r"\bsocial work", r"\bcounselor\b", r"\bchaplain\b", r"\blibrarian\b",
+    # postdoc requires a completed PhD -- categorical mismatch for a new grad,
+    # matches "post-doc", "postdoc", and "postdoctoral" (any suffix after "doc").
+    r"\bpost[- ]?doc",
 ]
 
 # --- 2. seniority: he is a May 2026 new grad ---------------------------------
@@ -55,7 +58,7 @@ INCLUDE_TITLE = [
     r"\bdevops\b", r"\bcloud\b", r"\bplatform engineer\b", r"\bsite reliability\b",
     r"\binformation technology\b", r"\bit (specialist|analyst|support)\b",
     r"\bresearch (professional|associate|assistant|technician|specialist)\b",
-    r"\bresearch scientist\b", r"\bpost[- ]?doc", r"\bmachine learning\b",
+    r"\bresearch scientist\b", r"\bmachine learning\b",
     r"\bartificial intelligence\b", r"\b(ai|ml) engineer\b",
     r"\bgis\b", r"\bqa\b", r"\bquality assurance\b", r"\btest engineer\b",
     r"\binstructional (technolog|design)", r"\bdigital scholarship\b",

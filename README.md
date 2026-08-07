@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 45 tests, all offline
+python -m pytest -q                                  # 46 tests, all offline
 ```
 
 ## Run
@@ -52,10 +52,18 @@ pruning.
 
 Outputs:
 
-- `data/postings.json` — this run's raw collection. Handoff file for the Cowork
-  side (`/job-fit` reads it).
-- `data/history.json` — every posting ever collected, deduplicated by
-  institution + job ID. Never overwritten, never pruned.
+- `data/postings.json` — **this run only**, overwritten every time you collect.
+  Handoff file for the Cowork side (`/job-fit` reads it), and what `--from-cache`
+  re-reads to re-filter/re-score without hitting the network.
+- `data/history.json` — **every posting ever collected, across every run**,
+  deduplicated by institution + job ID. Never overwritten, never pruned.
+  This is what `postings.json` can't give you: `postings.json` only knows
+  about the postings that happened to still be live during your most recent
+  collection, so if you didn't run for two weeks and a posting closed in
+  between, it's just gone from that file. `history.json` is how the pipeline
+  remembers a posting existed at all — it tracks `first_seen`, `last_seen`,
+  `runs_seen`, and `status` (`new` / `open` / `closed`) per posting, which is
+  what feeds the History and Changes tabs in the workbook.
 - `output/workbook_<date>_<time>.xlsx` — **one workbook per run, six tabs**
   (built by `src/export/workbook.py`):
 
@@ -199,7 +207,19 @@ src/
   export/
     style.py                shared Excel styling, one source of truth
     workbook.py             the six-tab workbook a run produces -- writes the .xlsx
-tests/                      45 tests, fixtures captured from live APIs
+    to_excel.py             deprecated stub, superseded by workbook.py. Kept only so
+                            an old import fails loudly instead of writing the wrong
+                            file. Safe to delete.
+tests/                      46 tests, fixtures captured from live APIs
+data/
+  postings.json              LATEST run only, overwritten every time. This run's raw
+                             collection, unfiltered. Cowork/job-fit handoff file.
+  history.json               EVERY run, ever, deduped by institution + job ID. Never
+                             overwritten, never pruned. See "What's history.json for?"
+                             below.
+output/
+  workbook_<date>_<time>.xlsx  one per run, six tabs. Pruned to the 5 most recent
+                               by run.py (change with --keep; see Run above).
 ```
 
 ## Next
