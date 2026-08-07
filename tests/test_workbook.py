@@ -1,4 +1,4 @@
-"""The six-tab workbook."""
+"""The seven-tab workbook."""
 from datetime import datetime
 
 from openpyxl import load_workbook
@@ -26,7 +26,7 @@ def test_two_runs_never_collide(tmp_path):
     assert a != b
 
 
-def test_all_six_tabs_present(tmp_path):
+def test_all_seven_tabs_present(tmp_path):
     out = tmp_path / "wb.xlsx"
     short = [mk("A U", "1", "Software Engineer", 12.0, "h1b_possible")]
     every = short + [mk("A U", "2", "Groundskeeper")]
@@ -39,7 +39,7 @@ def test_all_six_tabs_present(tmp_path):
                    history_rows=hist, changes=changes, stats={"kept": 1})
 
     wb = load_workbook(out)
-    assert wb.sheetnames == ["Shortlist", "All Postings", "History",
+    assert wb.sheetnames == ["Shortlist", "Institutions", "All Postings", "History",
                              "Changes", "Summary", "Run Stats"]
     assert wb["Shortlist"].freeze_panes == "A5"
     assert wb["Shortlist"].auto_filter.ref is not None
@@ -83,6 +83,47 @@ def test_empty_tabs_render_without_crashing(tmp_path):
 def _touch_workbooks(out_dir, stamps):
     for s in stamps:
         (out_dir / f"workbook_{s}.xlsx").write_bytes(b"")
+
+
+def _row(inst, score, sponsorship="unknown", verified=0):
+    return {"institution": inst, "score": score, "sponsorship_flag": sponsorship,
+            "description_scraped": verified}
+
+
+def test_institution_rankings_rewards_several_solid_over_one_outlier():
+    rows = [
+        _row("Lucky U", 11.5, verified=1),
+        _row("Solid State", 7.0, verified=1), _row("Solid State", 6.5, verified=1),
+        _row("Solid State", 6.0, verified=1), _row("Solid State", 5.5, verified=1),
+    ]
+    ranked = workbook.institution_rankings(rows)
+    names = [r["institution"] for r in ranked]
+    assert names[0] == "Solid State"      # four solid postings beat one lucky 11.5
+    solid = next(r for r in ranked if r["institution"] == "Solid State")
+    assert solid["postings"] == 4
+    assert solid["top3_avg_score"] == round((7.0 + 6.5 + 6.0) / 3, 2)
+    assert solid["verified_pct"] == 100
+
+
+def test_institution_rankings_verified_pct_and_sponsorship_counts():
+    rows = [
+        _row("Mixed U", 5.0, sponsorship="h1b_possible", verified=1),
+        _row("Mixed U", 3.0, sponsorship="no_sponsorship_any", verified=0),
+    ]
+    ranked = workbook.institution_rankings(rows)
+    r = ranked[0]
+    assert r["postings"] == 2
+    assert r["verified_pct"] == 50
+    assert r["positive_sponsorship"] == 1
+    assert r["no_sponsorship"] == 1
+
+
+def test_institution_rankings_sixth_posting_barely_moves_composite():
+    five = [_row("Big School", 5.0, verified=1) for _ in range(5)]
+    six = five + [_row("Big School", 5.0, verified=1)]
+    c5 = workbook.institution_rankings(five)[0]["composite"]
+    c6 = workbook.institution_rankings(six)[0]["composite"]
+    assert c5 == c6      # sqrt(min(n, 5)) caps the volume bonus at 5
 
 
 def test_prune_keeps_only_the_newest_n(tmp_path):

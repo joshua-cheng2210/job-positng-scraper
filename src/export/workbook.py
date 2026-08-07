@@ -2,6 +2,7 @@
 
 Tabs
     Shortlist      current run, filtered + scored, best first
+    Institutions   Shortlist grouped by institution, ranked by a composite score
     All Postings   current run, unfiltered
     History        every posting ever collected, deduped, open + closed
     Changes        new and closed since the previous run
@@ -15,6 +16,7 @@ every write to keep only the most recent 5.
 from __future__ import annotations
 
 import logging
+import math
 from datetime import datetime
 from pathlib import Path
 
@@ -33,6 +35,51 @@ def _counts(rows: list[dict], field: str) -> dict[str, int]:
     for r in rows:
         k = str(r.get(field) or "(blank)")
         out[k] = out.get(k, 0) + 1
+    return out
+
+
+def institution_rankings(rows: list[dict]) -> list[dict]:
+    """Group Shortlist rows by institution and rank by a composite that
+    rewards both QUALITY (top-3 average score) and QUANTITY (more postings,
+    diminishing after 5 -- via sqrt so a 6th or 60th posting barely moves the
+    needle once a school has already proven it has real openings). This is
+    deliberate: a school with one lucky 11.5 and nothing else shouldn't
+    outrank a school with five solid 7s.
+
+    composite = top3_avg_score * sqrt(min(postings, 5))
+
+    verified_pct matters as much as the score -- see Posting.description_scraped.
+    A school at 0% verified means none of its scores are backed by a real
+    fetched description yet; don't prioritize it over a lower-scoring but
+    fully-verified school until enrichment actually runs for it.
+    """
+    by_inst: dict[str, list[dict]] = {}
+    for r in rows:
+        by_inst.setdefault(r.get("institution") or "(unknown)", []).append(r)
+
+    out: list[dict] = []
+    for inst, group in by_inst.items():
+        scores = [float(r.get("score") or 0.0) for r in group]
+        n = len(group)
+        top3 = sorted(scores, reverse=True)[:3]
+        top3_avg = sum(top3) / len(top3) if top3 else 0.0
+        verified = sum(1 for r in group if r.get("description_scraped") == 1)
+
+        out.append({
+            "institution": inst,
+            "postings": n,
+            "max_score": round(max(scores), 2) if scores else 0.0,
+            "avg_score": round(sum(scores) / n, 2) if n else 0.0,
+            "top3_avg_score": round(top3_avg, 2),
+            "verified_pct": round(verified / n * 100) if n else 0,
+            "positive_sponsorship": sum(1 for r in group
+                                        if r.get("sponsorship_flag") == "h1b_possible"),
+            "no_sponsorship": sum(1 for r in group
+                                  if r.get("sponsorship_flag") == "no_sponsorship_any"),
+            "composite": round(top3_avg * math.sqrt(min(n, 5)), 2),
+        })
+
+    out.sort(key=lambda r: r["composite"], reverse=True)
     return out
 
 
@@ -88,6 +135,17 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
                   "sponsorship language, amber = declines STEM OPT (still applicable "
                   "via cap-exempt H-1B), red = no sponsorship. A Blocker usually means skip."),
         drop=BULKY,
+    )
+
+    rankings = institution_rankings(short_rows)
+    style.write_table(
+        wb.create_sheet("Institutions"),
+        rankings,
+        title=f"Institution Rankings — {len(rankings)} institutions — {stamp}",
+        subtitle=("Composite = top-3 average score x sqrt(min(postings, 5)) -- rewards "
+                  "a school with several solid postings over one lucky outlier. "
+                  "Verified % near 0 means don't trust that school's scores yet -- "
+                  "enrichment hasn't confirmed the descriptions behind them."),
     )
 
     style.write_table(

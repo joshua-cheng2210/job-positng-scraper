@@ -73,6 +73,16 @@ def test_scan_bullets_handles_both_tenant_schemas():
     assert _scan_bullets([]) == (None, None)
 
 
+def test_scan_bullets_ignores_split_deadline_label():
+    """Real bug: some tenants split the deadline label and its date into two
+    separate bulletFields entries ("Application Deadline:", "08/02/2026")
+    instead of one combined string. The label alone has no digits, so it used
+    to slip past the date check and get misread as the institution name."""
+    close, inst = _scan_bullets(["Application Deadline:", "08/02/2026"])
+    assert close.isoformat() == "2026-08-02"
+    assert inst is None
+
+
 def test_workday_minnstate(monkeypatch):
     got = _workday(monkeypatch, MINNSTATE, "workday_minnstate.json")
     assert len(got) == 4

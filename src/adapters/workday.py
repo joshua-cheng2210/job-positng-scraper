@@ -96,8 +96,13 @@ def _scan_bullets(bullets: list[str] | None) -> tuple[date | None, str | None]:
         if d and close is None:
             close = d
             continue
-        # an institution name: has a space, is wordy, isn't a req id
-        if inst is None and " " in b and not re.fullmatch(r"[A-Z]*\d[\w-]*", b):
+        # an institution name: has a space, is wordy, isn't a req id, and
+        # isn't a bare label like "Application Deadline:" -- some tenants
+        # split the label and its date into two separate bulletFields
+        # entries instead of one combined string, and a label-only bullet
+        # has no digits of its own so _parse_date() can't catch it here.
+        if (inst is None and " " in b and not b.rstrip().endswith(":")
+                and not re.fullmatch(r"[A-Z]*\d[\w-]*", b)):
             if not _parse_date(b):
                 inst = b
     return close, inst

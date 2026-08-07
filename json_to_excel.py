@@ -13,7 +13,7 @@ never reached the Shortlist tab.
     python json_to_excel.py --no-summary          # skip the Summary tab
 
 `run.py` is the thing you normally want -- it collects, filters, scores, and
-writes the six-tab workbook. This is the escape hatch. It also handles arbitrary
+writes the seven-tab workbook. This is the escape hatch. It also handles arbitrary
 JSON, so it works on data that never came from this project.
 """
 from __future__ import annotations

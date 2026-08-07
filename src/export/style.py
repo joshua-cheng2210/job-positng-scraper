@@ -39,6 +39,10 @@ HEADERS = {
     "description_scraped": "Description Verified?",
     "first_seen": "First seen", "last_seen": "Last seen", "status": "Status",
     "runs_seen": "Runs seen", "change": "Change",
+    "postings": "Postings", "max_score": "Max Score", "avg_score": "Avg Score",
+    "top3_avg_score": "Top-3 Avg", "verified_pct": "Verified %",
+    "positive_sponsorship": "Positive Sponsorship Count",
+    "no_sponsorship": "No Sponsorship Count", "composite": "Composite Rank",
 }
 
 WIDTHS = {
@@ -49,10 +53,16 @@ WIDTHS = {
     "description": 80, "description_scraped": 12,
     "first_seen": 12, "last_seen": 12, "status": 11,
     "runs_seen": 10, "change": 12,
+    "postings": 10, "max_score": 10, "avg_score": 10, "top3_avg_score": 10,
+    "verified_pct": 11, "positive_sponsorship": 16, "no_sponsorship": 15,
+    "composite": 13,
 }
 
 PREFERRED = [
-    "change", "status", "score", "institution", "title", "department", "location",
+    "change", "status", "score", "institution",
+    "composite", "postings", "top3_avg_score", "avg_score", "max_score",
+    "verified_pct", "positive_sponsorship", "no_sponsorship",
+    "title", "department", "location",
     "state", "job_id", "posted_date", "close_date", "first_seen", "last_seen",
     "runs_seen", "sponsorship_flag", "sponsorship_evidence", "hard_blockers",
     "platform", "system", "url", "score_reasons", "description_scraped", "description",
