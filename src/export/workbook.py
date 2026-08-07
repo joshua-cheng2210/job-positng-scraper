@@ -9,9 +9,12 @@ Tabs
     Run Stats      what the filters dropped and why
 
 Filename is workbook_<date>_<time>.xlsx, so runs never overwrite each other.
+`prune()` caps how many of these pile up in output/ -- run.py calls it after
+every write to keep only the most recent 5.
 """
 from __future__ import annotations
 
+import logging
 from datetime import datetime
 from pathlib import Path
 
@@ -19,6 +22,8 @@ from openpyxl import Workbook
 
 from ..models import Posting
 from . import style
+
+log = logging.getLogger(__name__)
 
 BULKY = {"description", "raw"}          # too wide for the overview tabs
 
@@ -34,6 +39,27 @@ def _counts(rows: list[dict], field: str) -> dict[str, int]:
 def filename(out_dir: str | Path, when: datetime | None = None) -> Path:
     when = when or datetime.now()
     return Path(out_dir) / f"workbook_{when:%Y-%m-%d_%H%M%S}.xlsx"
+
+
+def prune(out_dir: str | Path, keep: int = 5) -> list[Path]:
+    """Delete all but the `keep` most recent workbook_*.xlsx files in out_dir.
+
+    The timestamp is in the filename (workbook_<date>_<time>.xlsx), so a plain
+    reverse-alphabetical sort is also a reverse-chronological sort -- no stat()
+    call needed. Returns the paths that were deleted, so the caller can log
+    them; deletion failures (e.g. a file open in Excel) are logged and skipped
+    rather than raised, so pruning never fails a run.
+    """
+    out_dir = Path(out_dir)
+    books = sorted(out_dir.glob("workbook_*.xlsx"), reverse=True)
+    deleted: list[Path] = []
+    for book in books[keep:]:
+        try:
+            book.unlink()
+            deleted.append(book)
+        except OSError as exc:
+            log.warning("could not delete %s: %s", book, exc)
+    return deleted
 
 
 def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[Posting],

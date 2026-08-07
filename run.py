@@ -6,11 +6,17 @@
     python run.py --name Minnesota    # substring match on target name
     python run.py --from-cache        # re-filter/re-score without re-collecting
     python run.py --limit 5           # first N targets, for a smoke test
+    python run.py --keep 10           # keep the 10 most recent workbooks (default 5)
+    python run.py --keep 0            # keep every workbook, never prune
 
 Outputs
     data/postings.json                    this run's raw collection (Cowork handoff)
     data/history.json                     every posting ever seen, deduped
-    output/workbook_<date>_<time>.xlsx    one workbook, six tabs, never overwritten
+    output/workbook_<date>_<time>.xlsx    one workbook, six tabs, written every run
+
+Every run writes a new workbook, then prunes output/ down to the --keep most
+recent (default 5) so old runs don't pile up. data/postings.json and
+data/history.json are never touched by pruning.
 """
 from __future__ import annotations
 
@@ -26,7 +32,7 @@ from src.config import build_adapter, load_targets
 from src.export import workbook
 from src.filters import apply_filters
 from src.models import Posting
-from src.score import load_profile, rank
+from src.score import PROFILE, rank
 
 ROOT = Path(__file__).parent
 CACHE = ROOT / "data" / "postings.json"
@@ -101,6 +107,8 @@ def main() -> int:
                     help="skip collection, re-filter data/postings.json")
     ap.add_argument("--top", type=int, default=0,
                     help="write only the top N scored rows (0 = all)")
+    ap.add_argument("--keep", type=int, default=5,
+                    help="how many workbook_*.xlsx to keep in output/ (0 = keep all)")
     args = ap.parse_args()
 
     if args.from_cache:
@@ -122,9 +130,8 @@ def main() -> int:
     for k, v in sorted(stats.items(), key=lambda kv: -kv[1]):
         log.info("   %-40s %d", k, v)
 
-    profile = load_profile(ROOT / "profile.yaml")
-    ranked = rank(kept, profile)
-    scored_all = rank(list(raw), profile)      # history keeps scores for everything
+    ranked = rank(kept, PROFILE)
+    scored_all = rank(list(raw), PROFILE)      # history keeps scores for everything
 
     # Fold this run into the cumulative history BEFORE trimming to --top, so
     # nothing drops out of the archive just for falling below the cutoff.
@@ -146,6 +153,12 @@ def main() -> int:
         stats=stats,
     )
     log.info("wrote %s", out)
+
+    if args.keep:
+        removed = workbook.prune(ROOT / "output", keep=args.keep)
+        if removed:
+            log.info("pruned %d old workbook(s), kept the %d most recent",
+                      len(removed), args.keep)
 
     print("\nTop 15 by score:")
     for p in shortlist[:15]:

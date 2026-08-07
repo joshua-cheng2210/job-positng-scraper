@@ -28,7 +28,7 @@ documented well enough to finish in an afternoon.
 cd uni-job-collector
 python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
-python -m pytest -q                                  # 42 tests, all offline
+python -m pytest -q                                  # 45 tests, all offline
 ```
 
 ## Run
@@ -40,7 +40,15 @@ python run.py --name Wisconsin         # substring match on target name
 python run.py --limit 2 --delay 2      # gentle smoke test
 python run.py --from-cache             # re-filter/re-score, no network
 python run.py --top 50                 # write only the 50 best rows
+python run.py --keep 10                # keep 10 workbooks in output/ instead of 5
+python run.py --keep 0                 # never prune old workbooks
 ```
+
+Every run writes the workbook automatically as its last step — there's no
+separate conversion command to remember. After writing, `run.py` prunes
+`output/` down to the 5 most recent `workbook_*.xlsx` files (change with
+`--keep`); `data/postings.json` and `data/history.json` are never touched by
+pruning.
 
 Outputs:
 
@@ -48,7 +56,8 @@ Outputs:
   side (`/job-fit` reads it).
 - `data/history.json` — every posting ever collected, deduplicated by
   institution + job ID. Never overwritten, never pruned.
-- `output/workbook_<date>_<time>.xlsx` — **one workbook per run, six tabs**:
+- `output/workbook_<date>_<time>.xlsx` — **one workbook per run, six tabs**
+  (built by `src/export/workbook.py`):
 
 | Tab | Contents |
 |---|---|
@@ -63,25 +72,75 @@ Runs never overwrite each other — the filename carries the timestamp. Old
 postings are not lost when a portal takes them down; they stay in History
 marked `closed`, with `first_seen`, `last_seen` and `runs_seen` intact.
 
-### Raw export
+#### Column reference (Shortlist / All Postings / History / Changes)
 
-`run.py` writes only postings that survive the filters. To dump everything in a
-JSON file with no filtering and no scoring:
+All four data tabs share the same column vocabulary — a column just may not
+apply to every tab (e.g. `Change` only appears on the Changes tab). Column
+labels and widths live in `src/export/style.py::HEADERS`.
+
+| Column | Meaning |
+|---|---|
+| Change | Changes tab only — `new` or `closed` this run |
+| Status | History tab only — `open`, `closed`, or `new`; lifecycle state of the posting |
+| Score | resume-match score from `src/score.py`, higher = better fit. Negative means a hard blocker or a sponsorship penalty outweighed everything else |
+| Institution | university/system name |
+| Title | job title exactly as posted |
+| Department | hiring department or unit, if the portal exposes one |
+| Location | campus or city, if provided |
+| State | two-letter state, derived from the institution |
+| Job ID | the portal's own requisition/job ID |
+| Posted | date the posting first appeared, if the portal provides one |
+| Closes | application deadline, if provided |
+| First seen | History tab only — date this posting first showed up in any run |
+| Last seen | History tab only — most recent run that still saw this posting live |
+| Runs seen | History tab only — how many collection runs have included it |
+| Sponsorship | `h1b_possible` (green) / `no_stem_opt` (amber — still applicable via cap-exempt H-1B) / `no_sponsorship_any` (red) / `unknown` |
+| Sponsorship evidence | the sentence in the posting text that triggered the sponsorship flag |
+| Blockers | hard disqualifiers detected — US citizenship, security clearance, export control. Red fill; usually means skip |
+| Portal | ATS platform the posting came from — `workday` / `peopleadmin` / `pageup` / `custom` |
+| System | multi-campus system, e.g. "Minnesota State", "Big Ten" |
+| URL | direct link to the posting (clickable in Excel) |
+| Why this score | full point-by-point breakdown behind the Score column, e.g. `Python (languages) +1.5; title match +3.0` |
+| Description | full job description text — dropped from these four tabs (too wide); only appears in the raw export below |
+
+### Raw export (`json_to_excel.py`)
+
+`run.py` writes only postings that survive the filters and scores them. When
+you need the unfiltered, unscored data itself — to eyeball a JSON file, hand
+someone the raw feed, or work out why a posting never reached the Shortlist —
+use `json_to_excel.py` instead:
 
 ```bash
 python json_to_excel.py                      # data/postings.json -> output/
-python json_to_excel.py --all                # every .json in data/, one sheet each
-python json_to_excel.py --sort score --desc  # sort by any column
+python json_to_excel.py --all                # every .json in data/, one tab each
+python json_to_excel.py --sort score --desc  # sort by any column, descending
 python json_to_excel.py path/to/other.json -o report.xlsx
+python json_to_excel.py --no-summary         # skip the Summary tab
 ```
 
-Useful for eyeballing the full collection or working out why a posting never
-reached the filtered sheet. It also handles arbitrary JSON — unknown keys become
-columns — so it works on data that didn't come from this project.
+**Tabs it produces:**
 
-`--from-cache` is the one to remember. Tuning `profile.yaml` or the filter
-rules takes one second to re-evaluate; you never need to re-hit the network to
-change how postings are ranked.
+| Tab | Contents |
+|---|---|
+| `<filename>` (one per input file, e.g. `postings`) | every row in that JSON file, no filtering, no scoring |
+| Summary | counts by `institution`, `platform`, `state`, `sponsorship_flag`, `status` — across all converted files combined. Skipped with `--no-summary` |
+
+**Columns:** whatever keys exist in the source JSON — this script handles
+arbitrary JSON, not just this project's output, so it makes no assumptions
+about schema. When pointed at `data/postings.json` or `data/history.json`,
+that means every field on `Posting` (see the column reference table above),
+**including `description`**, since the raw export applies no column drop list.
+Known columns (`score`, `institution`, `sponsorship_flag`, etc.) get the same
+friendly headers, widths, and color coding as the main workbook; unrecognized
+keys become plain columns, alphabetized after the known ones.
+
+It accepts a dict-wrapped list too (`{"postings": [...]}`), and `history.json`'s
+id-keyed object shape (`{"<key>": {...}, ...}`) — `load_rows()` unwraps both.
+
+`--from-cache` on `run.py` is the one to remember for iterating on scoring —
+tuning `PROFILE` in `src/score.py` or the filter rules takes one second to
+re-evaluate; you never need to re-hit the network to change how postings are
+ranked.
 
 ## How it works
 
@@ -125,12 +184,11 @@ append an entry to `targets.yaml`.
 run.py                      pipeline entry point
 json_to_excel.py            raw JSON -> Excel, no filtering
 targets.yaml                institutions -> platform config
-profile.yaml                skills used for scoring (edit freely)
 src/
   models.py                 Posting dataclass, dedup key, HTML stripping
   config.py                 targets.yaml loading + adapter dispatch
   filters.py                exclude/include rules, sponsorship + blocker detection
-  score.py                  resume-match scoring
+  score.py                  resume-match scoring + PROFILE (skills used for scoring, edit freely)
   adapters/
     base.py                 Adapter ABC, rate limiting, shared HTTP
     workday.py              working
@@ -140,8 +198,8 @@ src/
   history.py                cumulative posting archive + run diffs
   export/
     style.py                shared Excel styling, one source of truth
-    workbook.py             the six-tab workbook a run produces
-tests/                      42 tests, fixtures captured from live APIs
+    workbook.py             the six-tab workbook a run produces -- writes the .xlsx
+tests/                      45 tests, fixtures captured from live APIs
 ```
 
 ## Next

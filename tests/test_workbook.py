@@ -62,3 +62,35 @@ def test_empty_tabs_render_without_crashing(tmp_path):
                    history_rows=[], changes={"new": [], "closed": []})
     wb = load_workbook(out)
     assert wb["Changes"]["A4"].value == "(nothing to show)"
+
+
+def _touch_workbooks(out_dir, stamps):
+    for s in stamps:
+        (out_dir / f"workbook_{s}.xlsx").write_bytes(b"")
+
+
+def test_prune_keeps_only_the_newest_n(tmp_path):
+    _touch_workbooks(tmp_path, [
+        "2026-08-01_120000", "2026-08-02_120000", "2026-08-03_120000",
+        "2026-08-04_120000", "2026-08-05_120000", "2026-08-06_120000",
+    ])
+    deleted = workbook.prune(tmp_path, keep=5)
+    remaining = sorted(p.name for p in tmp_path.glob("workbook_*.xlsx"))
+    assert len(remaining) == 5
+    assert "workbook_2026-08-01_120000.xlsx" not in remaining
+    assert len(deleted) == 1
+
+
+def test_prune_ignores_non_workbook_files(tmp_path):
+    _touch_workbooks(tmp_path, ["2026-08-01_120000", "2026-08-02_120000"])
+    (tmp_path / "postings.json").write_text("[]")
+    workbook.prune(tmp_path, keep=1)
+    assert (tmp_path / "postings.json").exists()
+    assert len(list(tmp_path.glob("workbook_*.xlsx"))) == 1
+
+
+def test_prune_keep_zero_or_under_limit_deletes_nothing(tmp_path):
+    _touch_workbooks(tmp_path, ["2026-08-01_120000", "2026-08-02_120000"])
+    deleted = workbook.prune(tmp_path, keep=5)
+    assert deleted == []
+    assert len(list(tmp_path.glob("workbook_*.xlsx"))) == 2

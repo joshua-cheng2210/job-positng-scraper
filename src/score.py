@@ -12,14 +12,45 @@ from __future__ import annotations
 
 import re
 
-import yaml
-
 from .models import Posting
 
-
-def load_profile(path: str = "profile.yaml") -> dict:
-    with open(path, encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
+# Josh's skill profile. Used to be profile.yaml; inlined here so scoring has
+# no config file to go stale or get edited out of sync with score.py. Edit
+# this dict directly -- no re-collection needed, scoring re-runs instantly.
+# Category weights live in KEYWORD_CATEGORIES below.
+PROFILE: dict = {
+    "languages": [           # +1.5 each -- strongest signal, weighted above tooling
+        "Python", "Java", "JavaScript", "C++", "SQL", "HTML", "CSS", "OCaml", "R",
+        # "REALBASIC" / "XOJO" deliberately omitted -- no university posting is
+        # going to ask for it, and it just adds noise to the regex pass.
+    ],
+    "frameworks": [          # +1.0 each
+        "Node.js", "React", "Angular", "Flask", "Vite", "Tailwind CSS",
+        "Bootstrap", "LangChain", "Hugging Face", "Django",
+    ],
+    "databases_tools": [     # +1.0 each
+        "PostgreSQL", "MySQL", "Git", "Docker", "Jira", "Tableau", "Excel",
+    ],
+    "cloud_deployment": [    # +1.0 each
+        "AWS", "S3", "CloudFront", "Lambda", "GitHub Pages", "Render",
+    ],
+    "skills": [               # +1.0 each -- legacy bucket for anything not categorized above
+        "REST API", "Linux",
+    ],
+    "data_analytics": [      # +0.75 each
+        "NumPy", "pandas", "Matplotlib", "Seaborn", "OpenCV", "Regex",
+        "ChromaDB", "Data Cleaning",
+    ],
+    "design_productivity": [ # +0.5 each
+        "Figma", "JMP", "TeamDynamix", "TargetProcess",
+    ],
+    "nice_to_have": [         # +0.5 each -- adjacent, or things he can learn in a weekend
+        "TypeScript", "Power BI", "MATLAB", "Kubernetes", "Azure", "GCP",
+        "Spark", "Airflow", "scikit-learn", "PyTorch", "TensorFlow",
+        "Jenkins", "Agile",
+    ],
+    "graduation": "2026-05",
+}
 
 
 TITLE_TIERS = {
@@ -49,7 +80,7 @@ ENTRY_SIGNALS = [
 
 EXPERIENCE_PENALTY = re.compile(r"\b(\d+)\+?\s*(?:-|to|–)?\s*\d*\s*years?\b", re.I)
 
-# profile.yaml keys scored here, in priority order, with their per-match weight.
+# PROFILE keys scored here, in priority order, with their per-match weight.
 # Languages sit highest on purpose -- language fluency is the strongest signal
 # of "can actually do this job" and Josh asked to weight them above tooling.
 # `skills` / `nice_to_have` are legacy catch-all buckets kept for anything that
@@ -74,7 +105,7 @@ def _keyword_pattern(keyword: str) -> re.Pattern[str]:
     return re.compile(rf"(?<![A-Za-z0-9_]){escaped}(?![A-Za-z0-9_])")
 
 
-def score(p: Posting, profile: dict) -> Posting:
+def score(p: Posting, profile: dict = PROFILE) -> Posting:
     pts = 0.0
     why: list[str] = []
 
@@ -136,7 +167,7 @@ def score(p: Posting, profile: dict) -> Posting:
     return p
 
 
-def rank(postings: list[Posting], profile: dict) -> list[Posting]:
+def rank(postings: list[Posting], profile: dict = PROFILE) -> list[Posting]:
     return sorted(
         (score(p, profile) for p in postings),
         key=lambda x: x.score,
