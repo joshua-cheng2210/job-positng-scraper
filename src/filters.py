@@ -31,6 +31,12 @@ EXCLUDE_TITLE = [
     # postdoc requires a completed PhD -- categorical mismatch for a new grad,
     # matches "post-doc", "postdoc", and "postdoctoral" (any suffix after "doc").
     r"\bpost[- ]?doc",
+    # Explicitly for current undergrads (work-study, class-schedule-friendly
+    # student jobs) -- he graduates May 2026, so these are a categorical
+    # mismatch same as postdoc, just at the other end. Catches "Undergraduate
+    # Research Assistant", "Undergrad TA", etc. regardless of where in the
+    # title the word lands.
+    r"\bundergrad(uate)?\b",
 ]
 
 # --- 2. seniority: he is a May 2026 new grad ---------------------------------
@@ -98,6 +104,24 @@ HARD_BLOCKERS = {
     ],
     "Export control restricted": [
         r"export control", r"\bitar\b", r"\bear\b restricted",
+    ],
+    # Positions gated on being a currently-enrolled student at the hiring
+    # institution (student-employee/work-study roles, "current student"
+    # eligibility clauses). He'll have graduated May 2026, so these are
+    # structurally closed to him regardless of skill fit -- same tier as
+    # citizenship/clearance. Deliberately narrow (anchored to eligibility
+    # phrasing, not just the word "student") so postings that merely mention
+    # working with/supervising students don't false-positive.
+    "Student status required": [
+        r"must be a current(ly)?[- ]enrolled student",
+        r"must be (a |an )?(currently )?enrolled student",
+        r"open (only )?to current(ly enrolled)? students",
+        r"restricted to current(ly enrolled)? students",
+        r"student employees?[ -]only",
+        r"eligib(le|ility)[^.]{0,40}current(ly)? enrolled student",
+        r"must be enrolled (as a student|full[- ]?time)( at)?",
+        r"work[- ]study eligib",
+        r"must be a (current |currently enrolled )?(umn|university) student",
     ],
 }
 

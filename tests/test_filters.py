@@ -40,6 +40,25 @@ def test_hard_blockers_detected():
     assert "Security clearance required" in p.hard_blockers
 
 
+def test_student_status_blocker_detected():
+    p = annotate(mk("Research Assistant",
+                    "Applicants must be a currently enrolled student at the university."))
+    assert "Student status required" in p.hard_blockers
+
+    p = annotate(mk("IT Support Assistant",
+                    "This position is open only to current students."))
+    assert "Student status required" in p.hard_blockers
+
+
+def test_student_status_blocker_does_not_false_positive_on_working_with_students():
+    """Mentioning students in the job's day-to-day responsibilities isn't the
+    same as requiring the applicant themselves to be one."""
+    p = annotate(mk("Academic Advisor",
+                    "You will supervise graduate students and assist student researchers "
+                    "with data collection."))
+    assert "Student status required" not in p.hard_blockers
+
+
 def test_sponsorship_positive():
     p = annotate(mk("Software Engineer",
                     "UNL may be able to sponsor temporary work authorization (e.g., H-1B)."))
@@ -90,6 +109,17 @@ def test_no_stem_opt_is_flagged_not_rejected():
     assert p.sponsorship_flag == "no_stem_opt"
     assert p.hard_blockers == []
     assert is_excluded(p) is None
+
+
+def test_drops_undergraduate_titles():
+    """He graduates May 2026 -- undergrad-only positions (work-study, class-
+    schedule-friendly student jobs) are a categorical mismatch, same as
+    postdoc at the other end."""
+    for t in ["Undergraduate Research Assistant", "Part-Time Undergraduate Research Assistant",
+              "Undergrad TA - Intro Programming", "Undergraduate Teaching Assistant"]:
+        reason = is_excluded(mk(t))
+        assert reason is not None, t
+        assert "undergrad" in reason.lower(), t
 
 
 def test_drops_postdoc_titles():
