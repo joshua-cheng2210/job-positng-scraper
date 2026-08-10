@@ -105,3 +105,23 @@ def test_part_time_and_temporary_both_apply_if_both_present():
     reasons = "; ".join(p.score_reasons)
     assert "part-time -2.0" in reasons
     assert "temporary -2.0" in reasons
+
+
+def test_unscraped_posting_gets_the_benefit_of_the_doubt_bonus():
+    """A posting with description_scraped=0 can't earn (or lose) any of the
+    haystack-dependent points -- keyword matches, stretch/entry signals,
+    years penalty, sponsorship flag, part-time/temporary. Without a
+    compensating offset it would rank below an equally-good scraped posting
+    purely for lack of text. Same content either way -- only the
+    description_scraped flag differs."""
+    unscraped = mk("Software Engineer", "Python and SQL.")
+    unscraped.description_scraped = 0
+    unscraped = score(unscraped, PROFILE)
+
+    scraped = mk("Software Engineer", "Python and SQL.")
+    scraped.description_scraped = 1
+    scraped = score(scraped, PROFILE)
+
+    assert unscraped.score == round(scraped.score + 3.0, 2)
+    assert any("benefit of the doubt" in r for r in unscraped.score_reasons)
+    assert not any("benefit of the doubt" in r for r in scraped.score_reasons)

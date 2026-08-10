@@ -85,3 +85,49 @@ def test_enrich_survivors_one_crashing_worker_does_not_kill_the_run(monkeypatch)
     monkeypatch.setattr(run, "_enrich_one", fake_enrich_one)
     # should not raise
     run.enrich_survivors(postings, delay=0, workers=4)
+
+
+def _ranked(jid, title, desc="", hard_blockers=None):
+    p = Posting(institution="U", job_id=jid, title=title, url=f"https://x/{jid}",
+                platform="workday", state="MN", description=desc)
+    p.hard_blockers = hard_blockers or []
+    return p
+
+
+def test_split_shortlist_separates_part_time_and_temporary():
+    full_time = _ranked("1", "Software Engineer")
+    part_time = _ranked("2", "Data Analyst", desc="This is a part-time position.")
+    temp = _ranked("3", "Research Assistant", desc="This is a temporary, grant-funded role.")
+
+    shortlist, part_time_list = run.split_shortlist([full_time, part_time, temp])
+
+    assert shortlist == [full_time]
+    assert part_time_list == [part_time, temp]
+
+
+def test_split_shortlist_ignores_generic_benefits_boilerplate():
+    """'Perks and Benefit eligibility is based on Part-Time or Full-Time
+    Employment status' mentions part-time without describing THIS posting's
+    employment type -- shouldn't route an otherwise full-time role away."""
+    full_time = _ranked("1", "Business Intelligence Analyst",
+                         desc="Perks and Benefit eligibility is based on Part-Time or "
+                              "Full-Time Employment status. Great benefits await.")
+    genuinely_part_time = _ranked("2", "Data Analyst",
+                                   desc="This is a part-time position, 20 hours/week.")
+
+    shortlist, part_time_list = run.split_shortlist([full_time, genuinely_part_time])
+
+    assert shortlist == [full_time]
+    assert part_time_list == [genuinely_part_time]
+
+
+def test_split_shortlist_drops_hard_blockered_postings_from_both_tabs():
+    blocked_full = _ranked("1", "Software Engineer", hard_blockers=["US citizenship required"])
+    blocked_part_time = _ranked("2", "Data Analyst", desc="Part-time role.",
+                                 hard_blockers=["Student status required"])
+    clean = _ranked("3", "Data Engineer")
+
+    shortlist, part_time_list = run.split_shortlist([blocked_full, blocked_part_time, clean])
+
+    assert shortlist == [clean]
+    assert part_time_list == []

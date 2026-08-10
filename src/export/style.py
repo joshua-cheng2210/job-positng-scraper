@@ -30,7 +30,8 @@ STATUS_FILL = {
 }
 
 HEADERS = {
-    "score": "Score", "institution": "Institution", "title": "Title",
+    "score": "Score", "ai_score": "AI Score (0-10)", "ai_reason": "AI Score Reason",
+    "institution": "Institution", "title": "Title",
     "department": "Department", "location": "Location", "state": "State",
     "job_id": "Job ID", "posted_date": "Posted",
     "days_since_posted": "Days Since Posted", "close_date": "Closes",
@@ -47,7 +48,8 @@ HEADERS = {
 }
 
 WIDTHS = {
-    "score": 8, "institution": 34, "title": 46, "department": 28, "location": 26,
+    "score": 8, "ai_score": 14, "ai_reason": 50,
+    "institution": 34, "title": 46, "department": 28, "location": 26,
     "state": 7, "job_id": 16, "posted_date": 12, "days_since_posted": 14,
     "close_date": 12,
     "sponsorship_flag": 18, "sponsorship_evidence": 34, "hard_blockers": 26,
@@ -61,7 +63,7 @@ WIDTHS = {
 }
 
 PREFERRED = [
-    "change", "status", "score", "institution",
+    "change", "status", "score", "ai_score", "ai_reason", "institution",
     "composite", "postings", "top3_avg_score", "avg_score", "max_score",
     "verified_pct", "positive_sponsorship", "no_sponsorship",
     "title", "department", "location",
@@ -178,6 +180,11 @@ def write_table(ws: Worksheet, rows: list[dict], *, title: str, subtitle: str = 
         if "description_scraped" in idx and row.get("description_scraped") == 1:
             ws.cell(row=r, column=idx["description_scraped"]).fill = \
                 PatternFill("solid", fgColor=GREEN)
+
+        if "ai_score" in idx and row.get("ai_score") is not None:
+            v = row["ai_score"]
+            fill = RED if v <= 2 else AMBER if v <= 6 else GREEN
+            ws.cell(row=r, column=idx["ai_score"]).fill = PatternFill("solid", fgColor=fill)
 
         for field in ("status", "change"):
             if field in idx:

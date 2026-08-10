@@ -15,11 +15,21 @@
 Outputs
     data/postings.json                    this run's raw collection (Cowork handoff)
     data/history.json                     every posting ever seen, deduped
+    data/ai_scores.json                   LLM fit judgments -- see AI Scoring below
     output/workbook_<date>_<time>.xlsx    one workbook, seven tabs, written every run
 
 Every run writes a new workbook, then prunes output/ down to the --keep most
-recent (default 5) so old runs don't pile up. data/postings.json and
-data/history.json are never touched by pruning.
+recent (default 5) so old runs don't pile up. data/postings.json,
+data/history.json, and data/ai_scores.json are never touched by pruning.
+
+AI Scoring: run.py never calls an LLM itself -- data/ai_scores.json is
+written by the separate /ai-score-shortlist skill (run manually in Cowork or
+Claude Code, not as part of this script), which judges each open, score>0
+posting in data/history.json on a 0-10 fit scale against Josh's resume and
+writes results back to that file, skipping anything already scored. run.py
+just reads whatever's there (if anything) and merges it into the workbook as
+the AI Score / AI Score Reason columns. Run /ai-score-shortlist, then re-run
+`python run.py --from-cache` to see the scores in the workbook.
 
 Enrichment: the bulk pass (Workday list endpoint, PeopleAdmin Atom feed)
 does NOT reliably carry a complete description -- Workday gives none at all
@@ -43,6 +53,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import re
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -58,11 +69,12 @@ from src.config import build_adapter, load_targets
 from src.export import workbook
 from src.filters import apply_filters
 from src.models import Posting
-from src.score import PROFILE, rank
+from src.score import EMPLOYMENT_TYPE_PENALTIES, PROFILE, rank
 
 ROOT = Path(__file__).parent
 CACHE = ROOT / "data" / "postings.json"
 HISTORY = ROOT / "data" / "history.json"
+AI_SCORES = ROOT / "data" / "ai_scores.json"
 
 logging.basicConfig(
     level=logging.INFO,
@@ -108,6 +120,54 @@ def save_cache(postings: list[Posting]) -> None:
         encoding="utf-8",
     )
     log.info("wrote %s (%d postings)", CACHE, len(postings))
+
+
+# Generic benefits-eligibility boilerplate ("Perks and Benefit eligibility is
+# based on Part-Time or Full-Time Employment status") mentions "part-time"
+# without describing THIS posting's employment type -- stripped out before
+# matching so it doesn't mis-route an otherwise full-time role into the
+# Part-Time & Temporary tab. score.py's EMPLOYMENT_TYPE_PENALTIES tolerates
+# this false positive fine as a soft -2.0 score nudge; a hard tab split needs
+# to be more precise.
+_BENEFITS_BOILERPLATE = re.compile(
+    r"(part[- ]time or full[- ]time|full[- ]time or part[- ]time)", re.I)
+
+
+def _is_temp_or_parttime(p: Posting) -> bool:
+    text = _BENEFITS_BOILERPLATE.sub("", p.haystack)
+    return any(re.search(pat, text) for _, pat, _ in EMPLOYMENT_TYPE_PENALTIES)
+
+
+def split_shortlist(ranked: list[Posting]) -> tuple[list[Posting], list[Posting]]:
+    """Split the ranked, filtered survivors into the two application-facing
+    tabs. Hard-blockered postings (citizenship, clearance, export control,
+    student-status -- see filters.py's HARD_BLOCKERS) are dropped from BOTH
+    tabs entirely: they're structurally impossible for him to take regardless
+    of skill fit, so keeping them around just adds noise a human then has to
+    re-filter by eye. Everything else splits by employment type -- temporary/
+    part-time postings go to their own tab rather than competing directly
+    against full-time roles in the primary Shortlist, since he's hunting for
+    full-time work first.
+
+    Both lists stay sorted by score (input order), same as `ranked`.
+    """
+    eligible = [p for p in ranked if not p.hard_blockers]
+    shortlist = [p for p in eligible if not _is_temp_or_parttime(p)]
+    part_time = [p for p in eligible if _is_temp_or_parttime(p)]
+    return shortlist, part_time
+
+
+def load_ai_scores() -> dict[str, dict]:
+    """data/ai_scores.json -- written by the /ai-score-shortlist skill, never
+    by run.py itself (no LLM calls happen in this script). Missing file is
+    normal (nothing's been AI-scored yet), not an error."""
+    if not AI_SCORES.exists():
+        return {}
+    try:
+        return json.loads(AI_SCORES.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        log.warning("%s is corrupt; ignoring AI scores for this run", AI_SCORES)
+        return {}
 
 
 def load_cache() -> list[Posting]:
@@ -242,16 +302,28 @@ def main() -> int:
     log.info("history: %d unique postings (%d new, %d closed this run)",
              len(hist), len(changes["new"]), len(changes["closed"]))
 
-    shortlist = ranked[: args.top] if args.top else ranked
+    shortlist, part_time = split_shortlist(ranked)
+    blocked = len(ranked) - len(shortlist) - len(part_time)
+    log.info("shortlist split: %d full-time, %d part-time/temporary, "
+              "%d dropped for a hard blocker", len(shortlist), len(part_time), blocked)
+    if args.top:
+        shortlist = shortlist[: args.top]
+        part_time = part_time[: args.top]
+
+    ai_scores = load_ai_scores()
+    if ai_scores:
+        log.info("loaded %d AI scores from %s", len(ai_scores), AI_SCORES)
 
     out = workbook.filename(ROOT / "output")
     workbook.write(
         out,
         shortlist=shortlist,
+        part_time=part_time,
         all_postings=scored_all,
         history_rows=history.rows(hist),
         changes=changes,
         stats=stats,
+        ai_scores=ai_scores,
     )
     log.info("wrote %s", out)
 

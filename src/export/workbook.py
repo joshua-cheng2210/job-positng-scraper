@@ -1,17 +1,31 @@
 """The one workbook a run produces.
 
 Tabs
-    Shortlist      current run, filtered + scored, best first
-    Institutions   Shortlist grouped by institution, ranked by a composite score
-    All Postings   current run, unfiltered
-    History        every posting ever collected, deduped, open + closed
-    Changes        new and closed since the previous run
-    Summary        counts by institution / portal / state / sponsorship
-    Run Stats      what the filters dropped and why
+    Shortlist            current run, filtered + scored, full-time only, best first.
+                         Hard-blockered postings (citizenship, clearance, export
+                         control, student-status -- see filters.py's HARD_BLOCKERS)
+                         are excluded entirely, not just flagged.
+    Part-Time & Temporary  same filtering as Shortlist, but for postings tagged
+                         part-time or temporary -- kept off the main Shortlist so
+                         they don't compete with full-time roles, not because
+                         they're worse.
+    Institutions         Shortlist (full-time only) grouped by institution,
+                         ranked by a composite score
+    All Postings         current run, unfiltered
+    History               every posting ever collected, deduped, open + closed
+    Changes               new and closed since the previous run
+    Summary               counts by institution / portal / state / sponsorship / AI Score
+    Run Stats             what the filters dropped and why
 
 Filename is workbook_<date>_<time>.xlsx, so runs never overwrite each other.
 `prune()` caps how many of these pile up in output/ -- run.py calls it after
 every write to keep only the most recent 5.
+
+AI Score / AI Score Reason columns are merged in from data/ai_scores.json
+(see ai_score_key() below) if that file exists -- a durable side-car the
+/ai-score-shortlist skill writes to, since the LLM judgment behind them is
+too expensive to redo every run and a fresh workbook can't be the source of
+truth for it. Blank AI Score means not yet scored, not "scored zero."
 """
 from __future__ import annotations
 
@@ -36,32 +50,39 @@ BULKY = {"description", "raw"}          # too wide for the overview tabs -- drop
 DROP_COLUMNS = BULKY | {"url"}
 
 # Kept in the data (Summary counts, etc. can still read them) but collapsed
-# by default so the table isn't cluttered: state is folded into the combined
-# "Location" column below, department/sponsorship_evidence/hard_blockers are
-# rarely-populated detail fields most useful when hunting down a specific row.
-HIDDEN_COLUMNS = {"state", "department", "sponsorship_evidence", "hard_blockers"}
+# by default so the table isn't cluttered -- rarely-populated detail fields
+# most useful when hunting down a specific row. State used to be folded into
+# a combined Location column and hidden too; reverted back to its own
+# visible column per Josh's call.
+HIDDEN_COLUMNS = {"department", "sponsorship_evidence", "hard_blockers"}
 
 
-def _prepare_rows(rows: list[dict]) -> list[dict]:
+def ai_score_key(institution: str | None, job_id: str | None) -> str:
+    """Same join key data/history.json already uses (institution|job_id,
+    lowercased) -- so data/ai_scores.json lines up with both history.json
+    and postings.json without a third key scheme to keep in sync. Not
+    hashed (unlike Posting.key) since this key needs to be human-writable/
+    -readable in a JSON file a human (or the /ai-score-shortlist skill) is
+    directly reading and editing."""
+    return f"{(institution or '').lower()}|{(job_id or '').lower()}"
+
+
+def _prepare_rows(rows: list[dict], ai_scores: dict[str, dict] | None = None) -> list[dict]:
     """Row-level display transforms shared by every table tab:
 
-    - location + state collapse into one "City, ST"-style Location column.
-      Non-destructive -- `state` stays in the dict (hidden, not dropped) so
-      Summary's per-state counts keep working.
     - days_since_posted is computed fresh at export time from posted_date,
       since "how long ago" only makes sense relative to when the workbook
       was written, not when the posting was scraped.
+    - ai_score/ai_reason are merged in from data/ai_scores.json (see
+      ai_score_key above) if provided -- that file is the durable side-car
+      the /ai-score-shortlist skill writes to, since a fresh workbook is
+      generated every run and can't be the source of truth for something
+      that's expensive (an LLM judgment) to redo.
     """
     today = date.today()
     out = []
     for r in rows:
         r = dict(r)
-        loc, st = r.get("location"), r.get("state")
-        if loc and st:
-            r["location"] = f"{loc}, {st}"
-        elif st and not loc:
-            r["location"] = st
-
         pd = r.get("posted_date")
         days = None
         if pd:
@@ -71,6 +92,13 @@ def _prepare_rows(rows: list[dict]) -> list[dict]:
             except (TypeError, ValueError):
                 days = None
         r["days_since_posted"] = days
+
+        if ai_scores:
+            hit = ai_scores.get(ai_score_key(r.get("institution"), r.get("job_id")))
+            if hit:
+                r["ai_score"] = hit.get("ai_score")
+                r["ai_reason"] = hit.get("ai_reason")
+
         out.append(r)
     return out
 
@@ -79,6 +107,23 @@ def _counts(rows: list[dict], field: str) -> dict[str, int]:
     out: dict[str, int] = {}
     for r in rows:
         k = str(r.get(field) or "(blank)")
+        out[k] = out.get(k, 0) + 1
+    return out
+
+
+def _ai_score_counts(rows: list[dict]) -> dict[str, int]:
+    """Buckets by the exact 0-10 AI Score, plus a "(not yet AI-scored)"
+    bucket -- seeing that count shrink run over run is the signal that
+    /ai-score-shortlist is actually keeping up with the Shortlist."""
+    out: dict[str, int] = {}
+    for r in rows:
+        v = r.get("ai_score")
+        if v is None:
+            k = "(not yet AI-scored)"
+        elif int(v) == 0:
+            k = "0 (not recommended)"
+        else:
+            k = str(int(v))
         out[k] = out.get(k, 0) + 1
     return out
 
@@ -161,12 +206,15 @@ def prune(out_dir: str | Path, keep: int = 5, dry_run: bool = False) -> list[Pat
 
 def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[Posting],
           history_rows: list[dict], changes: dict[str, list[dict]],
-          stats: dict[str, int] | None = None) -> Path:
+          part_time: list[Posting] | None = None,
+          stats: dict[str, int] | None = None,
+          ai_scores: dict[str, dict] | None = None) -> Path:
     out_path = Path(out_path)
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    short_rows = _prepare_rows([p.to_row() for p in shortlist])
-    all_rows = _prepare_rows([p.to_row() for p in all_postings])
+    short_rows = _prepare_rows([p.to_row() for p in shortlist], ai_scores)
+    part_time_rows = _prepare_rows([p.to_row() for p in (part_time or [])], ai_scores)
+    all_rows = _prepare_rows([p.to_row() for p in all_postings], ai_scores)
     stamp = datetime.now().strftime("%Y-%m-%d %H:%M")
 
     wb = Workbook()
@@ -174,11 +222,28 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
 
     style.write_table(
         wb.create_sheet("Shortlist"),
-        style.sort_rows(short_rows, "score", desc=True),
+        style.sort_rows(short_rows, "ai_score", desc=True),
         title=f"Shortlist — {len(short_rows)} postings — {stamp}",
-        subtitle=("Survived the filters, sorted by match score. Green = positive "
+        subtitle=("Survived the filters and carries no hard blocker (citizenship, "
+                  "clearance, export control, student-status), sorted by AI Score "
+                  "(postings not yet AI-scored sink to the bottom -- run "
+                  "/ai-score-shortlist to score them, or see the Score column for the "
+                  "regex-based fallback ranking). Full-time only -- part-time and "
+                  "temporary postings are on their own tab. Green = positive "
                   "sponsorship language, amber = declines STEM OPT (still applicable "
-                  "via cap-exempt H-1B), red = no sponsorship. A Blocker usually means skip."),
+                  "via cap-exempt H-1B), red = no sponsorship."),
+        drop=DROP_COLUMNS,
+        hidden=HIDDEN_COLUMNS,
+    )
+
+    style.write_table(
+        wb.create_sheet("Part-Time & Temporary"),
+        style.sort_rows(part_time_rows, "ai_score", desc=True),
+        title=f"Part-Time & Temporary — {len(part_time_rows)} postings — {stamp}",
+        subtitle=("Same filtering as Shortlist (survived the filters, no hard blocker) "
+                  "but tagged part-time or temporary in the posting text -- split out "
+                  "so these don't compete with full-time roles for ranking, not "
+                  "because they're worse. Run /ai-score-shortlist to score these too."),
         drop=DROP_COLUMNS,
         hidden=HIDDEN_COLUMNS,
     )
@@ -208,7 +273,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
 
     style.write_table(
         wb.create_sheet("History"),
-        _prepare_rows(history_rows),
+        _prepare_rows(history_rows, ai_scores),
         title=f"History — {len(history_rows)} unique postings ever seen",
         subtitle=("Carried forward across every run and deduplicated by institution + job ID. "
                   "status=closed means it was not in the latest run."),
@@ -216,7 +281,7 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         hidden=HIDDEN_COLUMNS,
     )
 
-    change_rows = _prepare_rows(changes.get("new", []) + changes.get("closed", []))
+    change_rows = _prepare_rows(changes.get("new", []) + changes.get("closed", []), ai_scores)
     style.write_table(
         wb.create_sheet("Changes"),
         change_rows,
@@ -227,14 +292,36 @@ def write(out_path: str | Path, *, shortlist: list[Posting], all_postings: list[
         hidden=HIDDEN_COLUMNS,
     )
 
+    # Negative-score postings (hard blocker, no-sponsorship, 5+ years, etc.)
+    # dragged the "worth applying to" breakdowns down with institutions/
+    # sponsorship flags that are really just noise -- a school with three
+    # postings that all net negative shouldn't show up here next to schools
+    # with real prospects. Only these two Shortlist breakdowns are filtered;
+    # "All postings by portal/state" and "History by status" are collection
+    # health checks, not application-worthiness checks, so they stay
+    # unfiltered on purpose.
+    worth_applying = [r for r in short_rows if (r.get("score") or 0) >= 0]
+
     style.write_counts(
         wb.create_sheet("Summary"),
         f"Summary — {stamp}",
         [
-            ("Shortlist by institution", _counts(short_rows, "institution")),
-            ("Shortlist by sponsorship flag", _counts(short_rows, "sponsorship_flag")),
+            ("Shortlist by institution (score >= 0 only)",
+             _counts(worth_applying, "institution")),
+            ("Shortlist by sponsorship flag (score >= 0 only)",
+             _counts(worth_applying, "sponsorship_flag")),
+            # Each Shortlist breakdown sits directly above its All-Postings
+            # counterpart so the two are easy to compare at a glance --
+            # e.g. "12 of these 40 MN postings actually made the Shortlist."
+            ("Shortlist by portal (score >= 0 only)",
+             _counts(worth_applying, "platform")),
             ("All postings by portal", _counts(all_rows, "platform")),
+            ("Shortlist by state (score >= 0 only)",
+             _counts(worth_applying, "state")),
             ("All postings by state", _counts(all_rows, "state")),
+            ("Shortlist by AI Score (score >= 0 only)",
+             _ai_score_counts(worth_applying)),
+            ("Part-Time & Temporary by AI Score", _ai_score_counts(part_time_rows)),
             ("History by status", _counts(history_rows, "status")),
         ],
     )

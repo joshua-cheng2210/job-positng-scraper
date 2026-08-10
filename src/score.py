@@ -119,6 +119,22 @@ EMPLOYMENT_TYPE_PENALTIES = [
     ("temporary", r"\btemporary\b", 2.0),
 ]
 
+# Fairness offset for unscraped postings. haystack = title + department +
+# description, so with description missing every keyword-category match,
+# stretch/entry signal, years-of-experience check, and sponsorship/blocker
+# scan (all of which run on haystack) finds nothing -- not just no bonus,
+# also no penalty. An unscraped posting is squeezed into a narrow band near
+# its title-tier score alone, while scraped postings spread out both above
+# and below it. Without this offset, a genuinely great-fit posting that
+# simply hasn't been enriched yet (see run.py's enrich_survivors -- it's
+# bounded to survivors, not guaranteed to succeed for all of them) can rank
+# below a mediocre scraped posting purely for lack of text -- a real missed
+# opportunity, not a reflection of actual fit. This doesn't claim the
+# posting IS a good match; description_scraped stays 0 and the workbook
+# still flags it as unverified -- it just stops the ranking from silently
+# penalizing "we don't know yet" the same as "we checked, and it's average."
+UNSCRAPED_BENEFIT_OF_DOUBT = 3.0
+
 
 def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Posting:
     today = today or date.today()
@@ -206,6 +222,11 @@ def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Pos
     # STEM OPT, so Josh still applies. It's now a small scoring penalty rather
     # than neutral, since a plain STEM-OPT posting is a slightly safer bet than
     # one that explicitly rules it out. See the note in filters.py.
+
+    if not p.description_scraped:
+        pts += UNSCRAPED_BENEFIT_OF_DOUBT
+        why.append(f"unscraped, benefit of the doubt (verify manually) "
+                   f"+{UNSCRAPED_BENEFIT_OF_DOUBT}")
 
     p.score = round(pts, 2)
     p.score_reasons = why
