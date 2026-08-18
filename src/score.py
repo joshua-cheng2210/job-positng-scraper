@@ -115,7 +115,7 @@ RECENCY_SOON_BONUS = 2.0   # posted 1-2 days ago ("<3 days ago")
 # that regularly converts to full-time), but it's a real negative signal, so
 # it's a scoring penalty here rather than a filters.py hard exclude.
 EMPLOYMENT_TYPE_PENALTIES = [
-    ("part-time", r"\bpart[- ]time\b", 2.0),
+    ("part-time", r"\bpart\s*(?:-\s*)?time\b", 2.0),
     ("temporary", r"\btemporary\b", 2.0),
 ]
 
@@ -144,7 +144,7 @@ def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Pos
     title = p.title.lower()
     for weight, pats in TITLE_TIERS.items():
         for pat in pats:
-            if re.search(pat, title):
+            if re.search(pat, title, re.IGNORECASE):
                 pts += weight
                 why.append(f"title match +{weight}")
                 break
@@ -156,17 +156,17 @@ def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Pos
 
     for category, weight in KEYWORD_CATEGORIES.items():
         for keyword in profile.get(category, []):
-            if _keyword_pattern(keyword).search(text):
+            if _keyword_pattern(keyword).search(text, re.IGNORECASE):
                 pts += weight
                 why.append(f"{keyword} ({category}) +{weight}")
 
     for pat, w in STRETCH_SIGNALS:
-        if re.search(pat, text):
+        if re.search(pat, text, re.IGNORECASE):
             pts += w
             why.append(f"stretch signal +{w}")
 
     for pat, w in ENTRY_SIGNALS:
-        if re.search(pat, text):
+        if re.search(pat, text, re.IGNORECASE):
             pts += w
             why.append(f"entry-level signal +{w}")
 
@@ -189,7 +189,7 @@ def score(p: Posting, profile: dict = PROFILE, today: date | None = None) -> Pos
     # mention employment type in body text ("This is a temporary, grant-funded
     # position...").
     for label, pat, w in EMPLOYMENT_TYPE_PENALTIES:
-        if re.search(pat, text):
+        if re.search(pat, text, re.IGNORECASE):
             pts -= w
             why.append(f"{label} -{w}")
 

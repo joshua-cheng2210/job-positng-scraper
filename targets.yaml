@@ -90,6 +90,78 @@ targets:
     site: USNH_Careers
     verified: false
 
+  # ---- researched 2026-08-08, well-known R1s for research + software roles -
+  # Found via web search only (sandbox network can't reach myworkdayjobs.com
+  # to curl-verify -- allowlist blocks it, HTTP 403 blocked-by-allowlist).
+  # Verify locally before trusting: `python run.py --only workday --name <school>`
+  # and confirm a non-zero posting count comes back.
+
+  - name: University of Texas at Austin
+    platform: workday
+    state: TX
+    host: https://utaustin.wd1.myworkdayjobs.com
+    tenant: utaustin
+    site: UTstaff
+    verified: false
+
+  - name: Cornell University
+    platform: workday
+    state: NY
+    host: https://cornell.wd1.myworkdayjobs.com
+    tenant: cornell
+    site: CornellCareerPage
+    verified: false
+
+  - name: Texas A&M University System
+    platform: workday
+    state: TX
+    host: https://tamus.wd1.myworkdayjobs.com
+    tenant: tamus
+    site: System-wide_External
+    multi_institution: true      # covers all 12 A&M System member universities
+    verified: false
+
+  - name: University of Virginia
+    platform: workday
+    state: VA
+    host: https://uva.wd1.myworkdayjobs.com
+    tenant: uva
+    site: UVAJobs
+    verified: false
+
+  - name: Arizona State University
+    platform: workday
+    state: AZ
+    host: https://adams.wd1.myworkdayjobs.com
+    tenant: adams
+    site: ASU
+    verified: false
+    notes: Tenant name "adams" looks odd but matched ASU's own external jobs URL in search results -- double check before trusting.
+
+  - name: University of Southern California
+    platform: workday
+    state: CA
+    host: https://usc.wd5.myworkdayjobs.com
+    tenant: usc
+    site: ExternalUSCCareers
+    verified: false
+
+  - name: University of Washington
+    platform: workday
+    state: WA
+    host: https://uw.wd5.myworkdayjobs.com
+    tenant: uw
+    site: UWHires
+    verified: false
+
+  - name: Iowa State University
+    platform: workday
+    state: IA
+    host: https://isu.wd1.myworkdayjobs.com
+    tenant: isu
+    site: IowaStateJobs
+    verified: false
+
   # ==================== PEOPLEADMIN -- verified live 2026-07-28 ==============
 
   - name: University of Nebraska-Lincoln
