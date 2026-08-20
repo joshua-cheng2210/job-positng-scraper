@@ -13,12 +13,12 @@ exit /b %errorlevel%
 
 :main
 echo ============================================================
-echo python %0 %1 
+echo %0 %*
 echo Run started: %date% %time%
 echo -------------------------------------------------------------
 
 echo Checking dependencies (first run may take a minute for installing packages)...
-python -m pip install --quiet --disable-pip-version-check requirements.txt
+python -m pip install --quiet --disable-pip-version-check -r "%~dp0\requirements.txt"
 
 echo Launching converter...
 python -u "%~dp0\run.py" --enrich-workers 40
