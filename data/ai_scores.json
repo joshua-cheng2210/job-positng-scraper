@@ -1,0 +1,2627 @@
+{
+  "louisiana state university|r00118069": {
+    "ai_score": 4,
+    "ai_reason": "Python/data skills transfer but neuroimaging pipelines, MRI/PET data, and HPC/Linux research-computing infra are a real domain gap not shown on resume.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00113266": {
+    "ai_score": 5,
+    "ai_reason": "Database/ETL/web-app skills line up well, but energy-market econometrics is a genuine domain gap Josh has no evidence of.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079261": {
+    "ai_score": 3,
+    "ai_reason": "C++/C core requirement vs Josh's Python/JS background is a real language-stack mismatch; DoD ARL context suggests a more experienced hire.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000077809": {
+    "ai_score": 1,
+    "ai_reason": "Explicitly requires a PhD-trained Senior Bioinformatician; Josh has a BS, well below the stated bar.",
+    "scored_at": "2026-08-08"
+  },
+  "university of maryland, college park|jr103270": {
+    "ai_score": 5,
+    "ai_reason": "React/JS/Tailwind skills match the Gopher CSE Infobot project closely, but role wants Master's or 3+ years professional experience Josh doesn't have yet.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|229675": {
+    "ai_score": 2,
+    "ai_reason": "Semiconductor manufacturing systems engineering is a different domain from Josh's software/data background, no overlap shown on resume.",
+    "scored_at": "2026-08-08"
+  },
+  "university of maryland, college park|jr103577": {
+    "ai_score": 2,
+    "ai_reason": "Real-time XR/graphics/neural rendering with C++/C#/GPU work is a specialized skillset not reflected anywhere in Josh's projects or experience.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323688": {
+    "ai_score": 6,
+    "ai_reason": "Data science + educational AI research fits Josh's DS skill variant and RAG-chatbot project reasonably well; temporary 6-month term is the main downside.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000078620": {
+    "ai_score": 5,
+    "ai_reason": "Python/Git/Linux match, but deep learning for computer vision plus 3D transforms/coordinate geometry is a real stretch beyond his RAG/LLM project experience.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000069003": {
+    "ai_score": 5,
+    "ai_reason": "Same role as REQ_0000078620 (Yanxi Liu lab) -- Python/Git match but computer-vision/3D-geometry deep learning is a real gap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000081095": {
+    "ai_score": 4,
+    "ai_reason": "Mostly Excel/process-automation evaluation work (Copilot, Power Automate, UiPath), lighter on the coding Josh's resume actually demonstrates.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156425": {
+    "ai_score": 6,
+    "ai_reason": "Web app development, database work, and research data management align well with Josh's full-stack and data background.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00117416": {
+    "ai_score": 6,
+    "ai_reason": "General institutional data analyst role -- reporting, scripting, data governance -- matches Josh's SQL/Python data skills without requiring a specialized domain.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|233401": {
+    "ai_score": 6,
+    "ai_reason": "General BI/data analyst role fits Josh's SQL/data analysis skills without a specialized domain gap.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00116960": {
+    "ai_score": 6,
+    "ai_reason": "Entry-level (RA1), supervised data cleaning/analysis role -- good match for his data skills even though Stata/ArcGIS aren't on his resume.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00116520": {
+    "ai_score": 6,
+    "ai_reason": "Data warehouse/reporting/query work aligns well with his SQL and data-analysis background.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000074983": {
+    "ai_score": 7,
+    "ai_reason": "ETL pipeline plus fine-tuning transformer models and building a knowledge-graph/generative layer maps closely onto the Gopher CSE Infobot RAG project (LangChain, HuggingFace).",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000078869": {
+    "ai_score": 6,
+    "ai_reason": "General quantitative research-analyst role, mentored and no prior policy experience required -- reasonable fit for his data-analysis skills.",
+    "scored_at": "2026-08-08"
+  },
+  "university of maryland, college park|jr103269": {
+    "ai_score": 3,
+    "ai_reason": "QA/test-automation focus (Selenium, Cypress, JMeter) isn't reflected in his resume, plus the role wants Master's or 3+ years professional experience.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|231776": {
+    "ai_score": 3,
+    "ai_reason": "Roadway safety transportation research is a specialized domain with no overlap in his resume's software/data background.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|220659": {
+    "ai_score": 3,
+    "ai_reason": "Linux Systems Administrator is an infrastructure/ops role, not the software/data-focused work his resume demonstrates.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079225": {
+    "ai_score": 2,
+    "ai_reason": "GIS/geospatial specialist work is a domain his resume shows no experience in.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000077094": {
+    "ai_score": 6,
+    "ai_reason": "Python wrappers for API integration and ML/graph-embedding work for a biomedical data platform is a solid match for his Python and data/ML background.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000076925": {
+    "ai_score": 6,
+    "ai_reason": "Data analysis and recommendation-engine work for an AI-in-education project fits his data/AI project experience well.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r155964": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design for online learning programs is an education-focused role outside his software/data background, framed as a senior/experienced position.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00118007": {
+    "ai_score": 2,
+    "ai_reason": "Mostly call-center and data-entry work, minimal overlap with his software/data-analysis skillset.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000081120": {
+    "ai_score": 5,
+    "ai_reason": "Cybersecurity coursework/curriculum support with Linux/networking/scripting overlap -- a real but manageable stretch given his data center internship experience.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000059527": {
+    "ai_score": 4,
+    "ai_reason": "Multiagent systems and algorithmic fairness research wants mathematical proof-writing and game theory background not evidenced on his resume.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000081081": {
+    "ai_score": 2,
+    "ai_reason": "Math-department research on physical/population-dynamics modeling is outside his CS/software background.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079551": {
+    "ai_score": 1,
+    "ai_reason": "CORRECTED after full-text review: posting explicitly states 'U.S. Citizenship - sponsored VISAs are unavailable for this position' and requires 3+ years experience -- a hard citizenship blocker, not just a skills-fit question. Earlier score of 7 was based on a truncated description that missed this clause.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072097": {
+    "ai_score": 3,
+    "ai_reason": "Literature review/basic stats support role for environmental health research, light on the coding his resume actually demonstrates.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000071595": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab molecular biology work (cell culture, Western blotting, qPCR) requiring specific biology coursework -- no overlap with his CS background.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000064562": {
+    "ai_score": 4,
+    "ai_reason": "AI/ML and clinical informatics work fits his DS interests, but the posting explicitly targets graduate students for a summer internship and he's an undergrad.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00117871": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab mass spectrometry clinical research role, no overlap with his software/data skillset.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00117561": {
+    "ai_score": 1,
+    "ai_reason": "Animal behavior testing and rodent surgery lab work, entirely outside his CS background.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|233516": {
+    "ai_score": 6,
+    "ai_reason": "Institutional data/analytics role fits his SQL and data-analysis skills well.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|228711": {
+    "ai_score": 1,
+    "ai_reason": "Electronics/semiconductor test engineering is a hardware EE role with no overlap in his resume.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r151468": {
+    "ai_score": 2,
+    "ai_reason": "Clinical research coordination and behavioral testing, minimal technical/software overlap with his resume.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|322869": {
+    "ai_score": 4,
+    "ai_reason": "HPC DevOps role touches his AWS/data-center-ops background, but the $105-110k permanent EHRA band suggests they want a more experienced hire than a new grad.",
+    "scored_at": "2026-08-08"
+  },
+  "indiana university (academic postings)|33911": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab microbiology/genomics research, no overlap with his software/data background.",
+    "scored_at": "2026-08-08"
+  },
+  "universities of wisconsin (12 campuses)|jr10013695": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design and pedagogy consulting is outside his software/data skillset entirely.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000080689": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design for course delivery, not a coding or data role.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079351": {
+    "ai_score": 5,
+    "ai_reason": "Entry-level DevSecOps/CI-CD infra role -- his AWS and data-center-operations internship give him real, if partial, footing here.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000070576": {
+    "ai_score": 5,
+    "ai_reason": "Python/R package development and a web-based queryable database are solid software-dev matches even though the domain (amphibian bacteria) is unrelated.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000058270": {
+    "ai_score": 3,
+    "ai_reason": "Mostly data compilation and research-communication materials for an air-quality study, light on the coding his resume emphasizes.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156738": {
+    "ai_score": 1,
+    "ai_reason": "Field biospecimen collection and home-visit research support, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00118005": {
+    "ai_score": 2,
+    "ai_reason": "Literature review and manuscript drafting for an education camp study, no coding component.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00114640": {
+    "ai_score": 1,
+    "ai_reason": "Clinical trial visit coordination and data entry, not a software/data-analysis role.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00116999": {
+    "ai_score": 1,
+    "ai_reason": "Hatchery/field aquaculture technical work, no overlap with his software/data background.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00116785": {
+    "ai_score": 2,
+    "ai_reason": "Field crop trials and basic statistical analysis -- minimal overlap, mostly agricultural fieldwork.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00114441": {
+    "ai_score": 3,
+    "ai_reason": "Data-driven risk/financial analysis role touches his analytical skills, but the energy-policy domain (P&A, NRTA) is a real specialization gap.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00114439": {
+    "ai_score": 3,
+    "ai_reason": "Economic/engineering modeling and dashboards touch data-analysis skills, but the energy-policy domain is a real gap.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00114438": {
+    "ai_score": 2,
+    "ai_reason": "Subsurface reservoir engineering modeling requires specialized petroleum-engineering knowledge outside his background.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00091992": {
+    "ai_score": 1,
+    "ai_reason": "Senior-level (RA4/5) transportation materials science research using specialized lab equipment, outside his CS background.",
+    "scored_at": "2026-08-08"
+  },
+  "indiana university (academic postings)|33530": {
+    "ai_score": 1,
+    "ai_reason": "Requires a Master's plus 2 years of wet-lab genomics experience; entirely outside his software/data background.",
+    "scored_at": "2026-08-08"
+  },
+  "indiana university (academic postings)|32757": {
+    "ai_score": 1,
+    "ai_reason": "Drosophila genetics wet-lab work, no overlap with his software/data skillset.",
+    "scored_at": "2026-08-08"
+  },
+  "universities of wisconsin (12 campuses)|jr10013521": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design and faculty AI-adoption consulting is a pedagogy role, not a software/data role.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000081119": {
+    "ai_score": 1,
+    "ai_reason": "Fish husbandry and behavior-video observation, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079430": {
+    "ai_score": 2,
+    "ai_reason": "Titled Research Data Scientist but expects leading programs/teams and deep GEOINT/geospatial-defense domain expertise -- more senior and specialized than his profile.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000070135": {
+    "ai_score": 4,
+    "ai_reason": "Genomics data processing on HPC clusters and open-source database administration is a real skills match even though the domain (genomics) is unfamiliar.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r152194": {
+    "ai_score": 5,
+    "ai_reason": "Data analysis, electronic data capture systems, and quality control work is a reasonable match for his data-analysis skills.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r153725": {
+    "ai_score": 1,
+    "ai_reason": "Veterinary infectious-disease lab logistics and sample testing, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "university of maryland, college park|jr104584": {
+    "ai_score": 2,
+    "ai_reason": "Requires hands-on Salesforce/Apex/LWC development experience plus supervisory responsibility over an Administrator -- not an entry-level fit.",
+    "scored_at": "2026-08-08"
+  },
+  "university of utah|206232": {
+    "ai_score": 4,
+    "ai_reason": "Entry-level systems configuration/analysis role for curriculum tools -- reasonable general fit, though light on the coding his resume emphasizes.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|232504": {
+    "ai_score": 1,
+    "ai_reason": "Veterinary lab research technician role, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000077342": {
+    "ai_score": 3,
+    "ai_reason": "Statistical pipeline work touches his data skills, but requires genetics/public-health domain background he doesn't have.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156451": {
+    "ai_score": 1,
+    "ai_reason": "Basic administrative/lab support duties, no software/data component.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r155569": {
+    "ai_score": 1,
+    "ai_reason": "Clinical trial coordination role, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r153383": {
+    "ai_score": 2,
+    "ai_reason": "Field survey data entry into Excel for livestock epidemiology, minimal technical depth.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r149200": {
+    "ai_score": 2,
+    "ai_reason": "Same field survey/Excel data-entry role as R153383, minimal technical depth.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00117044": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab agricultural chemistry analysis, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00113268": {
+    "ai_score": 2,
+    "ai_reason": "GIS/cartography and geologic mapping is a specialized domain outside his resume's skillset.",
+    "scored_at": "2026-08-08"
+  },
+  "louisiana state university|r00114440": {
+    "ai_score": 1,
+    "ai_reason": "Senior (RA5) legal research role on regulatory/statutory drafting, entirely outside his background.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323652": {
+    "ai_score": 2,
+    "ai_reason": "Health-policy Research Scientist title and short 2-month term suggest an advanced-degree specialist hire, not a software/data fit.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323493": {
+    "ai_score": 2,
+    "ai_reason": "Psychiatry research specialist role, no indication of software/data-analysis focus matching his resume.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000081057": {
+    "ai_score": 1,
+    "ai_reason": "Insect pest field research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000080267": {
+    "ai_score": 1,
+    "ai_reason": "K-12 classroom behavioral intervention research support, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079731": {
+    "ai_score": 6,
+    "ai_reason": "WordPress site design/build with wireframes and cross-platform testing is a real web-dev skills match.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000075880": {
+    "ai_score": 4,
+    "ai_reason": "Computational modeling for radar imaging has a real programming angle even though the domain (math/physics) is unfamiliar.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000073430": {
+    "ai_score": 1,
+    "ai_reason": "Hands-on materials-science sample fabrication and characterization, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000072191": {
+    "ai_score": 1,
+    "ai_reason": "Requires a current Penn State graduate student, which he isn't -- a hard eligibility blocker regardless of skill fit.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000065852": {
+    "ai_score": 2,
+    "ai_reason": "Web scraping, unstructured data processing, and ML modeling is a strong skills match, but the posting requires a current Penn State student, which he isn't -- a hard eligibility blocker.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000070447": {
+    "ai_score": 1,
+    "ai_reason": "Behavioral intervention study coordination, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000069930": {
+    "ai_score": 1,
+    "ai_reason": "Requires a Penn State Federal Work-Study award, which he wouldn't have as an external applicant -- a hard eligibility blocker.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000067294": {
+    "ai_score": 1,
+    "ai_reason": "Field water-quality sampling and lab work, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000067666": {
+    "ai_score": 1,
+    "ai_reason": "Geochemistry lab instrumentation work, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000066990": {
+    "ai_score": 2,
+    "ai_reason": "Literature review and qualitative/quantitative analysis for global ag education research, light on the coding his resume emphasizes.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000065665": {
+    "ai_score": 1,
+    "ai_reason": "Phone survey administration, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000060567": {
+    "ai_score": 1,
+    "ai_reason": "Field water-quality/wetland fieldwork with GIS software, minimal overlap with his software/data skillset.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000030764": {
+    "ai_score": 1,
+    "ai_reason": "Education law and civil rights policy research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000028769": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination and patient-facing study visits, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156669": {
+    "ai_score": 1,
+    "ai_reason": "Graduate apprenticeship position (requires enrollment in an OSU graduate program), no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156528": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research patient-facing coordination for a Neurology study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r155439": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination for a Neurology study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156213": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research patient-facing coordination for a Neurology study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r155361": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination for a psychiatry study involving biospecimen collection, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r147587": {
+    "ai_score": 1,
+    "ai_reason": "Senior clinical research coordination for an ophthalmology study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r145684": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab immunology/rheumatology research (PCR, gel electrophoresis, cell cultures), no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r150823": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination for a neuromuscular disease study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r136268": {
+    "ai_score": 1,
+    "ai_reason": "In-person survey administration and biomarker collection, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323172": {
+    "ai_score": 1,
+    "ai_reason": "Cell Biology and Physiology research role, no description of software/data work and likely wet-lab focused given the department.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|233169": {
+    "ai_score": 1,
+    "ai_reason": "Horticultural science plant research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000077041": {
+    "ai_score": 1,
+    "ai_reason": "Field entomology research on insect pest management, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000077038": {
+    "ai_score": 1,
+    "ai_reason": "Same Grab Lab field entomology research as REQ_0000077041, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000071315": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab biological aging research (RNA/DNA isolation, telomere assays), no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000066699": {
+    "ai_score": 1,
+    "ai_reason": "Forensic biology/chemistry research (R used only for preliminary analysis) requires graduate enrollment in the program; domain and eligibility mismatch.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000064640": {
+    "ai_score": 1,
+    "ai_reason": "Field entomology work-study position requiring Penn State work-study eligibility; R analysis is a minor part of a mostly field-work role.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156404": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design for continuing medical education, a pedagogy role rather than a software/data one.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r155703": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab translational neuroscience research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r152414": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab DNA repair/nucleic-acid therapeutics research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r156059": {
+    "ai_score": 3,
+    "ai_reason": "Real quantitative/coding overlap (SAS, R, logistic regression), but requires an MS in Epidemiology he doesn't have.",
+    "scored_at": "2026-08-08"
+  },
+  "the ohio state university|r150386": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab neuroimmunology research, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "university of maryland, college park|jr103870": {
+    "ai_score": 2,
+    "ai_reason": "Grant administration and reporting coordination, not a technical software/data role.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323650": {
+    "ai_score": 1,
+    "ai_reason": "Global health/infectious disease field research assistant at $15/hr, no indicated software/data component.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323641": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination for a cardiology study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "unc-chapel hill|323402": {
+    "ai_score": 1,
+    "ai_reason": "Clinical research coordination for a cancer center study, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "university of utah|206679": {
+    "ai_score": 2,
+    "ai_reason": "On-site, non-remote instructional design role for online business courses, a pedagogy role rather than software/data.",
+    "scored_at": "2026-08-08"
+  },
+  "university of utah|206390": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab zebrafish microinjection and molecular biology work, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|233524": {
+    "ai_score": 1,
+    "ai_reason": "Veterinary clinical research technician role, no software/data overlap.",
+    "scored_at": "2026-08-08"
+  },
+  "nc state university|232755": {
+    "ai_score": 2,
+    "ai_reason": "Field-based biological/agricultural engineering research with frequent travel, no clear software/data component described.",
+    "scored_at": "2026-08-08"
+  },
+  "penn state (24 campuses)|req_0000079265": {
+    "ai_score": 3,
+    "ai_reason": "Active clearance eligibility required (structural blocker); role centers on C/C++ systems engineering with only tangential Python overlap.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr104177": {
+    "ai_score": 3,
+    "ai_reason": "Clearance requires citizenship verification (structural blocker); 3-6 yrs professional MLOps experience exceeds his entry-level profile despite strong Python/Docker/AWS overlap.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr104075": {
+    "ai_score": 1,
+    "ai_reason": "Senior title (4-5+ yrs, mentors juniors) plus a citizenship-verification clearance requirement \u2014 both underqualification and a structural blocker.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000076942": {
+    "ai_score": 3,
+    "ai_reason": "Clearance eligibility requirement is a structural blocker; entry-level band is otherwise a reasonable Python/C++ fit but the role skews Aerospace/EE simulation domain.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr103022": {
+    "ai_score": 0,
+    "ai_reason": "Requires a Ph.D. and explicit U.S. citizenship for a research-scientist rank parallel to Professor \u2014 not close to his profile.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072597": {
+    "ai_score": 1,
+    "ai_reason": "Requires an already-active Top Secret DoD clearance \u2014 impossible bar for a new grad; otherwise strong Python/pandas/scikit-learn overlap.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078042": {
+    "ai_score": 3,
+    "ai_reason": "Clearance eligibility blocker; core focus is embedded C/C++ which is a real skill gap versus his primarily Python/web background.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079324": {
+    "ai_score": 3,
+    "ai_reason": "Clearance eligibility blocker; otherwise decent Linux/Git overlap for the intermediate tier, though Ansible/Kubernetes admin experience is limited.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079293": {
+    "ai_score": 2,
+    "ai_reason": "Clearance eligibility blocker plus responsibilities (supervising staff, leading projects) suggest mid-senior level beyond entry-level fit.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080458": {
+    "ai_score": 1,
+    "ai_reason": "5+ years required for expert-level PostgreSQL database architecture \u2014 well beyond his experience; plus standard ARL clearance-eligibility requirement.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000070627": {
+    "ai_score": 1,
+    "ai_reason": "Explicit 'you must be a U.S. citizen to apply' hard blocker; role is also EM/antenna physics-focused rather than core CS.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077776": {
+    "ai_score": 2,
+    "ai_reason": "3+ years HPC sysadmin experience plus clearance eligibility blocker; a stretch from his software/data background.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079310": {
+    "ai_score": 4,
+    "ai_reason": "Bachelor's + Python/SQL entry-level fit is close, but the clearance-eligibility requirement is a structural blocker.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077212": {
+    "ai_score": 1,
+    "ai_reason": "Requires an already-active Secret clearance \u2014 impossible bar to meet as a new grad without prior cleared work; skill set (Java/Windows Server/SELinux) only partially overlaps.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr104089": {
+    "ai_score": 4,
+    "ai_reason": "Strong skill overlap (Python, FastAPI, React, Docker) but the clearance/citizenship-verification requirement is a structural blocker.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079318": {
+    "ai_score": 2,
+    "ai_reason": "Explicit U.S.-citizenship requirement is a hard blocker; also cybersecurity-specific (SIEM, NIST, STIG) skill set doesn't match his profile.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr104576": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'F1 STEM OPT support is not available for this position.' Also Salesforce/Apex isn't in his skill set.",
+    "scored_at": "2026-08-09"
+  },
+  "louisiana state university|r00115862": {
+    "ai_score": 1,
+    "ai_reason": "Requires a Master's or Ph.D. plus 2-4 years of research experience \u2014 well beyond his qualifications; sponsorship is also explicitly unavailable.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r153537": {
+    "ai_score": 0,
+    "ai_reason": "Completely outside his field (clinical research coordination, biological/health sciences) \u2014 no CS/SWE/DS substance; visa sponsorship also unavailable.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077635": {
+    "ai_score": 0,
+    "ai_reason": "Requires an already-active TS/SCI clearance with a Counter-Intelligence polygraph plus professional security certifications (Security+/CISSP) \u2014 impossible bar for a new grad, and the role is security-ops specific, not general SWE/DS.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233671": {
+    "ai_score": 0,
+    "ai_reason": "Molecular virology / poultry vaccine research role \u2014 no software engineering, data science, or CS substance; entirely outside his field.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r155503": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design/tutoring-curriculum role for STEM academic support -- not software engineering or data science substance despite touching STEM.",
+    "scored_at": "2026-08-09"
+  },
+  "university of maryland, college park|jr104318": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design for executive-education curriculum (faculty coaching, course design) -- not a technical/coding role.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r154807": {
+    "ai_score": 6,
+    "ai_reason": "R-Shiny dashboard development plus data cleaning/analysis on health-policy data -- solid overlap with his data-analytics skills (pandas, Tableau); R is in his language profile.",
+    "scored_at": "2026-08-09"
+  },
+  "louisiana state university|r00117943": {
+    "ai_score": 0,
+    "ai_reason": "Machine-shop machinist role (manual lathes, CNC milling) -- hardware fabrication, no software/data substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of utah|203211": {
+    "ai_score": 0,
+    "ai_reason": "Founding Director-level cancer research leadership appointment (Associate/Full Professor rank) -- senior clinical-science leadership role, not an entry-level CS/DS fit.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233327": {
+    "ai_score": 0,
+    "ai_reason": "Infectious-disease/veterinary molecular biology lab technician role -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|232758": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural crop-production research station technician -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|232172": {
+    "ai_score": 0,
+    "ai_reason": "Plant-based nutrition/biotechnology research technician (PHHI) -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|231807": {
+    "ai_score": 0,
+    "ai_reason": "Entomology/insect research assistant (live-insect fieldwork) -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|230811": {
+    "ai_score": 0,
+    "ai_reason": "Veterinary pain-research technician (animal handling) -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|224155": {
+    "ai_score": 0,
+    "ai_reason": "Soil-science/crop research technician -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r149483": {
+    "ai_score": 0,
+    "ai_reason": "Immunology/vaccine-design lab technician role -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of utah|206328": {
+    "ai_score": 0,
+    "ai_reason": "Clinical sleep-medicine study coordinator (participant scheduling/screening) -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of utah|205846": {
+    "ai_score": 6,
+    "ai_reason": "Systems Administrator / Cloud Engineer -- installing, patching, and securing cloud and on-prem systems maps well onto his AWS and data-center operations (DCTrack/PowerIQ) experience.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079093": {
+    "ai_score": 2,
+    "ai_reason": "Instructional design for Liberal Arts online course portfolios -- pedagogy/curriculum focus, not a technical role.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078888": {
+    "ai_score": 0,
+    "ai_reason": "Clinical/nutrition research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000068035": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000076404": {
+    "ai_score": 0,
+    "ai_reason": "Weed-ecology agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072420": {
+    "ai_score": 0,
+    "ai_reason": "Clinical medicine research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000068800": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000055759": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000053962": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323400": {
+    "ai_score": 1,
+    "ai_reason": "Clinical-trials data-coordination role in an Infectious Diseases department -- administrative/regulatory data coordination for human-subjects research, not software/data engineering despite the 'Data Coordinator' title.",
+    "scored_at": "2026-08-09"
+  },
+  "indiana university (academic postings)|33887": {
+    "ai_score": 0,
+    "ai_reason": "Biology lab research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080006": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080622": {
+    "ai_score": 0,
+    "ai_reason": "Poultry-science agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080651": {
+    "ai_score": 0,
+    "ai_reason": "Classics/humanities research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000069624": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080428": {
+    "ai_score": 0,
+    "ai_reason": "Petroleum/drilling engineering research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080008": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079653": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079460": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078890": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000079113": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078948": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078962": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078909": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078748": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078774": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000064728": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078597": {
+    "ai_score": 0,
+    "ai_reason": "Field-corn breeding agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078612": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078429": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078132": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078150": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000078176": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077893": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000076913": {
+    "ai_score": 0,
+    "ai_reason": "Plant pathology/microbiology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077794": {
+    "ai_score": 0,
+    "ai_reason": "Human-development social-science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072287": {
+    "ai_score": 0,
+    "ai_reason": "Clinical pediatrics research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077381": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077188": {
+    "ai_score": 0,
+    "ai_reason": "Invasion ecology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075752": {
+    "ai_score": 0,
+    "ai_reason": "Geoscience field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077141": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077113": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000076949": {
+    "ai_score": 2,
+    "ai_reason": "Statistics-education research assistantship (dataset creation from student responses) -- tangential DS-adjacent data collection, but the role itself is education research, not technical development.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000076378": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075947": {
+    "ai_score": 0,
+    "ai_reason": "Forest ecology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075575": {
+    "ai_score": 0,
+    "ai_reason": "Tree molecular genetics research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075301": {
+    "ai_score": 0,
+    "ai_reason": "Horticultural/fruit-science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075281": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000075167": {
+    "ai_score": 0,
+    "ai_reason": "Food-science/culinary research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000074593": {
+    "ai_score": 0,
+    "ai_reason": "Biofuels/agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000073284": {
+    "ai_score": 0,
+    "ai_reason": "Biofuels/agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000073259": {
+    "ai_score": 0,
+    "ai_reason": "Biofuels/agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000073029": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000071602": {
+    "ai_score": 0,
+    "ai_reason": "Dairy-farm agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072888": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072792": {
+    "ai_score": 0,
+    "ai_reason": "Biobehavioral health research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072675": {
+    "ai_score": 0,
+    "ai_reason": "Architectural/structural engineering research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000072018": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000071692": {
+    "ai_score": 0,
+    "ai_reason": "Food-science quality assurance internship at the university creamery (dairy product testing) -- 'QA' here is food-manufacturing QA, unrelated to software QA.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000071088": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000071198": {
+    "ai_score": 0,
+    "ai_reason": "Microbiology lab research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000070891": {
+    "ai_score": 0,
+    "ai_reason": "Psychology/physiology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000070736": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000070786": {
+    "ai_score": 0,
+    "ai_reason": "Microbiome lab technician (DNA extraction, library prep) -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000067968": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066867": {
+    "ai_score": 1,
+    "ai_reason": "Education research on math-teacher discourse (literature review, qualitative data processing) -- education research, not a technical/CS role.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000067599": {
+    "ai_score": 0,
+    "ai_reason": "Social-science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000067171": {
+    "ai_score": 0,
+    "ai_reason": "Outdoor recreation/lighting-impact field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066961": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066499": {
+    "ai_score": 0,
+    "ai_reason": "Maize/crop-genetics agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066767": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066754": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066751": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066742": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000066419": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural-economics research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000065631": {
+    "ai_score": 0,
+    "ai_reason": "Viticulture/plant-science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000065653": {
+    "ai_score": 0,
+    "ai_reason": "Freshwater ecology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000064880": {
+    "ai_score": 0,
+    "ai_reason": "Avian biology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000064298": {
+    "ai_score": 0,
+    "ai_reason": "Poultry-science agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000062176": {
+    "ai_score": 0,
+    "ai_reason": "Reproductive biology lab research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000061080": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000060844": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000060371": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000060040": {
+    "ai_score": 0,
+    "ai_reason": "Herpetology/frog research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000059640": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000057015": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000056187": {
+    "ai_score": 0,
+    "ai_reason": "Biomechanics research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000055889": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000055170": {
+    "ai_score": 0,
+    "ai_reason": "Ecosystem-science field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000054911": {
+    "ai_score": 0,
+    "ai_reason": "Biofuels/agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000051587": {
+    "ai_score": 0,
+    "ai_reason": "Clinical geriatrics research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000052245": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000052057": {
+    "ai_score": 0,
+    "ai_reason": "Plant pathology/microbiology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r155600": {
+    "ai_score": 0,
+    "ai_reason": "Graduate Research Associate appointment -- structurally an apprenticeship tied to being enrolled in an OSU graduate program (funds/complements 'formal instruction offered in the graduate program'); he won't be an enrolled grad student. Worth flagging: this student-enrollment gate isn't caught by the filters.py student-status blocker regex yet.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r147269": {
+    "ai_score": 0,
+    "ai_reason": "Same as the other Graduate Research Associate posting -- tied to current graduate-program enrollment, which he won't have.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|322078": {
+    "ai_score": 0,
+    "ai_reason": "Social/clinical human-subjects research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|228786": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|225817": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r156440": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of nebraska-lincoln|100638": {
+    "ai_score": 1,
+    "ai_reason": "Public-policy research specialist (survey design, policy report writing) -- social-science research, not CS/DS despite 'analyze data' language.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323202": {
+    "ai_score": 0,
+    "ai_reason": "Social/clinical human-subjects research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|232208": {
+    "ai_score": 0,
+    "ai_reason": "Cotton-breeding agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|230300": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|228507": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000077910": {
+    "ai_score": 2,
+    "ai_reason": "Entry-level student IT helpdesk role (Windows/Mac troubleshooting, ticket triage) explicitly framed around a student's class schedule -- likely intended for currently-enrolled students, and the work itself is below his skill level.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000071083": {
+    "ai_score": 0,
+    "ai_reason": "Cell/molecular biology research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r155787": {
+    "ai_score": 0,
+    "ai_reason": "Clinical psychiatry research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323687": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323683": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|231162": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|231133": {
+    "ai_score": 0,
+    "ai_reason": "Veterinary/poultry-health research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|223291": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|222975": {
+    "ai_score": 0,
+    "ai_reason": "Cotton-breeding agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "universities of wisconsin (12 campuses)|jr10013629": {
+    "ai_score": 0,
+    "ai_reason": "Natural-resources field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "the ohio state university|r148524": {
+    "ai_score": 0,
+    "ai_reason": "Entomology/insect research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323182": {
+    "ai_score": 0,
+    "ai_reason": "Social/clinical human-subjects research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233591": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|227807": {
+    "ai_score": 0,
+    "ai_reason": "Dairy-farm agricultural research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "penn state (24 campuses)|req_0000080606": {
+    "ai_score": 0,
+    "ai_reason": "Materials-science chemical engineering research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of nebraska-lincoln|101618": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of nebraska-lincoln|101456": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural field research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|322991": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233628": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233509": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233487": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233476": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233379": {
+    "ai_score": 0,
+    "ai_reason": "Horticultural/biochar research scientific-writing role -- off-field, no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|232772": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|230760": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|230026": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|229794": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|228921": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|226684": {
+    "ai_score": 7,
+    "ai_reason": "Genuine full-stack developer role (frontend + backend on RABapp, Angular preferred) -- strong match to his full-stack project experience; Spring Boot (Java backend) is a gap but Java is in his language profile.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|226390": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|225670": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323319": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "unc-chapel hill|323161": {
+    "ai_score": 0,
+    "ai_reason": "Social/clinical human-subjects research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233246": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|232733": {
+    "ai_score": 0,
+    "ai_reason": "Pharmaceutical/manufacturing quality assurance role (batch records, CAPA, GMP document control) -- a different meaning of 'QA' than software QA; no CS/DS substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of utah|206165": {
+    "ai_score": 2,
+    "ai_reason": "Student IT/help-desk technician role (ticket triage, hardware repair) at a museum -- entry-level helpdesk work, below his skill level, framed as a student position.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|233469": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of nebraska-lincoln|101089": {
+    "ai_score": 3,
+    "ai_reason": "Systems Administrator for university police servers/security systems -- requires 2+ years of sysadmin experience (a real gap for a new grad), though the AWS/data-center overlap is otherwise decent. Not eligible for visa sponsorship, but per his own policy a plain no-H-1B posting is still fine to apply to.",
+    "scored_at": "2026-08-09"
+  },
+  "nc state university|222813": {
+    "ai_score": 0,
+    "ai_reason": "Field/lab science research role -- off-field, no CS/software-engineering/data-science substance.",
+    "scored_at": "2026-08-09"
+  },
+  "university of utah|206959": {
+    "ai_score": 3,
+    "ai_reason": "Policy demographic/GIS data analyst \u2014 Python/SQL data-analysis skills are transferable, but core domain (GIS, census demography, subcounty population modeling) has no resume support.",
+    "scored_at": "2026-08-11"
+  },
+  "the ohio state university|r156861": {
+    "ai_score": 0,
+    "ai_reason": "Senior/lead Research Scientist role requiring independent scientific leadership and lab build-out for a national neurodegeneration research program \u2014 well above entry-level, don't apply.",
+    "scored_at": "2026-08-11"
+  },
+  "the ohio state university|r154833": {
+    "ai_score": 3,
+    "ai_reason": "Pharmacy Business Systems Analyst \u2014 desktop/AD support and business-systems analysis; data center intern background gives some IT-ops overlap but core duties don't match SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "the ohio state university|r156233": {
+    "ai_score": 1,
+    "ai_reason": "Clinical Research Assistant \u2014 patient consent, medical records review, clinical data entry; patient-facing clinical duties don't align with SWE/data skillset.",
+    "scored_at": "2026-08-11"
+  },
+  "nc state university|233688": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural field research technician (entomology/pesticide application) \u2014 no overlap with SWE/data skills, physical fieldwork role.",
+    "scored_at": "2026-08-11"
+  },
+  "nc state university|233683": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural field/greenhouse research technician (cotton breeding) \u2014 no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "universities of wisconsin (12 campuses)|jr10013688": {
+    "ai_score": 1,
+    "ai_reason": "Instructional Designer & Learning Technology Specialist \u2014 multimedia/curriculum design for rural healthcare education; no overlap with programming/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "nc state university|233682": {
+    "ai_score": 0,
+    "ai_reason": "Agricultural field research technician (tobacco) \u2014 pesticide application, planting/harvest; no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "university of utah|206905": {
+    "ai_score": 8,
+    "ai_reason": "Strong fit \u2014 Python/SQL/Power BI healthcare data analytics role with an explicit entry-level track (P1 - Entry Level Pro); core skills match directly.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080162": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter (Penn State ARL role); flagging as a filter gap for filters.py.",
+    "scored_at": "2026-08-11"
+  },
+  "university of maryland, college park|jr104283": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Must be able to obtain a U.S. security clearance...verification of U.S. citizenship' \u2014 citizenship/clearance hard blocker slipped through the filter; flagging as a filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "university of maryland, college park|jr104086": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: requires U.S. security clearance and citizenship verification (same ARLIS boilerplate) \u2014 filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "university of maryland, college park|jr104087": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: requires U.S. security clearance and citizenship verification (same ARLIS boilerplate) \u2014 filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "university of maryland, college park|jr101775": {
+    "ai_score": 6,
+    "ai_reason": "ARLIS AI/ML/data science research role, entry-level track exists, no clearance/citizenship requirement found in this posting (unlike sibling ARLIS roles); Python/ML skills transfer, though preference stated for Psych/Linguistics/related fields over straight CS.",
+    "scored_at": "2026-08-11"
+  },
+  "university of maryland, college park|jr101926": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: requires U.S. security clearance and citizenship verification (same ARLIS boilerplate) \u2014 filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000076774": {
+    "ai_score": 1,
+    "ai_reason": "PhD-required Senior Bioinformatician / Research Data Scientist \u2014 doctoral training in computational biology/multi-omics required, well above entry-level; don't apply.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000076941": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "nc state university|233207": {
+    "ai_score": 1,
+    "ai_reason": "Quality Management Research Specialist (Plant Pathogen Diagnostic Certification) \u2014 documentation/QA support for biology diagnostics, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000077401": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000076847": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080126": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000072291": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000079156": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker (also a Division Head-level leadership role, far above entry level); filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080128": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000077358": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; would otherwise be a strong Software Engineer skill match, but citizenship requirement is disqualifying; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "louisiana state university|r00115866": {
+    "ai_score": 6,
+    "ai_reason": "HPC/data center systems administration \u2014 strong match to Data Center Tech Ops intern experience (server deployment/decommission, hardware troubleshooting, DCTrack/PowerIQ); RHEL/Linux scripting is a learnable gap.",
+    "scored_at": "2026-08-11"
+  },
+  "university of utah|206971": {
+    "ai_score": 5,
+    "ai_reason": "Entry-level IT Help Desk Technician (Level I requires no experience) \u2014 solid match to data center intern desktop/technical support experience, though a step down from SWE/data-focused target roles.",
+    "scored_at": "2026-08-11"
+  },
+  "university of utah|205927": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'not eligible for work visa sponsorship' \u2014 explicit no-sponsorship-any flag.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000078022": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000072371": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000074862": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080123": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000072297": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "universities of wisconsin (12 campuses)|jr10013345": {
+    "ai_score": 1,
+    "ai_reason": "Instructional Designer (faculty AI/tech training) \u2014 curriculum/ed-tech design role, no overlap with programming/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000078316": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000075799": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' \u2014 citizenship hard blocker slipped through the filter; filter gap.",
+    "scored_at": "2026-08-11"
+  },
+  "louisiana state university|r00117810": {
+    "ai_score": 0,
+    "ai_reason": "Sugar processing chemistry lab role (Audubon Sugar Institute) \u2014 physical/chemical analysis of sugar products, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "universities of wisconsin (12 campuses)|jr10013076": {
+    "ai_score": 1,
+    "ai_reason": "Instructional Designer - Assistant \u2014 training/curriculum development support role, no overlap with programming/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "university of utah|206637": {
+    "ai_score": 1,
+    "ai_reason": "Senior Manager, Research (Bioinformatics Core, M4 - Senior Manager track) \u2014 leadership-level role, well above entry-level.",
+    "scored_at": "2026-08-11"
+  },
+  "university of utah|203998": {
+    "ai_score": 0,
+    "ai_reason": "Senior IT Manager (M4 - Senior Manager track) \u2014 leadership-level IT operations role, well above entry-level.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000081176": {
+    "ai_score": 1,
+    "ai_reason": "Part-Time RA for climate/public-health qualitative research (Hamer Center HEAL) \u2014 grant writing, qualitative coding, manuscript editing; requires Psych/Global Health background and a Master's in Epidemiology in progress \u2014 no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080006-2": {
+    "ai_score": 3,
+    "ai_reason": "title-only match, no description scraped for this posting (Wolfin Lab) \u2014 can't verify domain fit; verify manually before applying.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080428-1": {
+    "ai_score": 3,
+    "ai_reason": "title-only match, no description scraped \u2014 'Drilling Hydraulics' suggests petroleum/mining engineering research, possibly with a data/simulation component, but domain fit is unverified; verify manually.",
+    "scored_at": "2026-08-11"
+  },
+  "indiana university (academic postings)|34011": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate/Lab Manager coordinating three biology labs \u2014 lab operations and personnel coordination, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323749": {
+    "ai_score": 2,
+    "ai_reason": "UPSIDE Team Research Assistant (Child Development Institute) \u2014 part-time developmental/child research support; limited overlap with data skills, not clearly programming/analysis-heavy.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323705": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician (Journey level) \u2014 Cell Biology and Physiology wet lab role, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "minneapolis community and technical college|jr0000005388": {
+    "ai_score": 1,
+    "ai_reason": "Instructional Designer, full-time \u2014 online/HyFlex course design and QA, no overlap with programming/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323769": {
+    "ai_score": 1,
+    "ai_reason": "Legal Research Associate (SOG Library) \u2014 legal research support, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323737": {
+    "ai_score": 1,
+    "ai_reason": "Experimental physics lab RA (NMR, vacuum systems, spin dynamics simulations) \u2014 specialized physics lab technique role, minimal overlap with SWE/data skills despite a passing 'data analysis' mention.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323728": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician \u2014 Psychiatry wet lab support, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "unc-chapel hill|323715": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician (McAllister Heart Institute) \u2014 molecular/genetic/cellular wet lab techniques, no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "the ohio state university|r156579": {
+    "ai_score": 1,
+    "ai_reason": "Enterprise Applications Developer 4 (senior) \u2014 requires 8 years combined software/data engineering experience; strong skill-area match (Python, SQL, Azure/AWS, Databricks) but the experience bar is far above entry-level.",
+    "scored_at": "2026-08-11"
+  },
+  "the ohio state university|r156731": {
+    "ai_score": 2,
+    "ai_reason": "Enterprise Applications Developer 3 \u2014 requires 5 years combined software/data engineering experience; strong skill match (Python, SQL, ETL, Azure/AWS, Databricks) but a multi-year experience gap.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080100": {
+    "ai_score": 1,
+    "ai_reason": "Part-Time RA, Family and Community Medicine (PA AHEC) \u2014 10-20 hrs/week community medicine support role, no clear SWE/data overlap.",
+    "scored_at": "2026-08-11"
+  },
+  "nc state university|232484": {
+    "ai_score": 0,
+    "ai_reason": "Temporary Research Assistant (Plant & Microbial Biology) \u2014 wet lab techniques (GC-MS, PCR, flow cytometry), no overlap with SWE/data skills.",
+    "scored_at": "2026-08-11"
+  },
+  "penn state (24 campuses)|req_0000080511": {
+    "ai_score": 6,
+    "ai_reason": "DevSecOps/observability role but entry-level equivalency allowed (Associate degree+2yr); matches data-center-ops and Docker/AWS background, though CI/CD pipeline dev and observability tooling are real gaps.",
+    "scored_at": "2026-08-13"
+  },
+  "university of utah|207122": {
+    "ai_score": 3,
+    "ai_reason": "Degree field mismatch (demography/sociology/economics preferred) and no R/SAS/Stata/GIS experience; Python/Excel skills only partially overlap.",
+    "scored_at": "2026-08-13"
+  },
+  "penn state (24 campuses)|req_0000080667": {
+    "ai_score": 7,
+    "ai_reason": "Bachelor's+1yr data RA role wanting Python fluency (strong match); R is a minor, self-learnable gap. Good entry-level fit.",
+    "scored_at": "2026-08-13"
+  },
+  "penn state (24 campuses)|req_0000080894": {
+    "ai_score": 3,
+    "ai_reason": "Wants demonstrated experience leading/independently managing complex BI solutions plus Power BI/DAX and accounting knowledge -- reads senior, not entry-level, and finance domain isn't on resume.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r157018": {
+    "ai_score": 5,
+    "ai_reason": "Low bar (HS diploma+1yr) and explicitly welcomes programming background with training offered, but core work is wet-lab biology/zebrafish, not on resume.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r156539": {
+    "ai_score": 2,
+    "ai_reason": "Requires Bachelor's specifically in Biological/Health Sciences or medical field -- CS degree doesn't meet the stated field requirement.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r156436": {
+    "ai_score": 2,
+    "ai_reason": "Basic biological/health science lab studying lung fibrosis/regeneration -- wet-lab bio role with no visible CS/data overlap.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r156816": {
+    "ai_score": 0,
+    "ai_reason": "Requires PhD in Engineering Education or closely related field plus independent research/publication record -- far beyond new-grad qualifications.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r157078": {
+    "ai_score": 2,
+    "ai_reason": "Greenhouse/nursery agriculture domain entirely outside CS background despite BS-only entry bar; stats-software requirement (SAS/RStudio) doesn't offset the domain mismatch.",
+    "scored_at": "2026-08-13"
+  },
+  "university of maryland, college park|jr104652": {
+    "ai_score": 0,
+    "ai_reason": "Requires PhD + 5-10 years experience in agronomy/crop science -- far beyond a new grad's qualifications.",
+    "scored_at": "2026-08-13"
+  },
+  "nc state university|233780": {
+    "ai_score": 2,
+    "ai_reason": "Wet-lab animal research (mouse colony breeding/genotyping, reproductive physiology) -- no CS/data overlap.",
+    "scored_at": "2026-08-13"
+  },
+  "university of utah|207012": {
+    "ai_score": 7,
+    "ai_reason": "Low-bar entry-level IT help desk role (Level I needs little/no experience); matches Jira/ticketing-system and command-line familiarity from resume. Quick, easy apply, though below CS degree ceiling.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r157161": {
+    "ai_score": 1,
+    "ai_reason": "Field/greenhouse vegetable production technician role (planting, pest control, plot maintenance) -- zero overlap with CS skillset.",
+    "scored_at": "2026-08-13"
+  },
+  "penn state (24 campuses)|req_0000081216": {
+    "ai_score": 1,
+    "ai_reason": "Fieldwork trapping rodents/ticks/deer for veterinary entomology research -- outdoor wildlife handling, no CS relevance.",
+    "scored_at": "2026-08-13"
+  },
+  "penn state (24 campuses)|req_0000081256": {
+    "ai_score": 7,
+    "ai_reason": "Description is thin but explicitly involves 'development of a computing package for the estimation of economic models' -- programming-adjacent RA role that plays to Python/SQL skills. Verify manually before applying since detail is limited.",
+    "scored_at": "2026-08-13"
+  },
+  "unc-chapel hill|323811": {
+    "ai_score": 1,
+    "ai_reason": "Wet-lab bench work (PCR, gel electrophoresis, cell culture) plus mouse handling -- no CS/data relevance.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r157183": {
+    "ai_score": 1,
+    "ai_reason": "Field/orchard fruit-production research technician role (pruning, harvesting, irrigation) -- zero overlap with CS skillset.",
+    "scored_at": "2026-08-13"
+  },
+  "nc state university|233800": {
+    "ai_score": 1,
+    "ai_reason": "Manual arthropod-sample processing under a stereoscope with insect/mite identification -- no CS/data relevance, physical lab work requiring 50+ lb lifting.",
+    "scored_at": "2026-08-13"
+  },
+  "unc-chapel hill|323799": {
+    "ai_score": 6,
+    "ai_reason": "Explicitly prefers research experience in computer vision/machine learning/AI -- strong skills-area match, though the 'published papers in CV venues' preference is a stretch for a new grad without publications.",
+    "scored_at": "2026-08-13"
+  },
+  "nc state university|233794": {
+    "ai_score": 2,
+    "ai_reason": "Controlled Environment Agriculture technician role -- sensor/controller maintenance and data collection touch on some transferable skills, but core work is agricultural equipment operation, not CS.",
+    "scored_at": "2026-08-13"
+  },
+  "nc state university|233778": {
+    "ai_score": 1,
+    "ai_reason": "Horticultural field technician role requiring pesticide license and mechanical aptitude -- manual/field labor, no CS fit.",
+    "scored_at": "2026-08-13"
+  },
+  "unc-chapel hill|323893": {
+    "ai_score": 3,
+    "ai_reason": "Bachelor's-level research specialist bar is generic, but preferences (public health/social work/psych coursework, workforce policy research) put it outside the CS/data lane.",
+    "scored_at": "2026-08-13"
+  },
+  "the ohio state university|r151946": {
+    "ai_score": 4,
+    "ai_reason": "Very low bar (HS diploma minimum, 0 years required) for a clinical trial recruitment/coordination role -- easy-apply fallback, but community outreach/recruitment work isn't a technical or data-skills match.",
+    "scored_at": "2026-08-13"
+  },
+  "unc-chapel hill|323874": {
+    "ai_score": 3,
+    "ai_reason": "Minimal posting detail ('demonstrated possession of competencies,' 'hands-on research' preferred) -- title-only signal; other UNC 'Research Technician' postings on this tab skew wet-lab, so treat with the same caution.",
+    "scored_at": "2026-08-13"
+  },
+  "penn state (24 campuses)|req_0000080795": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship/blocker hard stop: 'You must be a U.S. citizen to apply' + requires government security clearance (Penn State ARL) -- also needs 5-19+ years experience regardless. FILTER GAP: this ARL citizenship/clearance blocker slipped past filters.py, same known issue noted for other PSU ARL postings -- flag for patching.",
+    "scored_at": "2026-08-14"
+  },
+  "nc state university|233851": {
+    "ai_score": 2,
+    "ai_reason": "Field/greenhouse agriculture role (container production, fertigation, ag equipment); 'Linux-based devices/tablet control interfaces' is a minor tech touchpoint but core work is horticultural, no real fit.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323989": {
+    "ai_score": 3,
+    "ai_reason": "Global/public health research management role (IRB compliance, NIH clinical trial admin) -- domain mismatch vs CS despite some quantitative-data-analysis overlap.",
+    "scored_at": "2026-08-14"
+  },
+  "university of nebraska-lincoln|101806": {
+    "ai_score": 7,
+    "ai_reason": "Strong match: BS in CS/Data Science/MIS + 1yr required (entry-level friendly), core duties are database queries and report writing on information systems -- squarely in Josh's SQL/data skillset.",
+    "scored_at": "2026-08-14"
+  },
+  "the ohio state university|r150864": {
+    "ai_score": 1,
+    "ai_reason": "Part-time hourly interventionist tutoring children in phonological awareness for an NIH early-literacy study -- education/tutoring role, no CS/data relevance.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323975": {
+    "ai_score": 4,
+    "ai_reason": "Bare Bachelor's requirement with no listed preferences ('N/A') -- title-only match, can't verify true fit; verify manually before applying.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323969": {
+    "ai_score": 1,
+    "ai_reason": "Rodent in vivo studies (tumor models, dosing, necropsy) for cancer/respiratory virus research -- wet-lab animal work, no CS relevance.",
+    "scored_at": "2026-08-14"
+  },
+  "nc state university|233827": {
+    "ai_score": 1,
+    "ai_reason": "Turfgrass entomology lab requiring pesticide/ground-applicator licensure and insect pest ID -- field/agriculture role, no CS fit.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323999": {
+    "ai_score": 1,
+    "ai_reason": "Biomedical engineering/biochemistry analytical lab work (HPLC, FT-IR, NMR, polymer chemistry) -- wet-lab/analytical chemistry, no CS relevance.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323932": {
+    "ai_score": 3,
+    "ai_reason": "Minimal detail beyond 'basic understanding of scientific methods' -- title-only signal, other UNC Research Technician postings on this run skew wet-lab; treat with same caution.",
+    "scored_at": "2026-08-14"
+  },
+  "unc-chapel hill|323925": {
+    "ai_score": 1,
+    "ai_reason": "Veterinary/animal-handling role (large animal research, injectable medications, moving 150lb animals) -- no CS relevance.",
+    "scored_at": "2026-08-14"
+  },
+  "louisiana state university|r00118742": {
+    "ai_score": 1,
+    "ai_reason": "Requires B.S./M.S. in Plant Breeding, Genetics, or related field for greenhouse/field-based sugarcane genomics work; Python/R is only a minor preferred skill, not core to the role. No domain background \u2014 don't apply.",
+    "scored_at": "2026-08-15"
+  },
+  "university of utah|207470": {
+    "ai_score": 5,
+    "ai_reason": "Strong tool overlap (Python, R, Tableau/R Shiny, AI-tool familiarity) but wants 2 years experience and economics/public-policy domain knowledge he lacks. Fence case \u2014 apply timeboxed.",
+    "scored_at": "2026-08-15"
+  },
+  "indiana university (academic postings)|34071": {
+    "ai_score": 0,
+    "ai_reason": "Wet-lab genomics/bioinformatics role requiring a Master's in Biology or Chemistry plus 2 years hands-on PCR/molecular cloning/library-prep experience \u2014 no relevant background or degree. Don't apply.",
+    "scored_at": "2026-08-15"
+  },
+  "the ohio state university|r157299": {
+    "ai_score": 1,
+    "ai_reason": "Facilities/AV support role (Crestron classroom hardware installation, in-person troubleshooting, Saturday shifts) \u2014 no software engineering or data science substance. Don't apply.",
+    "scored_at": "2026-08-15"
+  },
+  "university of nebraska-lincoln|101813": {
+    "ai_score": 6,
+    "ai_reason": "Entry-level (1 yr exp) SQL/database/reporting role building interfaces and queries against the student information system \u2014 matches his SQL and data-systems skills well. Posting states sponsorship won't be offered (no H-1B) but doesn't exclude STEM OPT, so still apply per policy.",
+    "scored_at": "2026-08-15"
+  },
+  "cornell university|wdr-00060376": {
+    "ai_score": 7,
+    "ai_reason": "Backend SWE at Cornell Lab of Ornithology \u2014 Java, Spring, JS, GIS, SQL/Postgres, cloud infra stack matches well. Notes 'No Visa Sponsorship' (H-1B) but that's fine per policy, doesn't exclude STEM OPT.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20173421": {
+    "ai_score": 8,
+    "ai_reason": "Agentic LLM/AI workflows in healthcare \u2014 strong match to his Python, LangChain, HuggingFace, PyTorch, full-stack JS background.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20174846": {
+    "ai_score": 6,
+    "ai_reason": "Institutional Research data scientist \u2014 good tool match (Python, SQL, Tableau, Airflow) but wants 2 yrs min experience.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047702": {
+    "ai_score": 5,
+    "ai_reason": "ARL/defense sonar lab \u2014 solid ML/stats fit but no listed clearance requirement visible; ARL work often has export-control/citizenship gates not always caught by filters \u2014 verify before applying.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047743": {
+    "ai_score": 4,
+    "ai_reason": "Same ARL sonar lab role but wants 3+ years experience \u2014 bigger gap than the ESA-level posting.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20161232": {
+    "ai_score": 6,
+    "ai_reason": "MLOps engineer, healthcare \u2014 good match to his cloud/CI-CD/AWS interests but he lacks hands-on production MLOps experience.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047828": {
+    "ai_score": 6,
+    "ai_reason": "General web/software developer role for UT's OnRamps program \u2014 solid generalist SWE fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047199": {
+    "ai_score": 6,
+    "ai_reason": "Infrastructure SWE for a neuroscience lab \u2014 DB design, cloud infra match his data-pipeline background; one-year fixed term.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047744": {
+    "ai_score": 4,
+    "ai_reason": "ARL defense signal-processing SWE role \u2014 C++/DSP focus is a real gap from his stack, and it's a defense lab likely to have added scrutiny.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047741": {
+    "ai_score": 3,
+    "ai_reason": "Same ARL signal-processing role at the more senior 'Engineer' (not Associate) level \u2014 bigger experience/domain gap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178033": {
+    "ai_score": 6,
+    "ai_reason": "Research Data Engineer \u2014 secure data pipelines, NSF/NIH/DoD compliance; SQL/pipeline skills match but heavy governance/compliance focus he hasn't done.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20174385": {
+    "ai_score": 2,
+    "ai_reason": "Computational immunology \u2014 requires deep bioinformatics/genomics domain expertise (RNA-seq, single-cell multi-omics) he doesn't have.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047206": {
+    "ai_score": 4,
+    "ai_reason": "ARL sonar/acoustics SWE (ESA) \u2014 C++ and DSP-heavy, real skill gap; defense lab.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00044922": {
+    "ai_score": 4,
+    "ai_reason": "ARL DevOps role wants 3 years experience; decent CI/CD fit but defense lab and experience gap.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-095285": {
+    "ai_score": 1,
+    "ai_reason": "Bioinformatics research specialist for nutrition/metabolism/multi-omics \u2014 needs biology/nutrition science domain background he lacks.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047572": {
+    "ai_score": 5,
+    "ai_reason": "Software Developer/Analyst building DBs and web apps for education research \u2014 decent generalist fit, but explicitly requires being 'authorized to work without sponsorship' \u2014 verify this doesn't functionally exclude OPT candidates before applying.",
+    "scored_at": "2026-08-16"
+  },
+  "prairie view a&m university|r-089078": {
+    "ai_score": 5,
+    "ai_reason": "Software Applications Developer II \u2014 description truncated before role details; posting flags a TX-state moratorium on new H-1B filings and TAMU won't pay the $100k H-1B fee, but that's an H-1B-only restriction, fine per policy.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20177410": {
+    "ai_score": 5,
+    "ai_reason": "Research Programmer II for cancer research \u2014 CS/data-engineering skills match but role leans into biomedical/instrumentation domain knowledge he lacks.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046792": {
+    "ai_score": 2,
+    "ai_reason": "Windows Systems Admin II, ARL \u2014 HS/GED + 2yrs Windows/IT support, helpdesk-level, not SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "cornell university|wdr-00059139": {
+    "ai_score": 4,
+    "ai_reason": "Identity Management Developer (cybersecurity/IAM), remote, 2-year term. 'No Visa Sponsorship' (H-1B, fine per policy). Specialized IAM/security domain not core to his skillset.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-096090": {
+    "ai_score": 5,
+    "ai_reason": "Facilities and Energy Services Data Analyst \u2014 description truncated but title suggests a decent generalist data-analyst fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047555": {
+    "ai_score": 2,
+    "ai_reason": "Social Science Research Associate I, Memory and Aging Lab \u2014 mostly human-subjects recruitment/testing and lab management, not SWE/DS work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047087": {
+    "ai_score": 5,
+    "ai_reason": "R&D Cloud Engineering Scientist, ARL \u2014 strong cloud/IaC/CI-CD technical fit but defense lab exposure.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046548": {
+    "ai_score": 2,
+    "ai_reason": "Social Science RA I, auditory neuroscience lab \u2014 lab coordination/data collection, psych domain, 2-year fixed term, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00039116": {
+    "ai_score": 2,
+    "ai_reason": "Research Associate, McKetta Chemical Engineering \u2014 chem eng domain, no skills detail visible suggesting SWE/DS overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00035472": {
+    "ai_score": 2,
+    "ai_reason": "Research Scientist, Texas GenAI Center \u2014 PhD-track research-scientist role (manuscripts, independent research funding) likely requires a terminal degree, too senior for a fresh BS grad.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university system offices|r-094102": {
+    "ai_score": 6,
+    "ai_reason": "Associate Software Applications Developer \u2014 general entry-level SWE dev role, good generalist fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047405": {
+    "ai_score": 1,
+    "ai_reason": "Clinical Research Associate I, Psychiatry \u2014 clinical-trial coordination/monitoring, not SWE/DS work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047581": {
+    "ai_score": 6,
+    "ai_reason": "Research Associate II, EEG/BCI research \u2014 signal processing, ML, stats overlap well with his EMG/motion-capture research background at UMN, though the II level implies more independence than entry-level.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00037932": {
+    "ai_score": 1,
+    "ai_reason": "Parametric Test Engineer, Texas Institute for Electronics \u2014 hardware test engineering for DoD-funded semiconductor manufacturing; explicitly requires eligibility to work without sponsorship, plus domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00036980": {
+    "ai_score": 2,
+    "ai_reason": "Research Associate, Dept of Physics \u2014 no skill requirements visible in truncated text, likely physics-domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-095888": {
+    "ai_score": 6,
+    "ai_reason": "Software Applications Developer II \u2014 WordPress & Web Development \u2014 matches his PHP/Drupal/web-dev skills well.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047896": {
+    "ai_score": 5,
+    "ai_reason": "Research Data Coordinator, UT Libraries \u2014 open-scholarship/research-data support, decent generalist data-management fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00045904": {
+    "ai_score": 2,
+    "ai_reason": "Systems Engineer for Diving and Harbor Applications, ARL \u2014 wants 3+ years systems-engineering experience; defense lab, real experience gap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00045089": {
+    "ai_score": 1,
+    "ai_reason": "Clinical Research Associate I, Psychiatry \u2014 clinical-trial coordination, not SWE/DS work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00035459": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Nuclear Engineering Teaching Lab \u2014 requires PhD plus 4 years ROS/robotics experience, far overqualified requirement.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-096030": {
+    "ai_score": 2,
+    "ai_reason": "Instructional Designer II, Mays Business School \u2014 course design/e-learning, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047870": {
+    "ai_score": 1,
+    "ai_reason": "CNC Machinist & Programmer \u2014 MasterCAM precision machining, no overlap with his skillset.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-096153": {
+    "ai_score": 1,
+    "ai_reason": "Research Assistant, Soil & Crop Sciences \u2014 agriculture domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00048029": {
+    "ai_score": 1,
+    "ai_reason": "Laboratory Research Assistant, Chemistry \u2014 wet-lab organic synthesis, HS diploma required, no relevant background.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047668": {
+    "ai_score": 2,
+    "ai_reason": "Systems Administrator II, ARL \u2014 HS/GED + 2yrs Windows admin, helpdesk-level.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047595": {
+    "ai_score": 1,
+    "ai_reason": "Research Assistant Coder, Special Education \u2014 behavioral video coding of parent-child interactions, not SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047385": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate - Molecular Biologist \u2014 PhD in biochemistry/molecular biology required.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047389": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate - Structural Biologist \u2014 PhD in structural biology/biochemistry required.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047106": {
+    "ai_score": 1,
+    "ai_reason": "Social Science RA II, Orsini Lab \u2014 rodent behavioral neuroscience wet lab (stereotaxic surgery, intracranial injections), no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047108": {
+    "ai_score": 1,
+    "ai_reason": "Duplicate posting of the Orsini Lab rodent behavioral neuroscience role \u2014 same wet-lab mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047184": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Molecular Biosciences \u2014 PhD in molecular biology/biochemistry required.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046614": {
+    "ai_score": 1,
+    "ai_reason": "Social Science RA I, Gaudet Lab \u2014 mouse spinal cord injury wet lab, animal colony care, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046381": {
+    "ai_score": 3,
+    "ai_reason": "Research Associate I, Psychiatry \u2014 mixes clinical coordination with some statistical data analysis; partial overlap but mostly participant assessment work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046382": {
+    "ai_score": 3,
+    "ai_reason": "Duplicate posting of the Research Associate I, Psychiatry role \u2014 same partial fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00036551": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Earth and Planetary Sciences \u2014 requires PhD in Earth Science, high-pressure mineral physics domain.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university health science center|r-095869": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician I, Psychiatry/Dentistry \u2014 likely wet-lab/clinical support role, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-095783": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician, Biology \u2014 rodent colony management, wet-lab support, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-092143": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate, Geochemical & Environmental Research Group \u2014 ocean vehicle field operations, not SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university health science center|r-091564": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician, Biomedical Sciences (Dentistry) \u2014 likely wet-lab support, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-096072": {
+    "ai_score": 2,
+    "ai_reason": "Research Assistant, Biology \u2014 mostly wet-lab support with some data collection/statistical-analysis component, but core is lab operations.",
+    "scored_at": "2026-08-16"
+  },
+  "prairie view a&m university|r-095971": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate (Horticulture) \u2014 agriculture domain mismatch; H-1B fee/moratorium note is fine per policy regardless.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-094870": {
+    "ai_score": 1,
+    "ai_reason": "Animal Research Technician, Nutrition \u2014 animal handling, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178584": {
+    "ai_score": 3,
+    "ai_reason": "Clinical Research Data Specialist I \u2014 clinical trial data entry/coordination; some SQL/REDCap preferred but mostly clinical-coordinator work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178458": {
+    "ai_score": 6,
+    "ai_reason": "Business Data Analyst, USC Hospitality \u2014 data analysis, dashboards, benchmarking; solid generalist DS fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178163": {
+    "ai_score": 6,
+    "ai_reason": "Programmer Analyst II, aging-study data harmonization \u2014 good match to Python/data-cleaning skills, codebook/pipeline development.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047582": {
+    "ai_score": 1,
+    "ai_reason": "Epic Application Analyst - Patient Access \u2014 explicitly states 'not eligible for employer-sponsored work authorization... current or future visa sponsorship'; also healthcare-IT/workflow analyst work, not core SWE.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00038860": {
+    "ai_score": 1,
+    "ai_reason": "Epic Application Analyst - Radiant/Lumens \u2014 same explicit 'no current or future visa sponsorship' language plus healthcare-IT domain, not core SWE.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00046409": {
+    "ai_score": 4,
+    "ai_reason": "IT Coordinator I, University Data Center \u2014 general IT role with some remote flexibility; likely more helpdesk-leaning than SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00042047": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist Associate II, Bureau of Economic Geology \u2014 GIS/mineral-mapping, MS/BS Geology required, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00038310": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist, Mechanical Engineering (batteries/fuel cells) \u2014 materials-science domain, likely PhD-level.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university health science center|r-096040": {
+    "ai_score": 1,
+    "ai_reason": "Assistant Research Scientist, Joint Microscopy Lab \u2014 super-resolution microscopy (MINFLUX), specialized imaging domain.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-096007": {
+    "ai_score": 3,
+    "ai_reason": "Research Specialist I, Agricultural Economics \u2014 could involve some data analysis but core domain is agricultural economics.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-094923": {
+    "ai_score": 1,
+    "ai_reason": "Assistant Research Scientist, Oceanography \u2014 marine trace-metal chemistry, field expeditions, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20173306": {
+    "ai_score": 6,
+    "ai_reason": "BI ETL Solutions Developer, USC Care \u2014 SSIS/SQL Server ETL, 3 yrs experience wanted; strong technical fit (SQL, ETL).",
+    "scored_at": "2026-08-16"
+  },
+  "iowa state university|r19754": {
+    "ai_score": 2,
+    "ai_reason": "Research Scientist II, dairy cattle immunogenetics \u2014 core is wet-lab/large-animal research; bioinformatics/UNIX is only a preferred extra.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047194": {
+    "ai_score": 4,
+    "ai_reason": "Research Associate, Population Research Center \u2014 description truncated before duties; resolving uncertainty toward a moderate score given the department's typical demographic/data research work.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00045136": {
+    "ai_score": 7,
+    "ai_reason": "Data Engineer II, Dell Medical School \u2014 ETL, SQL, cloud data pipelines, data warehousing; strong technical fit.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-096016": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate, Entomology \u2014 insect/agriculture domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university - kingsville|r-090059": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician I, Citrus Center \u2014 fruit fly rearing/field ag work, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "prairie view a&m university|r-095226": {
+    "ai_score": 2,
+    "ai_reason": "Research Assistant, Energy & Environmental Sustainability \u2014 domain unclear from truncated text but likely environmental science; H-1B note is fine per policy.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-090581": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician II, Lubbock \u2014 agriculture field/lab work, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife research|r-090319": {
+    "ai_score": 0,
+    "ai_reason": "Research Assistant - Beef Cattle Herdsman \u2014 literal cattle herding, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20171771": {
+    "ai_score": 0,
+    "ai_reason": "Laboratory Assistant - Pre-Analytics (Phlebotomy) \u2014 requires Certified Phlebotomy Technician credential, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20177551": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20177490": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20177888": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Craniofacial Molecular Biology \u2014 PhD required.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20176848": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20171768": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20174500": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20169344": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20163351": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, generic \u2014 PhD required, no field specified.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20157695": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Huntington's disease brain organoid research \u2014 PhD required, cell/molecular biology domain.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university|r-095430": {
+    "ai_score": 1,
+    "ai_reason": "Associate Research Scientist, Radiogenic Isotope Geosciences Lab \u2014 geochemical instrumentation (ICP-MS, TIMS), domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m agrilife extension service|r-089229": {
+    "ai_score": 1,
+    "ai_reason": "RSSI Graduate Research Assistant, 4-H Youth Development \u2014 rural-education research support; also worth flagging as a possible student-status filter slip-through since 'graduate assistant' roles are usually restricted to enrolled students.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m engineering extension service|r-092699": {
+    "ai_score": 6,
+    "ai_reason": "Web Applications Developer II \u2014 solid generalist web-dev role.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m engineering extension service|r-090741": {
+    "ai_score": 2,
+    "ai_reason": "Instructional Designer I, law-enforcement training curriculum \u2014 not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20174848": {
+    "ai_score": 3,
+    "ai_reason": "Clinical Research Data Specialist I \u2014 clinical-trial data entry/coordination, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20176833": {
+    "ai_score": 5,
+    "ai_reason": "Clinical Quality Informatics Specialist \u2014 Tableau/SAS/Cerner reporting, decent BI-tool fit but clinical-informatics domain specific.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20176309": {
+    "ai_score": 3,
+    "ai_reason": "Research Data Scientist, Schaeffer Center \u2014 strong tool match (SAS/R/Python, SQL, Snowflake, AWS) but wants 5+ years experience, too senior.",
+    "scored_at": "2026-08-16"
+  },
+  "iowa state university|r19637": {
+    "ai_score": 1,
+    "ai_reason": "Turfgrass Research Scientist \u2014 agriculture/turf field research, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "iowa state university|r19734": {
+    "ai_score": 5,
+    "ai_reason": "Web Developer II \u2014 WordPress, CI/CD; decent generalist web-dev fit, but requires Iowa residency before day one.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20095031": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Saito Lab immunology \u2014 PhD required, wet-lab virology/immunology.",
+    "scored_at": "2026-08-16"
+  },
+  "cornell university|wdr-00058406": {
+    "ai_score": 6,
+    "ai_reason": "Salesforce Platform Developer (CEMI), remote, 3-year term \u2014 Salesforce is on his resume; good tech match. 'No Visa Sponsorship' (H-1B) fine per policy.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m transportation institute|r-095899": {
+    "ai_score": 1,
+    "ai_reason": "TTI Assistant Research Scientist, Roadside Safety \u2014 civil/transportation engineering research, domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20156471": {
+    "ai_score": 3,
+    "ai_reason": "GIS Program Specialist, Facilities Planning \u2014 ArcGIS/CAD data management, specialized facilities-GIS domain.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00045350": {
+    "ai_score": 6,
+    "ai_reason": "Research Scientist, Dept of Women's Health \u2014 REDCap/Qualtrics database development, data management/analysis; good generalist DS fit.",
+    "scored_at": "2026-08-16"
+  },
+  "texas a&m university - kingsville|r-092220": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate, Kleberg Wildlife Research Institute \u2014 wildlife/ecology domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00047043": {
+    "ai_score": 3,
+    "ai_reason": "Application Analyst - Epic Ambulatory/Kaleidoscope \u2014 healthcare-IT analyst work, no explicit sponsorship exclusion noted here (unlike related Epic postings) but description truncated before that section \u2014 verify.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00039723": {
+    "ai_score": 2,
+    "ai_reason": "Mechatronics Test Engineer, Texas Institute for Electronics \u2014 same DoD-funded semiconductor consortium as the Parametric Test Engineer posting; hardware test domain mismatch and likely same no-sponsorship policy.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178573": {
+    "ai_score": 2,
+    "ai_reason": "Research Scientist, Center for Effective Organizations (Marshall Business School) \u2014 org-design/people-analytics consulting research, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135479": {
+    "ai_score": 8,
+    "ai_reason": "Web Application Developer, remote \u2014 full-stack, Drupal, Docker, CI/CD, GitHub Actions; excellent match including Drupal specifically on his resume.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135451": {
+    "ai_score": 7,
+    "ai_reason": "Front-End Developer, UW Facilities \u2014 Drupal, front-end web strategy; strong match to his listed Drupal/web-dev skills.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000130597": {
+    "ai_score": 8,
+    "ai_reason": "AI DevOps Engineer \u2014 Azure, CI/CD, infrastructure-as-code, AI platform engineering; strong technical fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135436": {
+    "ai_score": 8,
+    "ai_reason": "Software Engineer, ORIS \u2014 JavaScript/TypeScript full-stack, APIs, cloud-native, CI/CD; excellent match to his JS/TS/React/Node background.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000129073": {
+    "ai_score": 2,
+    "ai_reason": "Research Scientist/Engineer 3, spatial transcriptomics bioinformatics \u2014 highly specialized genomics domain (10x Genomics, Seurat), not a fit despite some data-analysis overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00045742": {
+    "ai_score": 3,
+    "ai_reason": "Research Associate I, Psychiatry (Part-Time tab) \u2014 clinical/psych research support, similar to other Psychiatry RA I postings.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00036274": {
+    "ai_score": 2,
+    "ai_reason": "Part-Time Psychology Research Associate, Memory and Aging Lab \u2014 subject recruitment/testing, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "cornell university|wdr-00060614": {
+    "ai_score": 0,
+    "ai_reason": "Temporary Vegetable Field Research Technician \u2014 agriculture field work, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of texas at austin|r_00030231": {
+    "ai_score": 2,
+    "ai_reason": "Part-Time Psych Research Associate I, developmental intelligence lab \u2014 lab coordination role; note the posting's listed end date (Oct 2024) has already passed, so this listing may be stale.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178782": {
+    "ai_score": 1,
+    "ai_reason": "Resource Employee (Research Assistant), Otolaryngology \u2014 clinical/community research coordination, not SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20177547": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting (Part-Time) \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20174978": {
+    "ai_score": 0,
+    "ai_reason": "Duplicate phlebotomy Laboratory Assistant posting (Part-Time) \u2014 same mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135885": {
+    "ai_score": 0,
+    "ai_reason": "Research Scientist/Engineer 3, Research Audiologist \u2014 clinical audiology research, specialized AuD/PhD-level domain.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135125": {
+    "ai_score": 2,
+    "ai_reason": "Research Scientist/Engr 3, protein design/synthetic biology \u2014 interesting AI-adjacent computational protein design (RFdiffusion, AlphaFold) but requires deep wet-lab/comp-bio expertise he lacks.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135213": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist/Engineer 3, cryo-EM structural biology \u2014 specialized imaging domain, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000132153": {
+    "ai_score": 0,
+    "ai_reason": "Research Scientist/Engineer 2, Peptide Core \u2014 organic chemistry/peptide synthesis wet lab, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000131727": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist 2, Genetics & Solid Tumors \u2014 NGS lab automation/DNA sequencing, specialized clinical genomics domain.",
+    "scored_at": "2026-08-16"
+  },
+  "university of southern california|req20178491": {
+    "ai_score": 5,
+    "ai_reason": "Laboratory Systems Analyst - Clinical Lab (Part-Time) \u2014 IT systems analyst work (requirements, interfaces, scripting); decent generalist IT/systems fit.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135896": {
+    "ai_score": 0,
+    "ai_reason": "Research Scientist/Engineer 1, Microbiology \u2014 wet-lab antibiotic-resistance research, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000133551": {
+    "ai_score": 4,
+    "ai_reason": "Epic Research Application Analyst 3, 100% remote \u2014 healthcare-IT analyst work; no explicit sponsorship exclusion noted, remote is a plus.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000131537": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist/Engr 1, optogenetic polymerase engineering \u2014 specialized wet-lab molecular biology, no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000135766": {
+    "ai_score": 2,
+    "ai_reason": "Instructional Designer, School of Nursing \u2014 curriculum design/CBE, not core SWE/DS.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000134631": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist 3, Genomics (NWGC) \u2014 high-throughput genomics lab protocols, wet-lab domain mismatch.",
+    "scored_at": "2026-08-16"
+  },
+  "iowa state university|r19733": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician II, Epilepsy Lab (Part-Time) \u2014 wet-lab neuroscience (Western blotting, animal experiments), no overlap.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000129345": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist/Engr 4, cryo-EM virology/vaccine design \u2014 specialized structural biology, Master's + 4 yrs required.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000134455": {
+    "ai_score": 3,
+    "ai_reason": "Software Engineer, Applied Physics Lab, Annapolis MD \u2014 unmanned naval systems engineering; likely defense/clearance-heavy work not caught by filters \u2014 worth flagging and verifying before applying.",
+    "scored_at": "2026-08-16"
+  },
+  "university of washington|req-0000134018": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist/Engineer 3, Cancer Vaccine Institute \u2014 wet-lab immunology assays, no overlap.",
+    "scored_at": "2026-08-16"
+  }
+}
