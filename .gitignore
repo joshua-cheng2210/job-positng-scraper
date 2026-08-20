@@ -4,6 +4,8 @@ __pycache__/
 venv/
 .env
 data/*.json
+!data/postings.json
+!data/ai_scores.json
 output/*.xlsx
 .pytest_cache/
 .DS_Store

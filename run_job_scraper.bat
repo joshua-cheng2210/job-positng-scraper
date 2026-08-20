@@ -22,8 +22,17 @@ python -m pip install --quiet --disable-pip-version-check -r "%~dp0\requirements
 
 echo Launching converter...
 python -u "%~dp0\run.py" --enrich-workers 40
+set RUN_ERRORLEVEL=%errorlevel%
 
-if errorlevel 1 (
+git add job_scrapper.log
+git add data/postings.json data/ai_scores.json
+git diff --cached --quiet
+if not errorlevel 1 goto :skip_push
+git commit -m "Update job data logs"
+git push origin main
+:skip_push
+
+if %RUN_ERRORLEVEL% neq 0 (
     echo.
     echo Something went wrong. Make sure Python is installed and on your PATH.
     pause

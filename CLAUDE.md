@@ -45,4 +45,3 @@ python json_to_excel.py    # raw converter must still work
   build a per-posting detail fetcher for it.
 - Workday detail fetches cost one request each. Only enable `fetch_detail` for
   postings that already survived the title filter.
-- The `data/` and `output/` directories are gitignored. Don't commit runs.
