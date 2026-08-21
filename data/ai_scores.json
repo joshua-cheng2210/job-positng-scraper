@@ -2623,5 +2623,260 @@
     "ai_score": 1,
     "ai_reason": "Research Scientist/Engineer 3, Cancer Vaccine Institute \u2014 wet-lab immunology assays, no overlap.",
     "scored_at": "2026-08-16"
+  },
+  "the ohio state university|r157098": {
+    "ai_score": 6,
+    "ai_reason": "Intermediate Learning Systems Developer \u2014 enterprise LMS software dev team, good generalist SWE fit.",
+    "scored_at": "2026-08-20"
+  },
+  "universities of wisconsin (12 campuses)|jr10014233": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate - Biology \u2014 this is a postdoctoral fellow position in developmental biology (CRISPR, RNA-Seq), requires a PhD, wet-lab domain mismatch.",
+    "scored_at": "2026-08-20"
+  },
+  "louisiana state university|r00119124": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate 2, Wetland Biogeochemistry lab \u2014 environmental sample prep and analytical instrument operation, wet-lab domain mismatch.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r156984": {
+    "ai_score": 6,
+    "ai_reason": "Intermediate Application Developer, Enterprise Project/CRM Integration \u2014 solid generalist SWE fit.",
+    "scored_at": "2026-08-20"
+  },
+  "texas a&m agrilife research|r-096195": {
+    "ai_score": 1,
+    "ai_reason": "Research Specialist II, Healthy Living program \u2014 community health research support, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "university of texas at austin|r_00047496": {
+    "ai_score": 1,
+    "ai_reason": "Application Analyst - Epic Resolute \u2014 explicitly 'not eligible for employer-sponsored work authorization... current or future visa sponsorship'; also healthcare revenue-cycle IT analyst work, not core SWE.",
+    "scored_at": "2026-08-20"
+  },
+  "university of texas at austin|r_00047497": {
+    "ai_score": 1,
+    "ai_reason": "Duplicate Epic Resolute posting \u2014 same explicit no-sponsorship language and domain mismatch.",
+    "scored_at": "2026-08-20"
+  },
+  "penn state (24 campuses)|req_0000080612": {
+    "ai_score": 4,
+    "ai_reason": "AI/ML R&D Engineer, Reston VA \u2014 strong AI/ML technical fit, but Reston VA + Penn State is a known pattern for defense-adjacent ARL work with unstated clearance/citizenship requirements per prior runs. Verify before applying.",
+    "scored_at": "2026-08-20"
+  },
+  "washington state university|r-15268": {
+    "ai_score": 6,
+    "ai_reason": "Report Developer, Workday Modernization \u2014 reporting/BI development on Workday platform, decent generalist data/BI fit.",
+    "scored_at": "2026-08-20"
+  },
+  "university of texas at austin|r_00047152": {
+    "ai_score": 2,
+    "ai_reason": "Epic Application Analyst (Op-Time/Anesthesia) \u2014 same Dell Medical School Epic-analyst family as postings with explicit no-sponsorship language (text truncated before that section here); healthcare-IT workflow domain, not core SWE.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r147821": {
+    "ai_score": 1,
+    "ai_reason": "Clinical Research Assistant 2, Clinical Trials Management Office \u2014 clinical-trial coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "louisiana state university|r00119078": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate Specialist, Aquaculture Research Station \u2014 farm/field crawfish pond management, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "university of southern california|req20179220": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Nation Lab (brain vascular disease/dementia) \u2014 requires PhD + 1yr postdoc, wet-lab biomedical domain.",
+    "scored_at": "2026-08-20"
+  },
+  "universities of wisconsin (12 campuses)|jr10014214": {
+    "ai_score": 2,
+    "ai_reason": "Instructional Designer, CETL \u2014 online course design/faculty development, not core SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "penn state (24 campuses)|req_0000080734": {
+    "ai_score": 4,
+    "ai_reason": "AI/ML Verification and Validation Engineer, Reston VA \u2014 same Reston VA/Penn State defense-adjacent pattern as the R&D Engineer posting; strong AI/ML fit but likely unstated clearance risk. Verify before applying.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r154827": {
+    "ai_score": 2,
+    "ai_reason": "Epic Systems Administrator, Health System Shared Services \u2014 framed as a senior/top-level strategic technical contributor role, likely too senior for an entry-level candidate.",
+    "scored_at": "2026-08-20"
+  },
+  "prairie view a&m university|r-096343": {
+    "ai_score": 1,
+    "ai_reason": "Research Specialist I, soil health/greenhouse gas field research \u2014 agriculture/environmental field work, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "university of southern california|req20179088": {
+    "ai_score": 3,
+    "ai_reason": "Clinical Research Data Specialist I \u2014 clinical-trial data entry/coordination, duplicate of a previously-scored posting family; not core SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "nc state university|234027": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician-Burclaff Lab \u2014 wet-lab intestinal stem cell biology, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "indiana university (academic postings)|34076": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Biology (HIV lab) \u2014 wet-lab cell culture and mammalian cell work, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "penn state (24 campuses)|req_0000081204": {
+    "ai_score": 5,
+    "ai_reason": "Prospect Management and Analytics Specialist \u2014 data/analytics work supporting fundraising prospect research; decent generalist DS-adjacent fit though domain (advancement/fundraising) is unfamiliar.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r156826": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist, ketogenic-diet human research lab \u2014 nutrition/physiology human-subjects research, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r156827": {
+    "ai_score": 1,
+    "ai_reason": "Research Associate - Neurology \u2014 wet-lab molecular/cellular neurodegenerative disease research, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "university of utah|207570": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate, Gastroenterology \u2014 explicitly a PhD-level scientist role with postdoctoral experience required, wet-lab microbiology/immunology.",
+    "scored_at": "2026-08-20"
+  },
+  "university of utah|207568": {
+    "ai_score": 0,
+    "ai_reason": "Research Associate - School-Based Behavioral Health Clinical Supervisor \u2014 requires a graduate clinical license to supervise clinicians, no overlap at all.",
+    "scored_at": "2026-08-20"
+  },
+  "texas a&m agrilife research|r-095644": {
+    "ai_score": 3,
+    "ai_reason": "Research Associate, Genomics & Bioinformatics Services \u2014 core bioinformatics service work has some programming/data overlap despite the agriculture-lab setting.",
+    "scored_at": "2026-08-20"
+  },
+  "nc state university|234007": {
+    "ai_score": 7,
+    "ai_reason": "Salesforce Developer, Advancement Services \u2014 Salesforce is on his resume skill list; strong direct match.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324077": {
+    "ai_score": 4,
+    "ai_reason": "Research Associate, Kenan-Flagler Business School \u2014 description truncated before role specifics; resolving toward a moderate score given the business-school research-analyst context.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324029": {
+    "ai_score": 2,
+    "ai_reason": "Research Associate, School of Social Work \u2014 description truncated but social-work research context suggests limited SWE/DS overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "penn state (24 campuses)|req_0000081313": {
+    "ai_score": 3,
+    "ai_reason": "Part-Time Research Assistant, University Park \u2014 title-only match, application-portal boilerplate only, no description scraped; resolving uncertainty toward a moderate score per policy.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324208": {
+    "ai_score": 1,
+    "ai_reason": "Social/Clinical Research Specialist, Psychiatry \u2014 clinical/social research coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "the ohio state university|r155722": {
+    "ai_score": 3,
+    "ai_reason": "Student AI Developer, OCIO \u2014 AI-assisted 'vibe coding' internal-consulting role is an excellent skills fit, but the 'Student' title strongly suggests it requires current OSU student enrollment, which he won't have post-graduation. Worth verifying and flagging as a possible filter gap if it's meant to be open to alumni too.",
+    "scored_at": "2026-08-20"
+  },
+  "university of washington|req-0000135883": {
+    "ai_score": 2,
+    "ai_reason": "Instructional Designer, Renton WA \u2014 graduate curriculum design/faculty coaching, not core SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "iowa state university|r19787": {
+    "ai_score": 1,
+    "ai_reason": "Research Scientist I, Materials Science (polymer thin films) \u2014 specialized nanofabrication/materials-science domain, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324186": {
+    "ai_score": 1,
+    "ai_reason": "Social/Clinical Research Specialist, Burn Center \u2014 clinical research coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324291": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician (Aube Lab), School of Pharmacy \u2014 wet-lab pharmacy research, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324290": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician, Periodontology (Lietzan Lab) \u2014 biochemical/structural biology oral-microbiome research, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "cornell university|wdr-00060685": {
+    "ai_score": 1,
+    "ai_reason": "Research Assistant - Public and Ecosystem Health \u2014 requires Master's in public health, admin/research-support work, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324176": {
+    "ai_score": 0,
+    "ai_reason": "Lai Lab Research Technician, School of Pharmacy \u2014 wet-lab pharmacy research, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324190": {
+    "ai_score": 1,
+    "ai_reason": "Social/Clinical Research Assistant, Vascular Surgery \u2014 clinical research coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324140": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician, Center for Molecular Medicine \u2014 wet-lab biomedical research, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324129": {
+    "ai_score": 1,
+    "ai_reason": "Research Technician, Orthodontics (Jacox Lab) \u2014 subject recruitment/data collection for dental research, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324104": {
+    "ai_score": 0,
+    "ai_reason": "Research Technician (Milko), Genetics \u2014 wet-lab genetics support, 10hrs/wk, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324102": {
+    "ai_score": 1,
+    "ai_reason": "Soc/Clin Research Assistant, Carolina Institute for Neurodevelopmental Disorders \u2014 clinical research coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324093": {
+    "ai_score": 1,
+    "ai_reason": "Social/Clinical Research Assistant, Urology \u2014 clinical research coordination, not SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324189": {
+    "ai_score": 2,
+    "ai_reason": "STEMM Education Research Specialist, remote part-time \u2014 education-research support, some potential data-analysis component but not core SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "nc state university|233908": {
+    "ai_score": 0,
+    "ai_reason": "Temporary Research Technician, Entomology \u2014 arthropod field collection and heavy manual field labor, no overlap.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324066": {
+    "ai_score": 3,
+    "ai_reason": "Research Specialist, Mathematics dept \u2014 description truncated before specifics ('perform experiments with col...'); resolving uncertainty toward a moderate score given the math/computational context.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324032": {
+    "ai_score": 1,
+    "ai_reason": "Legal Research Associate, School of Government Library \u2014 legal research and writing, not technical.",
+    "scored_at": "2026-08-20"
+  },
+  "unc-chapel hill|324158": {
+    "ai_score": 2,
+    "ai_reason": "Research Technician, Applied Physical Sciences (nanofabrication makerspace) \u2014 mostly lab administrative support (safety, purchasing, logistics), not core SWE/DS.",
+    "scored_at": "2026-08-20"
+  },
+  "nc state university|233884": {
+    "ai_score": 0,
+    "ai_reason": "Temporary Research Specialist, Crop and Soil Sciences (weed science) \u2014 agriculture fieldwork requiring pesticide license and driver's license, no overlap.",
+    "scored_at": "2026-08-20"
   }
 }
