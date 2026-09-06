@@ -3348,5 +3348,70 @@
   "ai_score": 1,
   "ai_reason": "Social/clinical research assistant for a School of Nursing field study \u2014 no software/data-engineering overlap.",
   "scored_at": "2026-08-28"
+ },
+ "texas a&m university|r-096642": {
+  "ai_score": 1,
+  "ai_reason": "Research Assistant conserving a Revolutionary War-era gunboat artifact (Anthropology dept) \u2014 physical conservation/documentation work, no software/data-engineering overlap.",
+  "scored_at": "2026-08-31"
+ },
+ "texas a&m university|r-096639": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate in microbiology (Biology dept) \u2014 independent wet-lab research, manuscript prep, lab technique training; no tech/data-engineering component.",
+  "scored_at": "2026-08-31"
+ },
+ "texas a&m university health science center|r-095268": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate on hPSC-derived lung/airway epithelial models \u2014 cell culture, differentiation experiments, imaging/functional assays; pure wet-lab biomedical research, no tech overlap.",
+  "scored_at": "2026-08-31"
+ },
+ "university of washington|req-0000128046": {
+  "ai_score": 7,
+  "ai_reason": "Good fit: Python (numpy/pandas), Git, Linux, Docker/Snakemake/Nextflow pipeline work directly matches Josh's stack even though the domain (spatial transcriptomics/bioinformatics) is unfamiliar; Bachelor's + 1 yr experience bar, explicitly H-1B sponsorship eligible.",
+  "scored_at": "2026-08-31"
+ },
+ "minnesota state college southeast|jr0000005618": {
+  "ai_score": 1,
+  "ai_reason": "Requires 3 years of hands-on network administration experience (Cisco/Microsoft networking, NIST 800-171 compliance) \u2014 a networking/cybersecurity track with no overlap with Josh's SWE/DS background.",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324683": {
+  "ai_score": 2,
+  "ai_reason": "Instructional Designer role requires a post-baccalaureate degree, or Bachelor's + 3 years of relevant instructional-design/EdTech experience \u2014 real experience gap, and the work (LMS course-building, Canvas, accessibility compliance) doesn't draw on Josh's SWE/DS skills.",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324694": {
+  "ai_score": 1,
+  "ai_reason": "Research Technician in a lab studying brain cancer therapeutics using mouse models \u2014 animal husbandry, in vitro assays; pure wet-lab work, no tech/data overlap. (Not eligible for H-1B sponsorship, but that alone isn't a hard stop per Josh's sponsorship-gate rule.)",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324685": {
+  "ai_score": 1,
+  "ai_reason": "Research Technician in a respiratory-disease genetics lab (mouse colony management, genotyping, air-pollutant exposure studies) \u2014 wet-lab animal work, no tech/data overlap. (Not eligible for H-1B sponsorship, but that alone isn't a hard stop.)",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324684": {
+  "ai_score": 3,
+  "ai_reason": "Social/Clinical Research Specialist coordinating multi-study clinical trial operations, data management, and reporting \u2014 some project/data-management overlap but the role is clinical-trials coordination, not software or data engineering; Bachelor's + 1 yr experience.",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324710": {
+  "ai_score": 2,
+  "ai_reason": "Generic study-support Research Technician (recruitment, study sessions, data collection, report writing) with minimal detail \u2014 no clear tech/data-engineering component.",
+  "scored_at": "2026-08-31"
+ },
+ "unc-chapel hill|324715": {
+  "ai_score": 2,
+  "ai_reason": "Clinical Trials Study Coordinator managing regulatory submissions and IRB documentation for industry-sponsored trials \u2014 pure regulatory/compliance coordination, no tech overlap.",
+  "scored_at": "2026-08-31"
+ },
+ "nc state university|234377": {
+  "ai_score": 1,
+  "ai_reason": "Field/lab plant-pathology role evaluating carrot disease trials (in vitro culture, DNA extraction/PCR) \u2014 agricultural biology fieldwork, no tech/data overlap.",
+  "scored_at": "2026-08-31"
+ },
+ "nc state university|234363": {
+  "ai_score": 1,
+  "ai_reason": "Entomology lab role rearing insect (screwworm) colonies for a gene-drive research project \u2014 hands-on animal-rearing lab work, no tech/data overlap.",
+  "scored_at": "2026-08-31"
  }
 }
