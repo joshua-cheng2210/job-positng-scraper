@@ -3413,5 +3413,290 @@
   "ai_score": 1,
   "ai_reason": "Entomology lab role rearing insect (screwworm) colonies for a gene-drive research project \u2014 hands-on animal-rearing lab work, no tech/data overlap.",
   "scored_at": "2026-08-31"
+ },
+ "university of texas at austin|r_00048644": {
+  "ai_score": 2,
+  "ai_reason": "Robotics Software Engineer requires 2+ years professional/research SWE experience with ROS 2, C++, and robotics middleware \u2014 Josh's stack is Python/Java/JS with no robotics or C++ background, a real structural gap beyond one missing tool.",
+  "scored_at": "2026-09-06"
+ },
+ "university of maryland, college park|jr104853": {
+  "ai_score": 0,
+  "ai_reason": "sponsorship hard stop: \"DIT will not sponsor the successful candidate for work authorization in the United States\" \u2014 otherwise a strong-looking Research Software and Data Engineer title, but explicitly excluded.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m transportation institute|r-096829": {
+  "ai_score": 4,
+  "ai_reason": "Research Associate, Pavement Analytics \u2014 Bachelor's + 2 yrs required (real gap for new grad), but preferred qualifications explicitly call out Python, machine learning, and data analysis, a genuine skill match. (Texas H-1B moratorium noted in posting boilerplate, not an explicit no-sponsorship statement \u2014 not treated as a hard stop.)",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m transportation institute|r-096826": {
+  "ai_score": 3,
+  "ai_reason": "Research Assistant, Pavement Analytics \u2014 no experience required, but 63% of the role is fieldwork/equipment installation; only 5% is coding/ML/software development for data processing.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000080612-2": {
+  "ai_score": 3,
+  "ai_reason": "Title-only match (AI/ML R&D Engineer, Reston VA), no description scraped \u2014 verify manually before applying.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m university|r-096849": {
+  "ai_score": 1,
+  "ai_reason": "Research Assistant purifying and characterizing a protein via biochemistry techniques (Chemistry dept) \u2014 wet-lab biochemistry work, no software/data overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "university of texas at austin|r_00048528": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate II requires 2+ years post-bac wet-lab research experience (DNA/RNA extraction, histology) in a Biological Sciences lab \u2014 pure wet-lab role, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "cornell university|wdr-00061079": {
+  "ai_score": 0,
+  "ai_reason": "sponsorship hard stop: \"Visa sponsorship is not available for this position.\"",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m university health science center|r-096708": {
+  "ai_score": 2,
+  "ai_reason": "Research Specialist I supporting clinical research data compilation/review for a PI (Corpus Christi) \u2014 some data-support component but framed as clinical research operations, not software/data engineering.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m university|r-096702": {
+  "ai_score": 2,
+  "ai_reason": "Instructional Designer II requires 2 years of professional instructional-design/EdTech experience plus a relevant degree \u2014 real experience gap, and the work (adult learning content, web content management) doesn't draw on Josh's SWE/DS skills.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r158525": {
+  "ai_score": 1,
+  "ai_reason": "Clinical Research Assistant supporting cancer patient recruitment and consent \u2014 patient-facing clinical coordination, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "louisiana state university|r00120079": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate Specialist for an aquatic species research center \u2014 animal husbandry, grant compliance tracking; no software/data overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "nc state university|234679": {
+  "ai_score": 1,
+  "ai_reason": "Microbiology Laboratory Research Technician (Kleiner Lab, metaproteomics) \u2014 wet-lab microbial community research, no tech/data-engineering component.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m university health science center|r-096190": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate in a College of Pharmacy lab \u2014 Bachelor's + 2 yrs, wet-lab techniques (cell isolation, Western blot, PCR) preferred; no software/data overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "indiana university (academic postings)|34227": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate in an HIV biology lab \u2014 cell culture, reagent prep, general wet-lab support; no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "university of texas at austin|r_00048581": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate in Chemistry designing/synthesizing supramolecular host molecules for critical-materials separation \u2014 synthetic chemistry research, no tech/data overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "university of utah|208901": {
+  "ai_score": 3,
+  "ai_reason": "Digital Analytics Specialist II requires Bachelor's + 4 years (or Master's + 2) of directly related web-analytics experience \u2014 strong tool overlap (JavaScript, SQL, GA4, BigQuery, Tableau, Figma) but a real structural experience gap for a new grad.",
+  "scored_at": "2026-09-06"
+ },
+ "indiana university (academic postings)|34202": {
+  "ai_score": 1,
+  "ai_reason": "Research Associate in a bacterial biofilm/microbiology lab (Fuqua Lab) \u2014 DNA purification, molecular cloning, PCR; pure wet-lab work, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m transportation institute|r-096831": {
+  "ai_score": 1,
+  "ai_reason": "Research Specialist I, Pavement Analytics \u2014 4 years of related experience required, and 80%+ of the role is fieldwork/traffic measurement with minimal data-processing component.",
+  "scored_at": "2026-09-06"
+ },
+ "indiana university (academic postings)|34248": {
+  "ai_score": 1,
+  "ai_reason": "Research Scientist requires an earned doctorate plus 5 years of professional experience in education leadership \u2014 far too senior and in an unrelated field for a new grad.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r157844": {
+  "ai_score": 2,
+  "ai_reason": "Research Associate in health-services research (CATALYST center) \u2014 Bachelor's + 1 yr, biological/health-science research support; no software/data-engineering component described.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r155394": {
+  "ai_score": 1,
+  "ai_reason": "Clinical/Translational Research Assistant recruiting cancer patients and obtaining consent for an immuno-oncology platform \u2014 patient-facing clinical coordination, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r158389": {
+  "ai_score": 1,
+  "ai_reason": "Research Technician threshing and cleaning wheat seed for a wheat breeding program \u2014 manual agricultural field/lab labor, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m university - kingsville|r-089479": {
+  "ai_score": 2,
+  "ai_reason": "Research Associate at a wildlife research institute \u2014 general research support (data analysis via computer is one of several duties) in a wildlife-biology field context, not a software/data role.",
+  "scored_at": "2026-09-06"
+ },
+ "texas a&m agrilife research|r-096775": {
+  "ai_score": 1,
+  "ai_reason": "Research Specialist I collecting wildlife/pathogen field data (feral swine) for Rangeland, Wildlife & Fisheries Management \u2014 field biology work, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "louisiana state university|r00120104": {
+  "ai_score": 0,
+  "ai_reason": "Requires a PhD in physics plus 3 years of related experience for an Assistant Research Scientist role \u2014 far too senior for a new grad with a BS.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324770": {
+  "ai_score": 0,
+  "ai_reason": "sponsorship/eligibility hard stop: \"this position is only open to United States citizens or lawful permanent residents\" \u2014 a citizenship restriction that slipped past the upstream filter; worth flagging as a filter gap alongside the ARLIS-style entries seen before.",
+  "scored_at": "2026-09-06"
+ },
+ "university of washington|req-0000136664": {
+  "ai_score": 1,
+  "ai_reason": "Managing Research Scientist \u2014 a supervisory role managing a research team and grant deliverables; requires substantial prior research/publication experience, far too senior for a new grad.",
+  "scored_at": "2026-09-06"
+ },
+ "university of washington|req-0000126981": {
+  "ai_score": 2,
+  "ai_reason": "Research Scientist/Engineer 3 supporting two-photon microscopy infrastructure and imaging data analysis \u2014 some data-analysis overlap, but the role centers on specialized neuroscience imaging instrumentation expertise Josh doesn't have, and the '3' level implies significant prior experience.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324941": {
+  "ai_score": 1,
+  "ai_reason": "Full-time temporary Research Assistant for a global health/infectious disease study \u2014 no description of technical duties beyond generic research support boilerplate.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324978": {
+  "ai_score": 1,
+  "ai_reason": "Laboratory Research Technician for behavioral neuroscience experiments (electrophysiology, immunohistochemistry) \u2014 Python/MATLAB coding listed only as a nice-to-have on top of a core wet-lab/rodent-model role.",
+  "scored_at": "2026-09-06"
+ },
+ "university of washington|req-0000136132": {
+  "ai_score": 2,
+  "ai_reason": "Research Scientist/Engineer 2 supporting cancer-screening program evaluation \u2014 data cleaning/analysis is part of the role, but it's framed as public-health program evaluation (qualitative + quantitative), not software/data engineering.",
+  "scored_at": "2026-09-06"
+ },
+ "university of washington|req-0000136788": {
+  "ai_score": 1,
+  "ai_reason": "Managing Research Scientist, CVD \u2014 a supervisory research-team-management role requiring significant prior research management experience, too senior for a new grad.",
+  "scored_at": "2026-09-06"
+ },
+ "indiana university (academic postings)|34231": {
+  "ai_score": 2,
+  "ai_reason": "Research Associate role is lab operations/coordination across three biology labs (scheduling, purchasing, inventory) \u2014 administrative lab-management work, not a technical or data role.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082354": {
+  "ai_score": 1,
+  "ai_reason": "Manufacturing Fellow posting is explicitly for a current Penn State undergraduate student \u2014 Josh isn't enrolled there, a structural eligibility blocker beyond skills fit.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082236": {
+  "ai_score": 1,
+  "ai_reason": "Seeking a current Penn State graduate student for LLM/AI-agent disaster-simulation research \u2014 strong skills match (LLMs, AI/ML, data analysis) but restricted to enrolled PSU graduate students, a structural blocker.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082111": {
+  "ai_score": 1,
+  "ai_reason": "Seeking a current Penn State undergraduate researcher for synthetic-biology/genetic-engineering lab work (Whitaker Lab) \u2014 wet-lab microbiology role restricted to enrolled students.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|325030": {
+  "ai_score": 6,
+  "ai_reason": "Genuine fence case: Antimicrobial Stewardship/QI Data Analyst extracting EPIC clinical data, maintaining REDCap datasets, and applying statistical methods to assess intervention impact \u2014 real data-analysis overlap; Bachelor's + 1 yr, low bar, part-time (12-20 hrs/wk).",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324789": {
+  "ai_score": 2,
+  "ai_reason": "Research Associate managing multi-institutional research consortium relationships (Family Medicine) \u2014 coordination/stakeholder-management role, no described technical/data component.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324953": {
+  "ai_score": 2,
+  "ai_reason": "Soc/Clin Research Specialist coordinating multi-center clinical trials for the Biostatistics coordinating center \u2014 also an internal-only recruitment, so external applicants like Josh cannot apply regardless of fit.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082192": {
+  "ai_score": 4,
+  "ai_reason": "Part-time RA developing AI/robotics educational materials and case studies for the hospitality program, including survey design and quantitative/qualitative data analysis \u2014 some real data-analysis overlap, but the domain (hospitality education) and role (curriculum development) are a stretch from Josh's SWE/DS background.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r158656": {
+  "ai_score": 2,
+  "ai_reason": "Research Assistant on pediatric dentistry/Medicaid health-policy research \u2014 health-systems/policy research support, no technical or data-engineering component described.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324990": {
+  "ai_score": 1,
+  "ai_reason": "Soc/Clin Research Assistant in pediatric public health dentistry \u2014 patient-facing clinical/community outreach role, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082131": {
+  "ai_score": 1,
+  "ai_reason": "Part-time field/lab research assistant studying spotted lanternfly behavior (Entomology, Urban Lab) \u2014 outdoor insect fieldwork and lab assays, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082144": {
+  "ai_score": 2,
+  "ai_reason": "Research Lab Assistant in the Hines biology lab \u2014 general research support (data collection/summarizing) with no domain or tech detail given beyond generic lab-assistant duties.",
+  "scored_at": "2026-09-06"
+ },
+ "penn state (24 campuses)|req_0000082156": {
+  "ai_score": 1,
+  "ai_reason": "Manufacturing Fellow posting is explicitly for current Penn State undergraduate students \u2014 a structural eligibility blocker beyond skills fit.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|325026": {
+  "ai_score": 1,
+  "ai_reason": "Clinical Research Assistant supporting biomedical imaging studies with a variable Mon-Sat schedule \u2014 patient-facing clinical research support, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324940": {
+  "ai_score": 2,
+  "ai_reason": "Part-time Research Assistant doing qualitative coding/transcript management in Atlas.ti for a global health study \u2014 qualitative research support, not a quantitative/software role.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324933": {
+  "ai_score": 4,
+  "ai_reason": "Research Specialist-CIND role centers on data management, data analysis, and visualization for developmental-disabilities research \u2014 real data-analysis overlap even though the clinical/neuroscience domain is unfamiliar; Bachelor's-only bar.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324871": {
+  "ai_score": 1,
+  "ai_reason": "Research Specialist role is protein biochemistry (mammalian protein purification, enzymatic assays, electron microscopy) \u2014 pure wet-lab biochemistry, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324851": {
+  "ai_score": 2,
+  "ai_reason": "Social/Clinical Research Specialist coordinating vascular-surgery clinical trials \u2014 regulatory/clinical-trial coordination, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "nc state university|234410": {
+  "ai_score": 4,
+  "ai_reason": "Research Assistant (GIS) doing digitizing and spatial data management/analysis with QGIS/ArcGIS \u2014 real data-analysis overlap (data management, Excel, problem-solving) even without direct GIS tool experience; Bachelor's or relevant coursework, low bar.",
+  "scored_at": "2026-09-06"
+ },
+ "the ohio state university|r158388": {
+  "ai_score": 1,
+  "ai_reason": "Research Technician processing plant tissue samples for arthropod-pest analytical chemistry (Entomology) \u2014 wet-lab sample processing, no tech overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324886": {
+  "ai_score": 2,
+  "ai_reason": "Part-time research assistant conducting physical fitness/exercise testing (vitals, strength, cardiorespiratory fitness) with some REDCap data entry \u2014 predominantly hands-on physical testing, not a data/tech role.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324766": {
+  "ai_score": 1,
+  "ai_reason": "Soc/Clin Research Assistant at a Blood Research Center \u2014 clinical/lab support role, no tech overlap described.",
+  "scored_at": "2026-09-06"
+ },
+ "unc-chapel hill|324726": {
+  "ai_score": 1,
+  "ai_reason": "Lai Lab Research Technician performing in vivo animal studies (antibody/viral-vector engineering, IACUC protocols) \u2014 hands-on animal research, no tech/data overlap.",
+  "scored_at": "2026-09-06"
+ },
+ "nc state university|234563": {
+  "ai_score": 1,
+  "ai_reason": "Temporary Research Technician processing arthropod samples and doing physically demanding field excavation work (Entomology) \u2014 manual field/lab labor, no tech overlap.",
+  "scored_at": "2026-09-06"
  }
 }
