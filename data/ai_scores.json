@@ -3988,5 +3988,480 @@
     "ai_score": 0,
     "ai_reason": "UNC Tsagaratou Lab Research Technician: mouse-model immunology wet-lab work (flow cytometry, genotyping, sequencing prep), no CS overlap",
     "scored_at": "2026-09-11"
+  },
+  "university of texas at austin|r_00048538": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'US Citizen. Applicant selected will be subject to a government security investigation' \u2014 UT Austin Space Geodesist",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00048510": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'US Citizen. Applicant selected will be subject to a government security investigation' \u2014 UT Austin GNSS DSP",
+    "scored_at": "2026-09-25"
+  },
+  "cornell university|wdr-00061469": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'No Visa Sponsorship of any kind is available for this position' \u2014 Cornell Identity Management Developer",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00049003": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'This position is not eligible for employer-sponsored work authorization... without sponsorship, now and in the future' \u2014 UT Austin Data Analytics Engineer",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000081047": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' (Penn State ARL) \u2014 known recurring filter gap",
+    "scored_at": "2026-09-25"
+  },
+  "cornell university|wdr-00061523": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Visa Sponsorship is not available for this position' \u2014 Cornell Media Relations Analytics Coordinator",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082540": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'You must be a U.S. citizen to apply' (Penn State ARL) \u2014 known recurring filter gap",
+    "scored_at": "2026-09-25"
+  },
+  "cornell university|wdr-00060959": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Visa sponsorship is not available for this position' \u2014 Cornell Vegetable Field Research Technician",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000081750": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Candidate must be a US Citizen to apply' \u2014 Penn State Business Intelligence Specialist, filter gap (not ARL)",
+    "scored_at": "2026-09-25"
+  },
+  "university of maryland, college park|jr104945": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Must be able to obtain a US security clearance... requirements for access to classified information' \u2014 UMD ARLIS, known pattern",
+    "scored_at": "2026-09-25"
+  },
+  "university of maryland, college park|jr105015": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Must be able to obtain a US security clearance' \u2014 UMD ARLIS, known pattern",
+    "scored_at": "2026-09-25"
+  },
+  "university of maryland, college park|jr104947": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Must be able to obtain a U.S. security clearance' \u2014 UMD ARLIS, known pattern",
+    "scored_at": "2026-09-25"
+  },
+  "cornell university|wdr-00061375": {
+    "ai_score": 0,
+    "ai_reason": "sponsorship hard stop: 'Visa sponsorship is not available for this position' \u2014 Cornell Temp Lab/Research Technician",
+    "scored_at": "2026-09-25"
+  },
+  "university of maryland, college park|jr105025": {
+    "ai_score": 4,
+    "ai_reason": "UMD MATRIX Lab AI/ML Autonomous Systems: strong technical match (PyTorch, computer vision, FastAPI/React) but defense-industry role with 'U.S. citizenship or permanent residency preferred' language \u2014 per known defense-SBIR-contractor screening pattern, deprioritize despite skill fit",
+    "scored_at": "2026-09-25"
+  },
+  "prairie view a&m university|r-097449": {
+    "ai_score": 1,
+    "ai_reason": "Prairie View A&M Graduate Assistant: requires being 'presently enrolled at Prairie View A&M University' \u2014 structural blocker, Josh isn't enrolled there",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00048941": {
+    "ai_score": 3,
+    "ai_reason": "UT Austin Research Engineering/Scientist Associate II: AI/ML structure prediction (AlphaFold) overlaps with resume, but requires Master's or Bachelor's+2yrs plus computational-biology-specific experience Josh lacks",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235386": {
+    "ai_score": 6,
+    "ai_reason": "NC State Software Engineer (SPEED autonomous lab): excellent stack match (Python, REST APIs, Git, Linux, cloud, containers) but explicit 3+ years required with no equivalency clause stated",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235188": {
+    "ai_score": 2,
+    "ai_reason": "NC State Systems Programmer/Specialist: requires 3 years operations/systems-programming experience, deep enterprise Linux/virtualization background Josh lacks",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235106": {
+    "ai_score": 7,
+    "ai_reason": "NC State Data Engineer (SPEED): Bachelor's-only requirement, no years-of-experience gate; Python, SQL, ETL/APIs, data modeling, Git, Linux \u2014 strong direct match to resume",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m agrilife research|r-097403": {
+    "ai_score": 1,
+    "ai_reason": "TAMU AgriLife Research Technician (Animal Science): wet-lab microbiology sample/data collection, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m agrilife research|r-096744": {
+    "ai_score": 1,
+    "ai_reason": "TAMU AgriLife Research Specialist I: community health/physical-activity intervention research, no CS overlap ('citizen science' was a false-positive keyword match, not a blocker)",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university|r-097206": {
+    "ai_score": 1,
+    "ai_reason": "TAMU Psychology Research Assistant: human-subjects family research, participant recruitment, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r154860": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Scientist Molecular Medicine & Therapeutics: PhD-level independent PI research leadership in cancer genomics, far too senior/wrong field",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university|r-097349": {
+    "ai_score": 1,
+    "ai_reason": "TAMU Research Specialist II Biology: 6 years experience required, wet-lab mouse-colony management",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159812": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Associate 2 Engineer (automotive/CAR): requires ME/EE degree + 2yrs engineering research, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "louisiana state university|r00120838": {
+    "ai_score": 0,
+    "ai_reason": "LSU Research Associate 3/4: requires Master's in Geotechnical Engineering, wrong field",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university - texarkana|r-097248": {
+    "ai_score": 2,
+    "ai_reason": "TAMU-Texarkana Instructional Designer II: LMS/instructional-design domain, 2 years required, not CS-aligned",
+    "scored_at": "2026-09-25"
+  },
+  "indiana university (academic postings)|34397": {
+    "ai_score": 3,
+    "ai_reason": "IU Jiang Lab Research Associate: BME/EE/physics degree required, ultrasound/photoacoustic imaging hardware domain; Python/MATLAB only 'highly encouraged', not required",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159018": {
+    "ai_score": 5,
+    "ai_reason": "OSU BME Research Associate (motion capture/CAR lab): genuine data-tooling overlap (MATLAB/Python/R scripts, REDCap databases) but BME instrumentation domain is a real gap; fence case",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00048908": {
+    "ai_score": 2,
+    "ai_reason": "UT Austin Research Associate I, Psychiatry (Fonzo Lab): clinical fMRI/EEG data collection and participant coordination, not a programming role",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00048913": {
+    "ai_score": 4,
+    "ai_reason": "UT Austin IT Coordinator II, Cockrell School: entry-level help desk with hands-on hardware/networking work (lifting, ladders); relevant education/experience may substitute, but manual/physical component is a real mismatch",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000081753": {
+    "ai_score": 5,
+    "ai_reason": "Penn State Facilities Systems Analyst (Maximo/EAM): Associate degree, no prior experience required \u2014 low bar application-support role, though IBM Maximo is a niche enterprise tool",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159008": {
+    "ai_score": 2,
+    "ai_reason": "OSU Business Systems Analyst (Dentistry EHR): Epic/EHR-specific healthcare IT domain Josh lacks",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university health science center|r-096737": {
+    "ai_score": 1,
+    "ai_reason": "TAMU Health Science Center Research Assistant (Pharmacy): wet-lab (PCR, ELISA, mouse studies), no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "university of texas at austin|r_00048767": {
+    "ai_score": 2,
+    "ai_reason": "UT Austin Ancillary Application Analyst (Dell Medical, Epic): Epic EHR-specific healthcare IT domain Josh lacks",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university|r-097249": {
+    "ai_score": 3,
+    "ai_reason": "TAMU Learning & Instructional Design Support Specialist I: no prior experience required, but LMS/instructional-design domain rather than CS",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159659": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Technician, Comprehensive Cancer Center: HS diploma, lab records/admin support, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r158849": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Technician-Medical Oncology: wet-lab immunology (scRNA-seq, CRISPR, western blot)",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r158964": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Associate 1-Hematology: designs/manages preclinical wet-lab research program, senior-ish and wrong field",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m agrilife research|r-090918": {
+    "ai_score": 0,
+    "ai_reason": "TAMU AgriLife Farm Services Research Assistant: operates tractors/farm equipment, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159036": {
+    "ai_score": 1,
+    "ai_reason": "OSU Research Scientist, Davis Heart and Lung Institute: independent PI-level cardiovascular research, wrong field",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|234973": {
+    "ai_score": 2,
+    "ai_reason": "NC State Partnership Developer: external-affairs/business-development role, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000078195": {
+    "ai_score": 2,
+    "ai_reason": "Penn State Instructional Designer, World Campus: senior lead instructional-design role, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university - kingsville|r-097333": {
+    "ai_score": 1,
+    "ai_reason": "TAMUK Citrus Center Research Assistant: entomology/horticulture field and greenhouse research, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university - kingsville|r-097160": {
+    "ai_score": 1,
+    "ai_reason": "TAMUK Wildlife Research Assistant, Alpine TX: field ecology data collection, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "university of utah|209471": {
+    "ai_score": 1,
+    "ai_reason": "Utah AI/ML Engineer (Speculative Design Researcher, BCI): requires bachelor's+6 years minimum (Level III); role is HCI/design-research, not engineering-focused despite the title",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university - kingsville|r-096940": {
+    "ai_score": 2,
+    "ai_reason": "TAMUK Business Analytics Specialist I: accounts-payable audits/financial reconciliation, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325660": {
+    "ai_score": 4,
+    "ai_reason": "UNC Research Software Developer (Psychiatry neuroimaging): 0-2 years accepted but 'Senior Research Software Engineer' duties require deep neuroimaging domain expertise (MRI/MRS/PET, FSL/SPM/Freesurfer) Josh lacks despite Python overlap",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000137336": {
+    "ai_score": 6,
+    "ai_reason": "UW Database and Software Developer (Cultivate Learning, temp): Bachelor's CS/DS + 2yrs, strong SQL/Postgres/Power BI/data-integration overlap; fence case given years requirement",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325522": {
+    "ai_score": 3,
+    "ai_reason": "UNC Research Data Scientist (TraCS): strong LLM/NLP overlap (matches LangChain/HuggingFace resume skills) but requires Master's/PhD+2yrs or Bachelor's+3yrs independent research productivity",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000137087": {
+    "ai_score": 2,
+    "ai_reason": "UW HPC Systems Engineer: requires minimum 4 years Linux system administration experience, real gap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325895": {
+    "ai_score": 2,
+    "ai_reason": "UNC Linux Systems Administrator: Master's+1-2yrs or Bachelor's+2-4yrs required, real gap for new grad",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325762": {
+    "ai_score": 1,
+    "ai_reason": "UNC Global Health Research Associate (ShepsGME-style): need to verify duties but department pattern indicates clinical/admin coordination, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325893": {
+    "ai_score": 6,
+    "ai_reason": "UNC Web Applications Developer, CHAI Core: Bachelor's CS/CIS/Eng or Associate+1yr; Laravel/SQL/JSON/HTML/CSS/JS overlaps well with resume web-dev stack",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university|r-097345": {
+    "ai_score": 4,
+    "ai_reason": "TAMU Research Technician I, Statistics (spatial transcriptomics): genuine Python/R data-analysis and reproducible-workflow overlap, but specialized biostatistics/genomics domain knowledge gap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325474": {
+    "ai_score": 3,
+    "ai_reason": "UNC Integrated Workplace Management Systems Administrator: database/SQL/reporting work but niche facilities-software (Archibus/CAD/GIS) domain",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159648": {
+    "ai_score": 1,
+    "ai_reason": "OSU HPC Client Services Student Assistant: requires 'currently enrolled in an undergraduate program' \u2014 structural blocker, Josh already graduated",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325649": {
+    "ai_score": 1,
+    "ai_reason": "UNC Thaxton Lab Research Specialist: PhD-level wet-lab cell biology/microscopy/immunology, far too senior and wrong field",
+    "scored_at": "2026-09-25"
+  },
+  "university of utah|209739": {
+    "ai_score": 1,
+    "ai_reason": "Utah Hourly Research Assistant (qualitative health research): interview transcript coding, community health, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159188": {
+    "ai_score": 0,
+    "ai_reason": "OSU Research Technician 2 (Horticulture/Crop Science): fieldwork, livestock handling, forage/grazing lab work",
+    "scored_at": "2026-09-25"
+  },
+  "louisiana state university|r00120705": {
+    "ai_score": 1,
+    "ai_reason": "LSU Research Associate 2 Part Time: microbiology wet-lab (bacterial pathogenesis), no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325776": {
+    "ai_score": 1,
+    "ai_reason": "UNC Hantman Lab Research Scientist: explicitly described as a senior/independent-leadership neuroscience research position despite the 0-2yr listed requirement, wet-lab",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325600": {
+    "ai_score": 3,
+    "ai_reason": "UNC AI Instructional Designer: genuine AI-topic overlap (generative AI, prompt engineering) but requires instructional-design expertise and e-learning authoring tools (Articulate Storyline etc.) Josh lacks",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082731": {
+    "ai_score": 1,
+    "ai_reason": "Penn State Graduate Instructional/Research Assistant (WFED): requires 'currently enrolled Penn State graduate students' \u2014 structural blocker",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082956": {
+    "ai_score": 5,
+    "ai_reason": "Penn State Part-Time RA (IME, trustworthy AI-enabled certification): relevant AI/ML research topic but posting lists no qualifications at all \u2014 genuine ambiguity, fence case",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000081686": {
+    "ai_score": 3,
+    "ai_reason": "Penn State Accounting Dept Research Assistant: data collection/analysis, open/rolling hiring, no explicit qualifications listed but domain is accounting-specific",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159616": {
+    "ai_score": 1,
+    "ai_reason": "OSU Pharmacy Research Technician: wet-lab molecular biology/pharmacology (western blot, RT-PCR, murine studies)",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000133378": {
+    "ai_score": 3,
+    "ai_reason": "UW Azure Cloud & Server Support Engineer: requires 3 years enterprise Windows server experience; some cloud/PowerShell/Terraform overlap with AWS background",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000137205": {
+    "ai_score": 1,
+    "ai_reason": "UW Global Health Research Scientist/Engineer Assistant (Chlamydia/Neisseria Lab): wet-lab microbiology (culture, PCR, antimicrobial susceptibility testing)",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325915": {
+    "ai_score": 2,
+    "ai_reason": "UNC Radiology Soc/Clin RA: EHR data abstraction and clinical-research coordination, data-adjacent but not programming",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000137342": {
+    "ai_score": 1,
+    "ai_reason": "UW Pulmonary Research Scientist/Engineer 1: wet-lab/animal-model infectious disease research (BSL-3, mouse studies)",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325993": {
+    "ai_score": 0,
+    "ai_reason": "UNC Pharmacy Research Technician: mRNA display library wet-lab work, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325820": {
+    "ai_score": 1,
+    "ai_reason": "UNC Lineberger Cancer Center Research Technician: wet-lab cancer research support (department pattern consistent with prior postings); 'not eligible for H-1B sponsorship' alone is not treated as a hard stop per rule",
+    "scored_at": "2026-09-25"
+  },
+  "the ohio state university|r159619": {
+    "ai_score": 0,
+    "ai_reason": "OSU High School Research Assistant: position is for a current high-school student, not applicable to Josh",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082862": {
+    "ai_score": 1,
+    "ai_reason": "Penn State Felton Lab Part-Time Research Assistant: requires completion of an M.S. degree or higher, hard requirement Josh doesn't meet",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082791": {
+    "ai_score": 2,
+    "ai_reason": "Penn State IST cybersecurity human-subjects RA: 'Master's degree or current Ph.D. student encouraged to apply' \u2014 real degree-level gap despite interesting cybersecurity-research topic",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082728": {
+    "ai_score": 4,
+    "ai_reason": "Penn State Public Health climate/pregnancy research RA: literature review, data management, quantitative analysis overlap; no explicit degree requirement, but epidemiology/public-health domain-specific",
+    "scored_at": "2026-09-25"
+  },
+  "penn state (24 campuses)|req_0000082646": {
+    "ai_score": 2,
+    "ai_reason": "Penn State Buanafina Lab (Biology) Research Assistant: general biology research data collection, no CS overlap, no explicit qualifications bar",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000136643": {
+    "ai_score": 1,
+    "ai_reason": "UW Climate Impacts Group Research Scientist/Engineer 3: requires 4 years experience managing climate-resilience projects plus environmental-science degree",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325964": {
+    "ai_score": 2,
+    "ai_reason": "UNC Research Assistant, Institute for Private Capital: private-equity/finance research support, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325953": {
+    "ai_score": 1,
+    "ai_reason": "UNC Psychiatry Research Technician: clinical-trial recruitment/data collection for psychiatric-disorder studies, no CS substance",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325948": {
+    "ai_score": 1,
+    "ai_reason": "UNC Nursing Soc/Clin RA, Robeson County: community-based clinical field research, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325827": {
+    "ai_score": 2,
+    "ai_reason": "UNC Global Health Soc/Clin RA: clinical research coordination; 'not eligible for H-1B sponsorship' alone is not a hard stop per rule",
+    "scored_at": "2026-09-25"
+  },
+  "south central college|jr0000005730": {
+    "ai_score": 2,
+    "ai_reason": "South Central College Network Administrator: networking/firewall/NIST-compliance infrastructure role Josh lacks hands-on networking background for; 'unable to sponsor for work visas' treated as boilerplate like 'no H-1B', not a hard stop since it doesn't block STEM OPT",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325784": {
+    "ai_score": 1,
+    "ai_reason": "UNC Neuroscience Center Research Specialist: department/role pattern consistent with wet-lab neuroscience research, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "university of washington|req-0000137353": {
+    "ai_score": 0,
+    "ai_reason": "UW Wisedchaisri Lab Research Scientist/Engineer 2: structural biology (cryo-EM, X-ray crystallography), wet-lab, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "university of utah|209355": {
+    "ai_score": 2,
+    "ai_reason": "Utah HCI Research Assistant/Analyst (skin cancer prevention, Yelena Wu program): school outreach, survey/interview data collection, light descriptive statistics only",
+    "scored_at": "2026-09-25"
+  },
+  "university of utah|209233": {
+    "ai_score": 2,
+    "ai_reason": "Utah HCI Research Assistant/Analyst (digital health, Tammy Stump program): mobile health intervention testing, participant recruitment, light data-cleaning/descriptive stats only",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325622": {
+    "ai_score": 1,
+    "ai_reason": "UNC Center for Molecular Medicine Research Technician: department/role pattern consistent with wet-lab molecular research, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235146": {
+    "ai_score": 0,
+    "ai_reason": "NC State Mountain Horticultural Research Technician: field crop research (apples, tomatoes, corn), no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "unc-chapel hill|325802": {
+    "ai_score": 1,
+    "ai_reason": "UNC SOM Clinical Research Alliance Research Assistant: clinical research coordination, not CS",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235029": {
+    "ai_score": 0,
+    "ai_reason": "NC State Temporary Genetics Research Technician (Apiculture): honey bee genetics wet-lab work, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235028": {
+    "ai_score": 0,
+    "ai_reason": "NC State Temporary Research Technician (Apiculture): beekeeping/field research, no CS overlap",
+    "scored_at": "2026-09-25"
+  },
+  "nc state university|235204": {
+    "ai_score": 0,
+    "ai_reason": "NC State Temporary Ag Ed Curriculum Developer: requires Master's in Agricultural Education, wrong field entirely",
+    "scored_at": "2026-09-25"
+  },
+  "texas a&m university - kingsville|r-097313": {
+    "ai_score": 0,
+    "ai_reason": "TAMUK Research Technician I (South Texas Lion Project): wildlife trapping/collaring fieldwork, no CS overlap",
+    "scored_at": "2026-09-25"
   }
 }
